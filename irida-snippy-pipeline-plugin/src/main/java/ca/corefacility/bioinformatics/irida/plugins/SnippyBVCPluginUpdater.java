@@ -222,6 +222,6 @@ public class SnippyBVCPluginUpdater implements AnalysisSampleUpdater {
 	 */
 	@Override
 	public AnalysisType getAnalysisType() {
-		return SnippyBVCPipelinePlugin.READ_INFO;
+		return SnippyBVCPipelinePlugin.SNIPPY_BACTERIAL_VARIANT_CALLER;
 	}
 }
