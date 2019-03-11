@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iridaWorkflow>
+  <id>0b13025b-e857-4e4e-93dc-1c37af864ab4</id>
+  <name>SnippyBVCPipeline</name>
+  <version>0.1.0</version>
+  <analysisType>SNIPPY_BACTERIAL_VARIANT_CALLER</analysisType>
+  <inputs>
+    <sequenceReadsPaired/>
+    <reference>reference</reference>
+    <requiresSingleSample>true</requiresSingleSample>
+  </inputs>
+  <parameters>
+    <parameter name="confil-2-input_type_conditional.input_type" defaultValue="paired_collection">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/confil/confil/0.1.3+galaxy4" parameterName="input_type_conditional.input_type"/>
+    </parameter>
+    <parameter name="confil-2-cutoff" defaultValue="90">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/confil/confil/0.1.3+galaxy4" parameterName="cutoff"/>
+    </parameter>
+    <parameter name="snippy-3-adv.bwaopt" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1" parameterName="adv.bwaopt"/>
+    </parameter>
+    <parameter name="snippy-3-adv.mapqual" defaultValue="60">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1" parameterName="adv.mapqual"/>
+    </parameter>
+    <parameter name="snippy-3-adv.mincov" defaultValue="10">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1" parameterName="adv.mincov"/>
+    </parameter>
+    <parameter name="snippy-3-adv.minfrac" defaultValue="0.9">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1" parameterName="adv.minfrac"/>
+    </parameter>
+    <parameter name="snippy-3-adv.rgid" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1" parameterName="adv.rgid"/>
+    </parameter>
+    <parameter name="snippy-3-fastq_input.fastq_input_selector" defaultValue="paired_collection">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1" parameterName="fastq_input.fastq_input_selector"/>
+    </parameter>
+  </parameters>
+  <outputs>
+    <output name="snippy_dir_core_zip" fileName="snippy_dir_core_zip"/>
+    <output name="snippy_consensus_fasta" fileName="snippy_consensus_fasta"/>
+    <output name="snippy_aligned_fasta" fileName="snippy_aligned_fasta"/>
+    <output name="snippy_gff" fileName="snippy_gff"/>
+    <output name="snippy_snps_tabular_summary" fileName="snippy_snps_tabular_summary"/>
+    <output name="snippy_vcf" fileName="snippy_vcf"/>
+    <output name="snippy_log" fileName="snippy_log"/>
+    <output name="snippy_mapped_reads_bam" fileName="snippy_mapped_reads_bam"/>
+    <output name="snippy_mapping_depth_tabular" fileName="snippy_mapping_depth_tabular"/>
+    <output name="snippy_snps_tabular" fileName="snippy_snps_tabular"/>
+  </outputs>
+  <toolRepositories>
+    <repository>
+      <name>confil</name>
+      <owner>sanbi-uwc</owner>
+      <url>https://testtoolshed.g2.bx.psu.edu</url>
+      <revision>72cb19a32d8b</revision>
+    </repository>
+    <repository>
+      <name>snippy</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>82f2b6f20fa2</revision>
+    </repository>
+  </toolRepositories>
+</iridaWorkflow>
