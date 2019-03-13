@@ -32,21 +32,21 @@ import ca.corefacility.bioinformatics.irida.service.workflow.IridaWorkflowsServi
  * <https://github.com/phac-nml/irida/blob/development/src/main/java/ca/corefacility/bioinformatics/irida/pipeline/results/AnalysisSampleUpdater.java>
  * or the README.md file in this project for more details.
  */
-public class ExamplePluginUpdater implements AnalysisSampleUpdater {
+public class SanbiBVCPipelinePluginUpdater implements AnalysisSampleUpdater {
 
 	private final MetadataTemplateService metadataTemplateService;
 	private final SampleService sampleService;
 	private final IridaWorkflowsService iridaWorkflowsService;
 
 	/**
-	 * Builds a new {@link ExamplePluginUpdater} with the given services.
+	 * Builds a new {@link SanbiBVCPipelinePluginUpdater} with the given services.
 	 * 
 	 * @param metadataTemplateService The metadata template service.
 	 * @param sampleService           The sample service.
 	 * @param iridaWorkflowsService   The irida workflows service.
 	 */
-	public ExamplePluginUpdater(MetadataTemplateService metadataTemplateService, SampleService sampleService,
-			IridaWorkflowsService iridaWorkflowsService) {
+	public SanbiBVCPipelinePluginUpdater(MetadataTemplateService metadataTemplateService, SampleService sampleService,
+										 IridaWorkflowsService iridaWorkflowsService) {
 		this.metadataTemplateService = metadataTemplateService;
 		this.sampleService = sampleService;
 		this.iridaWorkflowsService = iridaWorkflowsService;
@@ -222,6 +222,6 @@ public class ExamplePluginUpdater implements AnalysisSampleUpdater {
 	 */
 	@Override
 	public AnalysisType getAnalysisType() {
-		return ExamplePlugin.READ_INFO;
+		return SanbiBVCPipelinePlugin.READ_INFO;
 	}
 }

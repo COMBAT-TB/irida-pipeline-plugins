@@ -18,16 +18,16 @@ import ca.corefacility.bioinformatics.irida.service.workflow.IridaWorkflowsServi
  * An example {@link IridaPlugin} implementation which will extract some
  * information from the sequencing reads.
  */
-public class ExamplePlugin extends Plugin {
+public class SanbiBVCPipelinePlugin extends Plugin {
 
 	/**
 	 * The {@link AnalysisType} used by this plugin. This wraps around a string and
 	 * is used to store the type of the analysis pipeline (which should be unique
 	 * for each pipeline).
 	 */
-	public static final AnalysisType READ_INFO = new AnalysisType("READ_INFO");
+	public static final AnalysisType READ_INFO = new AnalysisType("phylogenomics");
 
-	public ExamplePlugin(PluginWrapper wrapper) {
+	public SanbiBVCPipelinePlugin(PluginWrapper wrapper) {
 		super(wrapper);
 	}
 
@@ -74,7 +74,7 @@ public class ExamplePlugin extends Plugin {
 		 */
 		@Override
 		public UUID getDefaultWorkflowUUID() {
-			return UUID.fromString("79d90ca8-00ae-441b-b5c7-193c9e85a968");
+			return UUID.fromString("b07cc8e3-4269-43bd-98d5-5c442cbbd32c");
 		}
 
 		/*******************************************************************************
@@ -92,7 +92,7 @@ public class ExamplePlugin extends Plugin {
 		 */
 		@Override
 		public Optional<Color> getBackgroundColor() {
-			return Optional.of(Color.decode("#dd1c77"));
+			return Optional.of(Color.decode("#00FFFF"));
 		}
 
 		/**
@@ -123,7 +123,7 @@ public class ExamplePlugin extends Plugin {
 		@Override
 		public Optional<AnalysisSampleUpdater> getUpdater(MetadataTemplateService metadataTemplateService,
 				SampleService sampleService, IridaWorkflowsService iridaWorkflowsService) throws IridaPluginException {
-			return Optional.of(new ExamplePluginUpdater(metadataTemplateService, sampleService, iridaWorkflowsService));
+			return Optional.of(new SanbiBVCPipelinePluginUpdater(metadataTemplateService, sampleService, iridaWorkflowsService));
 		}
 	}
 }

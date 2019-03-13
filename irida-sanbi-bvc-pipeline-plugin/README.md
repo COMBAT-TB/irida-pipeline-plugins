@@ -296,7 +296,7 @@ The `properties` section contains additional information you will have to update
 
 ```xml
 <plugin.id>example-plugin</plugin.id>
-<plugin.class>ca.corefacility.bioinformatics.irida.plugins.ExamplePlugin</plugin.class>
+<plugin.class>ca.corefacility.bioinformatics.irida.plugins.SanbiBVCPipelinePlugin</plugin.class>
 <plugin.version>0.1.0</plugin.version>
 <plugin.provider>Aaron Petkau</plugin.provider>
 <plugin.dependencies></plugin.dependencies>
