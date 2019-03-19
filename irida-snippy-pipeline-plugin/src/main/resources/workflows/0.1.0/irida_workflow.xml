@@ -5,8 +5,8 @@
   <version>0.1.0</version>
   <analysisType>SNIPPY_BACTERIAL_VARIANT_CALLER</analysisType>
   <inputs>
-    <sequenceReadsPaired/>
-    <reference>reference</reference>
+    <sequenceReadsPaired>Input Collection</sequenceReadsPaired>
+    <reference>Reference File</reference>
     <requiresSingleSample>true</requiresSingleSample>
   </inputs>
   <parameters>
