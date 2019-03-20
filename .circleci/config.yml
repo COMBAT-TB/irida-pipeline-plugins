@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    
+    working_directory: ~/irida-snippy-pipeline-plugin-0.1.0
+
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+      - image: circleci/postgres:9.6.3-alpine
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: circle_test
+
+    steps:
+
+      - checkout
+
+      - restore_cache:
+          key: irida-snippy-pipeline-plugin-0.1.0-{{ checksum "pom.xml" }}
+
+      - run: git clone https://github.com/phac-nml/irida.git && cd irida && git checkout tags/19.01 && mvn clean install -DskipTests
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: irida-snippy-pipeline-plugin-0.1.0-{{ checksum "pom.xml" }}
+      
+      - run: cd irida-snippy-pipeline-plugin && mvn -Dirida.version.compiletime=19.04 clean package
+      
+      - store_artifacts:
+          path: target/irida-snippy-pipeline-plugin-0.1.0-SNAPSHOT.jar
