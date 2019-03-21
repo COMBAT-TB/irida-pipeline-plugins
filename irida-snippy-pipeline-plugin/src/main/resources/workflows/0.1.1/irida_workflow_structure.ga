@@ -1,0 +1,351 @@
+{
+    "uuid": "fc3a81e3-936c-4ded-97a5-420968a88fe2",
+    "tags": [],
+    "format-version": "0.1",
+    "name": "Snippy Variant Calling",
+    "version": 3,
+    "steps": {
+        "0": {
+            "tool_id": null,
+            "tool_version": null,
+            "outputs": [],
+            "workflow_outputs": [{
+                "output_name": "output",
+                "uuid": "236de80a-53c0-46ce-92f8-f8bcc88c6137",
+                "label": null
+            }],
+            "input_connections": {},
+            "tool_state": "{\"name\": \"reference\"}",
+            "id": 0,
+            "uuid": "571058e7-5d9e-4524-9441-eaebf08eaf99",
+            "errors": null,
+            "name": "Input dataset",
+            "label": "Reference File",
+            "inputs": [{
+                "name": "reference",
+                "description": ""
+            }],
+            "position": {
+                "top": 200,
+                "left": 200
+            },
+            "annotation": "",
+            "content_id": null,
+            "type": "data_input"
+        },
+        "1": {
+            "tool_id": null,
+            "tool_version": null,
+            "outputs": [],
+            "workflow_outputs": [{
+                "output_name": "output",
+                "uuid": "986865ec-2107-4fd6-91f4-290c52d2c4ba",
+                "label": null
+            }],
+            "input_connections": {},
+            "tool_state": "{\"collection_type\": \"list:paired\", \"name\": \"sequence_reads\"}",
+            "id": 1,
+            "uuid": "2cb1aaff-eab5-40b5-a87a-272866d5cdd3",
+            "errors": null,
+            "name": "Input dataset collection",
+            "label": "Input Collection",
+            "inputs": [{
+                "description": "",
+                "name": "sequence_reads"
+            }],
+            "position": {
+                "top": 288,
+                "left": 200
+            },
+            "annotation": "",
+            "content_id": null,
+            "type": "data_collection_input"
+        },
+        "2": {
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/confil/confil/0.1.5+galaxy0",
+            "tool_version": null,
+            "outputs": [{
+                "type": "input",
+                "name": "list_output"
+            }, {
+                "type": "tabular",
+                "name": "output_report"
+            }, {
+                "type": "fastq",
+                "name": "single_output_file"
+            }],
+            "workflow_outputs": [],
+            "input_connections": {
+                "input_type_conditional|collection_input": {
+                    "output_name": "output",
+                    "id": 1
+                }
+            },
+            "tool_state": "{\"input_type_conditional\": \"{\\\"__current_case__\\\": 1, \\\"collection_input\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"input_type\\\": \\\"paired_collection\\\"}\", \"cutoff\": \"\\\"90\\\"\", \"__rerun_remap_job_id__\": null, \"__page__\": null}",
+            "id": 2,
+            "tool_shed_repository": {
+                "owner": "sanbi-uwc",
+                "changeset_revision": "bbf9ab2ebee7",
+                "name": "confil",
+                "tool_shed": "testtoolshed.g2.bx.psu.edu"
+            },
+            "uuid": "4ceb2470-fffd-4333-aef2-9b12ed6c1f67",
+            "errors": null,
+            "name": "Contamination Filter (confil)",
+            "post_job_actions": {
+                "HideDatasetActionsingle_output_file": {
+                    "output_name": "single_output_file",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "HideDatasetActionoutput_report": {
+                    "output_name": "output_report",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "HideDatasetActionlist_output": {
+                    "output_name": "list_output",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                }
+            },
+            "label": "Contamination Filter",
+            "inputs": [{
+                "name": "input_type_conditional",
+                "description": "runtime parameter for tool Contamination Filter (confil)"
+            }],
+            "position": {
+                "top": 200,
+                "left": 482
+            },
+            "annotation": "",
+            "content_id": "testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/confil/confil/0.1.5+galaxy0",
+            "type": "tool"
+        },
+        "3": {
+            "tool_id": "__FILTER_EMPTY_DATASETS__",
+            "tool_version": null,
+            "outputs": [{
+                "type": "input",
+                "name": "output"
+            }],
+            "workflow_outputs": [],
+            "input_connections": {
+                "input": {
+                    "output_name": "list_output",
+                    "id": 2
+                }
+            },
+            "tool_state": "{\"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"__page__\": null}",
+            "id": 3,
+            "uuid": "1cc9ff7d-6c46-48a7-9cc0-3b0adbf4b8b9",
+            "errors": null,
+            "name": "Filter empty",
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "output_name": "output",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                }
+            },
+            "label": "Filter empty",
+            "inputs": [{
+                "name": "input",
+                "description": "runtime parameter for tool Filter empty"
+            }],
+            "position": {
+                "top": 200,
+                "left": 810
+            },
+            "annotation": "",
+            "content_id": "__FILTER_EMPTY_DATASETS__",
+            "type": "tool"
+        },
+        "4": {
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1",
+            "tool_version": null,
+            "outputs": [{
+                "type": "vcf",
+                "name": "snpvcf"
+            }, {
+                "type": "gff3",
+                "name": "snpgff"
+            }, {
+                "type": "tabular",
+                "name": "snptab"
+            }, {
+                "type": "tabular",
+                "name": "snpsum"
+            }, {
+                "type": "txt",
+                "name": "snplog"
+            }, {
+                "type": "fasta",
+                "name": "snpalign"
+            }, {
+                "type": "fasta",
+                "name": "snpconsensus"
+            }, {
+                "type": "tabular",
+                "name": "snpsdepth"
+            }, {
+                "type": "bam",
+                "name": "snpsbam"
+            }, {
+                "type": "zip",
+                "name": "outdir"
+            }],
+            "workflow_outputs": [{
+                "output_name": "snplog",
+                "uuid": "58866069-3749-491a-a383-83a6223cd4ec",
+                "label": "snippy_log"
+            }, {
+                "output_name": "snptab",
+                "uuid": "0afa2dd0-9fd8-45e8-ac7e-71cb20af440d",
+                "label": "snippy_snps_tabular"
+            }, {
+                "output_name": "snpvcf",
+                "uuid": "21a60a28-f39b-4a94-9c48-da4e43d54a10",
+                "label": "snippy_vcf"
+            }, {
+                "output_name": "snpgff",
+                "uuid": "d5052519-afd0-4987-ac5b-2c973bcc2ae4",
+                "label": "snippy_gff"
+            }, {
+                "output_name": "snpconsensus",
+                "uuid": "0cb87fb8-0662-4958-b449-0f6afc15357c",
+                "label": "snippy_consensus_fasta"
+            }, {
+                "output_name": "snpsbam",
+                "uuid": "eb586313-08cb-440c-aaca-887d32148d00",
+                "label": "snippy_mapped_reads_bam"
+            }, {
+                "output_name": "snpalign",
+                "uuid": "b7dd8f7a-3a45-44b6-a651-dc52e5665368",
+                "label": "snippy_aligned_fasta"
+            }, {
+                "output_name": "snpsum",
+                "uuid": "dda485c7-fc43-4299-b237-b04ef7c51df7",
+                "label": "snippy_snps_tabular_summary"
+            }, {
+                "output_name": "snpsdepth",
+                "uuid": "9d1fd8e4-bbb9-453c-9dcb-cb101fce5cc4",
+                "label": "snippy_mapping_depth_tabular"
+            }, {
+                "output_name": "outdir",
+                "uuid": "2f3f8a82-4630-4d2b-84b4-56edb8127da8",
+                "label": "snippy_dir_core_zip"
+            }],
+            "input_connections": {
+                "ref": {
+                    "output_name": "output",
+                    "id": 0
+                },
+                "fastq_input|fastq_input": {
+                    "output_name": "output",
+                    "id": 3
+                }
+            },
+            "tool_state": "{\"adv\": \"{\\\"bwaopt\\\": \\\"\\\", \\\"mapqual\\\": \\\"60\\\", \\\"mincov\\\": \\\"10\\\", \\\"minfrac\\\": \\\"0.9\\\", \\\"rgid\\\": \\\"\\\"}\", \"__page__\": null, \"outputs\": \"[\\\"outvcf\\\", \\\"outtab\\\", \\\"outzip\\\"]\", \"__rerun_remap_job_id__\": null, \"fastq_input\": \"{\\\"__current_case__\\\": 2, \\\"fastq_input\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"fastq_input_selector\\\": \\\"paired_collection\\\"}\", \"ref\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "id": 4,
+            "tool_shed_repository": {
+                "owner": "iuc",
+                "changeset_revision": "82f2b6f20fa2",
+                "name": "snippy",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "uuid": "acaae43f-f158-413b-88d2-333a3fda802b",
+            "errors": null,
+            "name": "snippy",
+            "post_job_actions": {
+                "RenameDatasetActionsnptab": {
+                    "output_name": "snptab",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snippy_snps_tabular"
+                    }
+                },
+                "RenameDatasetActionsnpgff": {
+                    "output_name": "snpgff",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snippy_gff"
+                    }
+                },
+                "RenameDatasetActionsnpvcf": {
+                    "output_name": "snpvcf",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snippy_vcf"
+                    }
+                },
+                "RenameDatasetActionsnpalign": {
+                    "output_name": "snpalign",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snippy_aligned_fasta"
+                    }
+                },
+                "RenameDatasetActionsnplog": {
+                    "output_name": "snplog",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snippy_log"
+                    }
+                },
+                "RenameDatasetActionsnpconsensus": {
+                    "output_name": "snpconsensus",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snippy_consensus_fasta"
+                    }
+                },
+                "RenameDatasetActionoutdir": {
+                    "output_name": "outdir",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snippy_dir_core_zip"
+                    }
+                },
+                "RenameDatasetActionsnpsum": {
+                    "output_name": "snpsum",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snippy_snps_tabular_summary"
+                    }
+                },
+                "RenameDatasetActionsnpsbam": {
+                    "output_name": "snpsbam",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snippy_mapped_reads_bam"
+                    }
+                },
+                "RenameDatasetActionsnpsdepth": {
+                    "output_name": "snpsdepth",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snippy_mapping_depth_tabular"
+                    }
+                }
+            },
+            "label": "snippy",
+            "inputs": [{
+                "name": "ref",
+                "description": "runtime parameter for tool snippy"
+            }, {
+                "name": "fastq_input",
+                "description": "runtime parameter for tool snippy"
+            }],
+            "position": {
+                "top": 200,
+                "left": 1138
+            },
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1",
+            "type": "tool"
+        }
+    },
+    "annotation": "",
+    "a_galaxy_workflow": "true"
+}
