@@ -1,9 +1,9 @@
 {
-    "uuid": "bf730648-8099-4a4a-a5d9-a31c6d673e7a",
+    "uuid": "fc3a81e3-936c-4ded-97a5-420968a88fe2",
     "tags": [],
     "format-version": "0.1",
     "name": "Snippy Variant Calling",
-    "version": 4,
+    "version": 3,
     "steps": {
         "0": {
             "tool_id": null,
@@ -11,17 +11,20 @@
             "outputs": [],
             "workflow_outputs": [{
                 "output_name": "output",
-                "uuid": "145e285f-55fe-4d39-a6cf-eec21f09fb79",
+                "uuid": "236de80a-53c0-46ce-92f8-f8bcc88c6137",
                 "label": null
             }],
             "input_connections": {},
             "tool_state": "{\"name\": \"reference\"}",
             "id": 0,
-            "uuid": "f0aa6233-4b50-4b25-a87e-646a0ca5807c",
+            "uuid": "571058e7-5d9e-4524-9441-eaebf08eaf99",
             "errors": null,
             "name": "Input dataset",
             "label": "Reference File",
-            "inputs": [],
+            "inputs": [{
+                "name": "reference",
+                "description": ""
+            }],
             "position": {
                 "top": 200,
                 "left": 200
@@ -36,19 +39,22 @@
             "outputs": [],
             "workflow_outputs": [{
                 "output_name": "output",
-                "uuid": "94f4eb20-dd9e-4fb8-b5a2-1a959020e4c7",
+                "uuid": "986865ec-2107-4fd6-91f4-290c52d2c4ba",
                 "label": null
             }],
             "input_connections": {},
-            "tool_state": "{\"collection_type\": \"list:paired\"}",
+            "tool_state": "{\"collection_type\": \"list:paired\", \"name\": \"sequence_reads\"}",
             "id": 1,
-            "uuid": "db911671-bff8-4702-9fa6-c0fff19df2b3",
+            "uuid": "2cb1aaff-eab5-40b5-a87a-272866d5cdd3",
             "errors": null,
             "name": "Input dataset collection",
             "label": "Input Collection",
-            "inputs": [],
+            "inputs": [{
+                "description": "",
+                "name": "sequence_reads"
+            }],
             "position": {
-                "top": 287,
+                "top": 288,
                 "left": 200
             },
             "annotation": "",
@@ -56,8 +62,8 @@
             "type": "data_collection_input"
         },
         "2": {
-            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/confil/confil/0.1.3+galaxy4",
-            "tool_version": "0.1.3+galaxy4",
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/confil/confil/0.1.5+galaxy0",
+            "tool_version": null,
             "outputs": [{
                 "type": "input",
                 "name": "list_output"
@@ -79,11 +85,11 @@
             "id": 2,
             "tool_shed_repository": {
                 "owner": "sanbi-uwc",
-                "changeset_revision": "72cb19a32d8b",
+                "changeset_revision": "bbf9ab2ebee7",
                 "name": "confil",
                 "tool_shed": "testtoolshed.g2.bx.psu.edu"
             },
-            "uuid": "d447f67d-abce-4847-aff6-bd9515265d68",
+            "uuid": "4ceb2470-fffd-4333-aef2-9b12ed6c1f67",
             "errors": null,
             "name": "Contamination Filter (confil)",
             "post_job_actions": {
@@ -103,22 +109,61 @@
                     "action_arguments": {}
                 }
             },
-            "label": null,
+            "label": "Contamination Filter",
             "inputs": [{
                 "name": "input_type_conditional",
                 "description": "runtime parameter for tool Contamination Filter (confil)"
             }],
             "position": {
-                "top": 253.5,
-                "left": 473.5
+                "top": 200,
+                "left": 482
             },
             "annotation": "",
-            "content_id": "testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/confil/confil/0.1.3+galaxy4",
+            "content_id": "testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/confil/confil/0.1.5+galaxy0",
             "type": "tool"
         },
         "3": {
+            "tool_id": "__FILTER_EMPTY_DATASETS__",
+            "tool_version": null,
+            "outputs": [{
+                "type": "input",
+                "name": "output"
+            }],
+            "workflow_outputs": [],
+            "input_connections": {
+                "input": {
+                    "output_name": "list_output",
+                    "id": 2
+                }
+            },
+            "tool_state": "{\"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"__page__\": null}",
+            "id": 3,
+            "uuid": "1cc9ff7d-6c46-48a7-9cc0-3b0adbf4b8b9",
+            "errors": null,
+            "name": "Filter empty",
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "output_name": "output",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                }
+            },
+            "label": "Filter empty",
+            "inputs": [{
+                "name": "input",
+                "description": "runtime parameter for tool Filter empty"
+            }],
+            "position": {
+                "top": 200,
+                "left": 810
+            },
+            "annotation": "",
+            "content_id": "__FILTER_EMPTY_DATASETS__",
+            "type": "tool"
+        },
+        "4": {
             "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1",
-            "tool_version": "3.2+galaxy1",
+            "tool_version": null,
             "outputs": [{
                 "type": "vcf",
                 "name": "snpvcf"
@@ -152,43 +197,43 @@
             }],
             "workflow_outputs": [{
                 "output_name": "snplog",
-                "uuid": "b233ddd3-8176-40ae-a126-c118f9cc57f3",
+                "uuid": "58866069-3749-491a-a383-83a6223cd4ec",
                 "label": "snippy_log"
             }, {
                 "output_name": "snptab",
-                "uuid": "2cfc3736-0ad5-45a0-85cb-9e3205012129",
+                "uuid": "0afa2dd0-9fd8-45e8-ac7e-71cb20af440d",
                 "label": "snippy_snps_tabular"
             }, {
                 "output_name": "snpvcf",
-                "uuid": "c2792b34-ff93-4247-b936-77951ac35f7c",
+                "uuid": "21a60a28-f39b-4a94-9c48-da4e43d54a10",
                 "label": "snippy_vcf"
             }, {
                 "output_name": "snpgff",
-                "uuid": "7a1ded7e-bd60-4877-91c7-d4a693df7337",
+                "uuid": "d5052519-afd0-4987-ac5b-2c973bcc2ae4",
                 "label": "snippy_gff"
             }, {
                 "output_name": "snpconsensus",
-                "uuid": "1e8661fe-9574-40f7-9c65-12045b2e2119",
+                "uuid": "0cb87fb8-0662-4958-b449-0f6afc15357c",
                 "label": "snippy_consensus_fasta"
             }, {
                 "output_name": "snpsbam",
-                "uuid": "53ccd973-7090-4604-b694-3913edd1c827",
+                "uuid": "eb586313-08cb-440c-aaca-887d32148d00",
                 "label": "snippy_mapped_reads_bam"
             }, {
                 "output_name": "snpalign",
-                "uuid": "17bab19d-6c2e-4e5b-a132-ac235c05455b",
+                "uuid": "b7dd8f7a-3a45-44b6-a651-dc52e5665368",
                 "label": "snippy_aligned_fasta"
             }, {
                 "output_name": "snpsum",
-                "uuid": "10090d56-19fa-4af9-8ed5-f663f95e7f62",
+                "uuid": "dda485c7-fc43-4299-b237-b04ef7c51df7",
                 "label": "snippy_snps_tabular_summary"
             }, {
                 "output_name": "snpsdepth",
-                "uuid": "db8830b3-f11b-4160-9541-73af775baa7c",
+                "uuid": "9d1fd8e4-bbb9-453c-9dcb-cb101fce5cc4",
                 "label": "snippy_mapping_depth_tabular"
             }, {
                 "output_name": "outdir",
-                "uuid": "fd3a4ecc-0000-488c-9bd1-02c1cf97a3d7",
+                "uuid": "2f3f8a82-4630-4d2b-84b4-56edb8127da8",
                 "label": "snippy_dir_core_zip"
             }],
             "input_connections": {
@@ -197,19 +242,19 @@
                     "id": 0
                 },
                 "fastq_input|fastq_input": {
-                    "output_name": "list_output",
-                    "id": 2
+                    "output_name": "output",
+                    "id": 3
                 }
             },
-            "tool_state": "{\"adv\": \"{\\\"bwaopt\\\": \\\"\\\", \\\"mapqual\\\": \\\"60\\\", \\\"mincov\\\": \\\"10\\\", \\\"minfrac\\\": \\\"0.9\\\", \\\"rgid\\\": \\\"\\\"}\", \"__page__\": null, \"outputs\": \"[\\\"outvcf\\\", \\\"outtab\\\", \\\"outzip\\\"]\", \"__rerun_remap_job_id__\": null, \"fastq_input\": \"{\\\"__current_case__\\\": 2, \\\"fastq_input\\\": {\\\"__class__\\\": \\\"ConnectedValue\\\"}, \\\"fastq_input_selector\\\": \\\"paired_collection\\\"}\", \"ref\": \"{\\\"__class__\\\": \\\"ConnectedValue\\\"}\"}",
-            "id": 3,
+            "tool_state": "{\"adv\": \"{\\\"bwaopt\\\": \\\"\\\", \\\"mapqual\\\": \\\"60\\\", \\\"mincov\\\": \\\"10\\\", \\\"minfrac\\\": \\\"0.9\\\", \\\"rgid\\\": \\\"\\\"}\", \"__page__\": null, \"outputs\": \"[\\\"outvcf\\\", \\\"outtab\\\", \\\"outzip\\\"]\", \"__rerun_remap_job_id__\": null, \"fastq_input\": \"{\\\"__current_case__\\\": 2, \\\"fastq_input\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"fastq_input_selector\\\": \\\"paired_collection\\\"}\", \"ref\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+            "id": 4,
             "tool_shed_repository": {
                 "owner": "iuc",
                 "changeset_revision": "82f2b6f20fa2",
                 "name": "snippy",
                 "tool_shed": "toolshed.g2.bx.psu.edu"
             },
-            "uuid": "5a117a72-2b5c-4362-94f7-d8cf4b4251f5",
+            "uuid": "acaae43f-f158-413b-88d2-333a3fda802b",
             "errors": null,
             "name": "snippy",
             "post_job_actions": {
@@ -284,11 +329,17 @@
                     }
                 }
             },
-            "label": null,
-            "inputs": [],
+            "label": "snippy",
+            "inputs": [{
+                "name": "ref",
+                "description": "runtime parameter for tool snippy"
+            }, {
+                "name": "fastq_input",
+                "description": "runtime parameter for tool snippy"
+            }],
             "position": {
                 "top": 200,
-                "left": 814
+                "left": 1138
             },
             "annotation": "",
             "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/3.2+galaxy1",
