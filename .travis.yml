@@ -18,8 +18,8 @@ before_script:
   - mvn clean install -DskipTests && cd ..
 
 script:
-  - cd irida-sanbi-bvc-pipeline-plugin
+  - cd sanbi-bvc-pipeline-plugin
   - mvn clean package && cd ..
-  - cd irida-snippy-pipeline-plugin
+  - cd snippy-pipeline-plugin
   - mvn clean package && cd ..
   - echo "DONE!"
