@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iridaWorkflow>
+  <id>b07cc8e3-4269-43bd-98d5-5c442cbbd32c</id>
+  <name>SanbiBVCPipeline</name>
+  <version>0.1.0</version>
+  <analysisType>phylogenomics</analysisType>
+  <inputs>
+    <sequenceReadsPaired>sequence_reads_paired</sequenceReadsPaired>
+    <reference>reference_file</reference>
+    <requiresSingleSample>true</requiresSingleSample>
+  </inputs>
+  <parameters>
+    <parameter name="trimmomatic-2-readtype.single_or_paired" defaultValue="collection">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/trimmomatic/trimmomatic/0.36.4" parameterName="readtype.single_or_paired" />
+    </parameter>
+    <parameter name="trimmomatic-2-illuminaclip.do_illuminaclip" defaultValue="false">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/trimmomatic/trimmomatic/0.36.4" parameterName="illuminaclip.do_illuminaclip" />
+    </parameter>
+    <parameter name="novo_align-3-index.source" defaultValue="history">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/novo_align/novo_align/0.0.10" parameterName="index.source" />
+    </parameter>
+    <parameter name="novo_align-3-paired_end.is_paired_end" defaultValue="true">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/novo_align/novo_align/0.0.10" parameterName="paired_end.is_paired_end" />
+    </parameter>
+    <parameter name="novo_align-3-paired_end.paired_input_type_conditional.paired_input_type" defaultValue="collection">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/novo_align/novo_align/0.0.10" parameterName="paired_end.paired_input_type_conditional.paired_input_type" />
+    </parameter>
+    <parameter name="picard-4-validation_stringency" defaultValue="LENIENT">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/avowinkel/picard/picard_MarkDuplicates/1.134" parameterName="validation_stringency" />
+    </parameter>
+    <parameter name="picard-4-assume_sorted" defaultValue="true">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/avowinkel/picard/picard_MarkDuplicates/1.134" parameterName="assume_sorted" />
+    </parameter>
+    <parameter name="picard-4-duplicate_scoring_strategy" defaultValue="SUM_OF_BASE_QUALITIES">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/avowinkel/picard/picard_MarkDuplicates/1.134" parameterName="duplicate_scoring_strategy" />
+    </parameter>
+    <parameter name="picard-4-remove_duplicates" defaultValue="false">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/avowinkel/picard/picard_MarkDuplicates/1.134" parameterName="remove_duplicates" />
+    </parameter>
+    <parameter name="picard-4-optical_duplicate_pixel_distance" defaultValue="100">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/avowinkel/picard/picard_MarkDuplicates/1.134" parameterName="optical_duplicate_pixel_distance" />
+    </parameter>
+    <parameter name="picard-4-read_name_regex" defaultValue="[a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).*.">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/avowinkel/picard/picard_MarkDuplicates/1.134" parameterName="read_name_regex" />
+    </parameter>
+    <parameter name="picard-5-validation_stringency" defaultValue="LENIENT">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/avowinkel/picard/picard_CASM/1.134" parameterName="validation_stringency" />
+    </parameter>
+    <parameter name="picard-5-assume_sorted" defaultValue="true">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/avowinkel/picard/picard_CASM/1.134" parameterName="assume_sorted" />
+    </parameter>
+    <parameter name="picard-5-reference_source.reference_source_selector" defaultValue="history">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/avowinkel/picard/picard_CASM/1.134" parameterName="reference_source.reference_source_selector" />
+    </parameter>
+    <parameter name="picard-5-bisulphite" defaultValue="false">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/avowinkel/picard/picard_CASM/1.134" parameterName="bisulphite" />
+    </parameter>
+    <parameter name="picard-5-maxinsert" defaultValue="100000">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/avowinkel/picard/picard_CASM/1.134" parameterName="maxinsert" />
+    </parameter>
+    <parameter name="freebayes-6-reference_source.reference_source_selector" defaultValue="history">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/devteam/freebayes/freebayes/0.4.1" parameterName="reference_source.reference_source_selector" label="Load reference genome from" type="select" />
+    </parameter>
+    <parameter name="freebayes-6-options_type.options_type_selector" defaultValue="simple">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/devteam/freebayes/freebayes/0.4.1" parameterName="options_type.options_type_selector" label="Choose parameter selection level" type="select" />
+    </parameter>
+    <parameter name="freebayes-6-target_limit_type.target_limit_type_selector" defaultValue="do_not_limit">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/devteam/freebayes/freebayes/0.4.1" parameterName="target_limit_type.target_limit_type_selector" label="Limit variant calling to a set of regions?" type="select" />
+    </parameter>
+    <parameter name="qualimap2-7-mem_size" defaultValue="8G">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/qualimap2/qualimap_bamqc/2.2" parameterName="mem_size" />
+    </parameter>
+    <parameter name="snpeff-8-chr" defaultValue="">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/jjohnson/snpeff/snpEff/4.1.0" parameterName="chr" label="Text to prepend to chromosome name" type="text" />
+    </parameter>
+    <parameter name="snpeff-8-offset" defaultValue="default">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/jjohnson/snpeff/snpEff/4.1.0" parameterName="offset" label="Chromosomal position" type="select" />
+    </parameter>
+    <parameter name="snpeff-8-spliceRegion.setSpliceRegions" defaultValue="no">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/jjohnson/snpeff/snpEff/4.1.0" parameterName="spliceRegion.setSpliceRegions" label="spliceRegion Settings" type="select" />
+    </parameter>
+    <parameter name="snpeff-8-snpDb.genome_version" defaultValue="m_tuberculosis_H37Rv">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/jjohnson/snpeff/snpEff/4.1.0" parameterName="snpDb.genome_version" label="Snpff Genome Version Name (e.g. GRCh38.76)" type="text" />
+    </parameter>
+    <parameter name="snpeff-8-filter.specificEffects" defaultValue="no">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/jjohnson/snpeff/snpEff/4.1.0" parameterName="filter.specificEffects" label="Filter out specific Effects" type="select" />
+    </parameter>
+    <parameter name="snpeff-8-snpDb.genomeSrc" defaultValue="named">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/jjohnson/snpeff/snpEff/4.1.0" parameterName="snpDb.genomeSrc" label="Genome source" type="select" />
+    </parameter>
+    <parameter name="snpeff-8-inputFormat" defaultValue="vcf">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/jjohnson/snpeff/snpEff/4.1.0" parameterName="inputFormat" label="Input format" type="select" />
+    </parameter>
+    <parameter name="snpeff-8-noLog" defaultValue="true">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/jjohnson/snpeff/snpEff/4.1.0" parameterName="noLog" label="Suppress reporting usage statistics to server" type="boolean" />
+    </parameter>
+    <parameter name="snpeff-8-udLength" defaultValue="5000">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/jjohnson/snpeff/snpEff/4.1.0" parameterName="udLength" label="Upstream / Downstream length" type="select" />
+    </parameter>
+    <parameter name="snpeff-8-outputConditional.outputFormat" defaultValue="vcf">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/jjohnson/snpeff/snpEff/4.1.0" parameterName="outputConditional.outputFormat" label="Output format" type="select" />
+    </parameter>
+    <parameter name="snpeff-8-generate_stats" defaultValue="true">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/jjohnson/snpeff/snpEff/4.1.0" parameterName="generate_stats" label="Produce Summary Stats" type="boolean" />
+    </parameter>
+    <parameter name="snpeff-8-spliceSiteSize" defaultValue="2">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/jjohnson/snpeff/snpEff/4.1.0" parameterName="spliceSiteSize" label="Set size for splice sites (donor and acceptor) in bases" type="select" />
+    </parameter>
+    <parameter name="vcf_to_alignment-9-remove_invariant_sites" defaultValue="false">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/vcf_to_alignment/vcf_to_alignment/0.3" parameterName="remove_invariant_sites" />
+    </parameter>
+    <parameter name="vcf_to_alignment-9-reference.source" defaultValue="history">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/vcf_to_alignment/vcf_to_alignment/0.3" parameterName="reference.source" />
+    </parameter>
+    <parameter name="fasttree-10-advanced_options.alignment_type1" defaultValue="prot">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/fasttree/fasttree/0.1" parameterName="advanced_options.alignment_type1" />
+    </parameter>
+    <parameter name="fasttree-10-advanced_options.advanced_options_selector" defaultValue="false">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/fasttree/fasttree/0.1" parameterName="advanced_options.advanced_options_selector" />
+    </parameter>
+  </parameters>
+  <outputs>
+    <output name="novoalign_file.bam" fileName="novoalign_file.bam" />
+    <output name="metrics_file.txt" fileName="metrics_file.txt" />
+    <output name="markduplicates_outfile.bam" fileName="markduplicates_outfile.bam" />
+    <output name="collect_align_summary_outfile" fileName="collect_align_summary_outfile" />
+    <output name="freebayes_output_vcf" fileName="freebayes_output_vcf" />
+    <output name="genomecov_file" fileName="genomecov_file" />
+    <output name="snpeff_output_vcf" fileName="snpeff_output_vcf" />
+    <output name="output_alignment.fasta" fileName="output_alignment.fasta" />
+    <output name="output_tree.newick" fileName="output_tree.newick" />
+  </outputs>
+  <toolRepositories>
+    <repository>
+      <name>qualimap2</name>
+      <owner>sanbi-uwc</owner>
+      <url>https://testtoolshed.g2.bx.psu.edu</url>
+      <revision>7923e67fa16a</revision>
+    </repository>
+    <repository>
+      <name>freebayes</name>
+      <owner>devteam</owner>
+      <url>https://testtoolshed.g2.bx.psu.edu</url>
+      <revision>9f3d6c3098ac</revision>
+    </repository>
+    <repository>
+      <name>trimmomatic</name>
+      <owner>sanbi-uwc</owner>
+      <url>https://testtoolshed.g2.bx.psu.edu</url>
+      <revision>069b6b601fad</revision>
+    </repository>
+    <repository>
+      <name>fasttree</name>
+      <owner>sanbi-uwc</owner>
+      <url>https://testtoolshed.g2.bx.psu.edu</url>
+      <revision>614a12d56e58</revision>
+    </repository>
+    <repository>
+      <name>vcf_to_alignment</name>
+      <owner>sanbi-uwc</owner>
+      <url>https://testtoolshed.g2.bx.psu.edu</url>
+      <revision>62fbd3f96b30</revision>
+    </repository>
+    <repository>
+      <name>novo_align</name>
+      <owner>sanbi-uwc</owner>
+      <url>https://testtoolshed.g2.bx.psu.edu</url>
+      <revision>119cb8e503d0</revision>
+    </repository>
+    <repository>
+      <name>picard</name>
+      <owner>avowinkel</owner>
+      <url>https://testtoolshed.g2.bx.psu.edu</url>
+      <revision>ffa70c31d088</revision>
+    </repository>
+    <repository>
+      <name>snpeff</name>
+      <owner>jjohnson</owner>
+      <url>https://testtoolshed.g2.bx.psu.edu</url>
+      <revision>924af057bbca</revision>
+    </repository>
+  </toolRepositories>
+</iridaWorkflow>

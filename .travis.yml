@@ -16,10 +16,10 @@ before_script:
   - cd irida
   - cd lib && ./install-libs.sh && cd ..
   - mvn clean install -DskipTests && cd ..
-  - cd irida-sanbi-bvc-pipeline-plugin
-  - mvn clean package && cd ..
-  - cd irida-snippy-pipeline-plugin
-  - mvn clean package && cd ..
 
 script:
-  - echo "Done"
+  - cd sanbi-bvc-pipeline-plugin
+  - mvn clean package && cd ..
+  - cd snippy-pipeline-plugin
+  - mvn clean package && cd ..
+  - echo "DONE!"
