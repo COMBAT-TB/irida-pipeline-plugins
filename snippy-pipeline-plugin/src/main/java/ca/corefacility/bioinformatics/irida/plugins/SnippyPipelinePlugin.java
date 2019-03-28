@@ -74,7 +74,7 @@ public class SnippyPipelinePlugin extends Plugin {
 		 */
 		@Override
 		public UUID getDefaultWorkflowUUID() {
-			return UUID.fromString("26385d7e-7665-4140-9253-e8d721216f59");
+			return UUID.fromString("1a1a9843-f7b0-4b4b-bc52-c6e23791abc9");
 		}
 
 		/*******************************************************************************
