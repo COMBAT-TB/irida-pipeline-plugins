@@ -1,0 +1,463 @@
+{
+    "uuid": "bcd10154-c519-404a-af37-24a22866c2e2",
+    "tags": [],
+    "format-version": "0.1",
+    "name": "snippy-pipeline-plugin-0.1.3",
+    "version": 3,
+    "steps": {
+        "0": {
+            "tool_id": null,
+            "tool_version": null,
+            "outputs": [],
+            "workflow_outputs": [{
+                "output_name": "output",
+                "uuid": "a34f8e85-e023-45cc-a035-92766a068ef0",
+                "label": null
+            }],
+            "input_connections": {},
+            "tool_state": "{\"name\": \"reference\"}",
+            "id": 0,
+            "uuid": "6690f288-c64f-4808-9573-ff78658592bf",
+            "errors": null,
+            "name": "Input dataset",
+            "label": "Reference File",
+            "inputs": [{
+                "name": "reference",
+                "description": ""
+            }],
+            "position": {
+                "top": 200,
+                "left": 200
+            },
+            "annotation": "",
+            "content_id": null,
+            "type": "data_input"
+        },
+        "1": {
+            "tool_id": null,
+            "tool_version": null,
+            "outputs": [],
+            "workflow_outputs": [{
+                "output_name": "output",
+                "uuid": "cb1b17cd-bc59-4b54-a805-385710900d68",
+                "label": null
+            }],
+            "input_connections": {},
+            "tool_state": "{\"collection_type\": \"list:paired\"}",
+            "id": 1,
+            "uuid": "0e1675f3-15e0-445e-ab88-25f1b75d6f6b",
+            "errors": null,
+            "name": "Input dataset collection",
+            "label": "Input Collection",
+            "inputs": [],
+            "position": {
+                "top": 288,
+                "left": 200
+            },
+            "annotation": "",
+            "content_id": null,
+            "type": "data_collection_input"
+        },
+        "2": {
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/pjbriggs/trimmomatic/trimmomatic/0.36.6",
+            "tool_version": "0.36.6",
+            "outputs": [{
+                "type": "input",
+                "name": "fastq_out_paired"
+            }, {
+                "type": "input",
+                "name": "fastq_out_unpaired"
+            }, {
+                "type": "input",
+                "name": "fastq_out_r1_paired"
+            }, {
+                "type": "input",
+                "name": "fastq_out_r2_paired"
+            }, {
+                "type": "input",
+                "name": "fastq_out_r1_unpaired"
+            }, {
+                "type": "input",
+                "name": "fastq_out_r2_unpaired"
+            }, {
+                "type": "input",
+                "name": "fastq_out"
+            }, {
+                "type": "txt",
+                "name": "log_file"
+            }, {
+                "type": "txt",
+                "name": "err_file"
+            }],
+            "workflow_outputs": [],
+            "input_connections": {
+                "readtype|fastq_pair": {
+                    "output_name": "output",
+                    "id": 1
+                }
+            },
+            "tool_state": "{\"operations\": \"[{\\\"__index__\\\": 0, \\\"operation\\\": {\\\"__current_case__\\\": 0, \\\"name\\\": \\\"SLIDINGWINDOW\\\", \\\"required_quality\\\": \\\"20\\\", \\\"window_size\\\": \\\"4\\\"}}]\", \"__page__\": null, \"output_logs\": \"\\\"false\\\"\", \"output_err\": \"\\\"false\\\"\", \"__rerun_remap_job_id__\": null, \"readtype\": \"{\\\"__current_case__\\\": 2, \\\"fastq_pair\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"single_or_paired\\\": \\\"collection\\\"}\", \"illuminaclip\": \"{\\\"__current_case__\\\": 1, \\\"do_illuminaclip\\\": \\\"false\\\"}\"}",
+            "id": 2,
+            "tool_shed_repository": {
+                "owner": "pjbriggs",
+                "changeset_revision": "4fe90ae30670",
+                "name": "trimmomatic",
+                "tool_shed": "testtoolshed.g2.bx.psu.edu"
+            },
+            "uuid": "a84a9465-73b8-449c-a4cf-37b162cb81e9",
+            "errors": null,
+            "name": "Trimmomatic",
+            "post_job_actions": {
+                "HideDatasetActionfastq_out_paired": {
+                    "output_name": "fastq_out_paired",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "HideDatasetActionlog_file": {
+                    "output_name": "log_file",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "HideDatasetActionfastq_out_r1_unpaired": {
+                    "output_name": "fastq_out_r1_unpaired",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "HideDatasetActionfastq_out_r2_unpaired": {
+                    "output_name": "fastq_out_r2_unpaired",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "HideDatasetActionerr_file": {
+                    "output_name": "err_file",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "HideDatasetActionfastq_out_unpaired": {
+                    "output_name": "fastq_out_unpaired",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "HideDatasetActionfastq_out_r1_paired": {
+                    "output_name": "fastq_out_r1_paired",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "HideDatasetActionfastq_out_r2_paired": {
+                    "output_name": "fastq_out_r2_paired",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "HideDatasetActionfastq_out": {
+                    "output_name": "fastq_out",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                }
+            },
+            "label": "trimmomatic",
+            "inputs": [{
+                "name": "readtype",
+                "description": "runtime parameter for tool Trimmomatic"
+            }],
+            "position": {
+                "top": 197,
+                "left": 482
+            },
+            "annotation": "",
+            "content_id": "testtoolshed.g2.bx.psu.edu/repos/pjbriggs/trimmomatic/trimmomatic/0.36.6",
+            "type": "tool"
+        },
+        "3": {
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.3.6+galaxy1",
+            "tool_version": "4.3.6+galaxy1",
+            "outputs": [{
+                "type": "vcf",
+                "name": "snpvcf"
+            }, {
+                "type": "gff3",
+                "name": "snpgff"
+            }, {
+                "type": "tabular",
+                "name": "snptab"
+            }, {
+                "type": "tabular",
+                "name": "snpsum"
+            }, {
+                "type": "txt",
+                "name": "snplog"
+            }, {
+                "type": "fasta",
+                "name": "snpalign"
+            }, {
+                "type": "fasta",
+                "name": "snpconsensus"
+            }, {
+                "type": "tabular",
+                "name": "snpsdepth"
+            }, {
+                "type": "bam",
+                "name": "snpsbam"
+            }, {
+                "type": "zip",
+                "name": "outdir"
+            }],
+            "workflow_outputs": [{
+                "output_name": "snplog",
+                "uuid": "2149cbdc-9322-44c3-a29f-2d8668903b9c",
+                "label": "log_file"
+            }, {
+                "output_name": "snptab",
+                "uuid": "52169e1d-1603-4a80-b51e-b0230dd4bf95",
+                "label": "snps_table"
+            }, {
+                "output_name": "snpvcf",
+                "uuid": "220d787c-426c-444a-9cbb-befa2a160795",
+                "label": "snps_vcf_file "
+            }, {
+                "output_name": "snpgff",
+                "uuid": "8d80d07b-c2c4-4388-9fa2-cc35c699b84b",
+                "label": "snps_gff_file"
+            }, {
+                "output_name": "snpconsensus",
+                "uuid": "a7a93695-4242-408b-a93c-ef73c004a84c",
+                "label": "consensus_fasta"
+            }, {
+                "output_name": "snpalign",
+                "uuid": "c1188795-1981-4f41-9393-bc0b95c566c8",
+                "label": "aligned_fasta"
+            }, {
+                "output_name": "snpsum",
+                "uuid": "c341cd82-c97f-4d56-8c2a-ebd9822e71c5",
+                "label": "snps_summary"
+            }],
+            "input_connections": {
+                "ref": {
+                    "output_name": "output",
+                    "id": 0
+                },
+                "fastq_input|fastq_input": {
+                    "output_name": "fastq_out_paired",
+                    "id": 2
+                }
+            },
+            "tool_state": "{\"adv\": \"{\\\"bwaopt\\\": \\\"\\\", \\\"mapqual\\\": \\\"60\\\", \\\"mincov\\\": \\\"10\\\", \\\"minfrac\\\": \\\"0.9\\\", \\\"minqual\\\": \\\"100.0\\\", \\\"rename_cons\\\": \\\"false\\\", \\\"rgid\\\": \\\"\\\"}\", \"__page__\": null, \"outputs\": \"[\\\"outvcf\\\", \\\"outgff\\\", \\\"outtab\\\", \\\"outsum\\\", \\\"outlog\\\", \\\"outaln\\\", \\\"outcon\\\"]\", \"__rerun_remap_job_id__\": null, \"fastq_input\": \"{\\\"__current_case__\\\": 2, \\\"fastq_input\\\": {\\\"__class__\\\": \\\"ConnectedValue\\\"}, \\\"fastq_input_selector\\\": \\\"paired_collection\\\"}\", \"ref\": \"{\\\"__class__\\\": \\\"ConnectedValue\\\"}\"}",
+            "id": 3,
+            "tool_shed_repository": {
+                "owner": "iuc",
+                "changeset_revision": "776ebd1239da",
+                "name": "snippy",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "uuid": "a7fc72d6-a17e-4ae8-b1e5-08dba3555637",
+            "errors": null,
+            "name": "snippy",
+            "post_job_actions": {
+                "HideDatasetActionsnpsdepth": {
+                    "output_name": "snpsdepth",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "RenameDatasetActionsnpgff": {
+                    "output_name": "snpgff",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snps_gff_file"
+                    }
+                },
+                "HideDatasetActionsnpsbam": {
+                    "output_name": "snpsbam",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "RenameDatasetActionsnpvcf": {
+                    "output_name": "snpvcf",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snps_vcf_file"
+                    }
+                },
+                "HideDatasetActionoutdir": {
+                    "output_name": "outdir",
+                    "action_type": "HideDatasetAction",
+                    "action_arguments": {}
+                },
+                "RenameDatasetActionsnptab": {
+                    "output_name": "snptab",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snps_table"
+                    }
+                },
+                "RenameDatasetActionsnplog": {
+                    "output_name": "snplog",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "log_file"
+                    }
+                },
+                "RenameDatasetActionsnpconsensus": {
+                    "output_name": "snpconsensus",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "consensus_fasta"
+                    }
+                },
+                "RenameDatasetActionsnpalign": {
+                    "output_name": "snpalign",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "aligned_fasta"
+                    }
+                },
+                "RenameDatasetActionsnpsum": {
+                    "output_name": "snpsum",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snps_summary"
+                    }
+                }
+            },
+            "label": "snippy",
+            "inputs": [],
+            "position": {
+                "top": 200,
+                "left": 810
+            },
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.3.6+galaxy1",
+            "type": "tool"
+        },
+        "4": {
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sed_tool/1.1.1",
+            "tool_version": "1.1.1",
+            "outputs": [{
+                "type": "input",
+                "name": "output"
+            }],
+            "workflow_outputs": [{
+                "output_name": "output",
+                "uuid": "f98c7fbf-dc20-4510-b540-7afc877526fc",
+                "label": "output_vcf"
+            }],
+            "input_connections": {
+                "infile": {
+                    "output_name": "snpvcf",
+                    "id": 3
+                }
+            },
+            "tool_state": "{\"adv_opts\": \"{\\\"__current_case__\\\": 0, \\\"adv_opts_selector\\\": \\\"basic\\\"}\", \"__page__\": null, \"__rerun_remap_job_id__\": null, \"code\": \"\\\"/^[^#]/s/^[^\\\\\\\\t]+\\\\\\\\t/Chromosome\\\\\\\\t/\\\"\", \"infile\": \"{\\\"__class__\\\": \\\"ConnectedValue\\\"}\"}",
+            "id": 4,
+            "tool_shed_repository": {
+                "owner": "bgruening",
+                "changeset_revision": "a6f147a050a2",
+                "name": "text_processing",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "uuid": "b3e51b9a-4a0a-42c2-b450-69eb9fb27d39",
+            "errors": null,
+            "name": "Text transformation",
+            "post_job_actions": {
+                "RenameDatasetActionoutput": {
+                    "output_name": "output",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "output_vcf"
+                    }
+                }
+            },
+            "label": "snpeff_chromosome",
+            "inputs": [],
+            "position": {
+                "top": 200,
+                "left": 1138
+            },
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sed_tool/1.1.1",
+            "type": "tool"
+        },
+        "5": {
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1",
+            "tool_version": "4.3+T.galaxy1",
+            "outputs": [{
+                "type": "vcf",
+                "name": "snpeff_output"
+            }, {
+                "type": "html",
+                "name": "statsFile"
+            }, {
+                "type": "csv",
+                "name": "csvFile"
+            }],
+            "workflow_outputs": [{
+                "output_name": "snpeff_output",
+                "uuid": "a76affa0-2447-4a0b-88e5-2a6478f29000",
+                "label": "snpeff_output"
+            }, {
+                "output_name": "csvFile",
+                "uuid": "43e4dcce-1f6f-48b4-a2ac-08bd12f10efa",
+                "label": "snpeff_csv_stats"
+            }, {
+                "output_name": "statsFile",
+                "uuid": "95b70c06-29d3-4d96-9475-ba9a3c5253ac",
+                "label": "snpeff_html_stats"
+            }],
+            "input_connections": {
+                "input": {
+                    "output_name": "output",
+                    "id": 4
+                }
+            },
+            "tool_state": "{\"spliceSiteSize\": \"\\\"2\\\"\", \"csvStats\": \"\\\"true\\\"\", \"filterOut\": \"null\", \"input\": \"{\\\"__class__\\\": \\\"ConnectedValue\\\"}\", \"inputFormat\": \"\\\"vcf\\\"\", \"__page__\": null, \"outputConditional\": \"{\\\"__current_case__\\\": 0, \\\"outputFormat\\\": \\\"vcf\\\"}\", \"__rerun_remap_job_id__\": null, \"udLength\": \"\\\"5000\\\"\", \"generate_stats\": \"\\\"true\\\"\", \"spliceRegion\": \"{\\\"__current_case__\\\": 0, \\\"setSpliceRegions\\\": \\\"no\\\"}\", \"chr\": \"\\\"\\\"\", \"intervals\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"annotations\": \"null\", \"snpDb\": \"{\\\"__current_case__\\\": 2, \\\"genomeSrc\\\": \\\"named\\\", \\\"genome_version\\\": \\\"Mycobacterium_tuberculosis_h37rv\\\"}\", \"offset\": \"\\\"default\\\"\", \"noLog\": \"\\\"true\\\"\", \"transcripts\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"filter\": \"{\\\"__current_case__\\\": 0, \\\"specificEffects\\\": \\\"no\\\"}\"}",
+            "id": 5,
+            "tool_shed_repository": {
+                "owner": "iuc",
+                "changeset_revision": "8f92c2b26e6d",
+                "name": "snpeff",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "uuid": "822018be-0591-4efd-a476-a1701489a71b",
+            "errors": null,
+            "name": "SnpEff eff:",
+            "post_job_actions": {
+                "RenameDatasetActioncsvFile": {
+                    "output_name": "csvFile",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snpeff_csv_stats"
+                    }
+                },
+                "RenameDatasetActionstatsFile": {
+                    "output_name": "statsFile",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snpeff_html_stats"
+                    }
+                },
+                "RenameDatasetActionsnpeff_output": {
+                    "output_name": "snpeff_output",
+                    "action_type": "RenameDatasetAction",
+                    "action_arguments": {
+                        "newname": "snpeff_output"
+                    }
+                }
+            },
+            "label": "SnpEff",
+            "inputs": [{
+                "name": "intervals",
+                "description": "runtime parameter for tool SnpEff eff:"
+            }, {
+                "name": "transcripts",
+                "description": "runtime parameter for tool SnpEff eff:"
+            }],
+            "position": {
+                "top": 200,
+                "left": 1399
+            },
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1",
+            "type": "tool"
+        }
+    },
+    "annotation": "",
+    "a_galaxy_workflow": "true"
+}

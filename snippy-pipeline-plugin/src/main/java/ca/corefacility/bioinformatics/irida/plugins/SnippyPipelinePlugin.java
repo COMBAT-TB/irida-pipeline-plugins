@@ -74,7 +74,7 @@ public class SnippyPipelinePlugin extends Plugin {
 		 */
 		@Override
 		public UUID getDefaultWorkflowUUID() {
-			return UUID.fromString("1a1a9843-f7b0-4b4b-bc52-c6e23791abc9");
+			return UUID.fromString("3ccd3a58-99a1-48bb-9d35-5927684aad12");
 		}
 
 		/*******************************************************************************
@@ -92,7 +92,7 @@ public class SnippyPipelinePlugin extends Plugin {
 		 */
 		@Override
 		public Optional<Color> getBackgroundColor() {
-			return Optional.of(Color.decode("#f44242"));
+			return Optional.of(Color.decode("#537fe0"));
 		}
 
 		/**
