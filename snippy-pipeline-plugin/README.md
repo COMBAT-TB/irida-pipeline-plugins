@@ -1,8 +1,8 @@
-# COMBAT-TB IRIDA Pipeline Plugins
+# Snippy Pipeline Plugin
 
 [![Build Status](https://travis-ci.org/COMBAT-TB/irida-pipeline-plugins.svg?branch=master)](https://travis-ci.org/COMBAT-TB/irida-pipeline-plugins)
 
-This project contains pipeline plugin implementations for the [IRIDA][] bioinformatics analysis system. This can be used as a template for implementing your own pipelines within IRIDA.
+This project contains a snippy pipeline implemented as a plugin for the [IRIDA][] bioinformatics analysis system. This can be used as a template for implementing your own pipelines within IRIDA.
 
 Please see the pipeline documentation at <https://irida.corefacility.ca/documentation/developer/tools/pipelines/> for more details.
 
@@ -28,9 +28,7 @@ Once you've installed IRIDA as a dependency, you can proceed to building this pl
 
 ```bash
 git clone https://github.com/COMBAT-TB/irida-pipeline-plugins.git
-cd irida-pipeline-plugins
-# cd into pipeline of choice
-cd snippy-pipeline-plugin
+cd irida-pipeline-plugins/snippy-pipeline-plugin
 mvn clean package
 ```
 
