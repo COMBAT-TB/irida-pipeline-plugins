@@ -40,7 +40,7 @@ If you have previously [setup IRIDA][irida-setup] before you may copy this JAR f
 
 The following dependencies are required in order to make use of this plugin.
 
-- [IRIDA][] >= 0.23.0
+- [IRIDA][] >= 19.01.1
 - [Java][] >= 1.8 and [Maven][maven] (for building)
 
 [maven]: https://maven.apache.org/

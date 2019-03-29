@@ -1,25 +1,19 @@
 language: java
 jdk:
-  - oraclejdk8
   - openjdk8
-
 # see https://blog.travis-ci.com/2014-12-17-faster-builds-with-container-based-infrastructure
 sudo: false
-
 # cache the build tool's caches
 cache:
   directories:
     - $HOME/.m2
-
 before_script:
   - git clone https://github.com/phac-nml/irida.git
   - cd irida
   - cd lib && ./install-libs.sh && cd ..
   - mvn clean install -DskipTests && cd ..
-
 script:
   - cd sanbi-bvc-pipeline-plugin
   - mvn clean package && cd ..
   - cd snippy-pipeline-plugin
   - mvn clean package && cd ..
-  - echo "DONE!"
