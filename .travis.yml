@@ -15,5 +15,5 @@ before_script:
 script:
   - cd sanbi-bvc-pipeline-plugin
   - mvn clean package && cd ..
-  - cd snippy-pipeline-plugin
+  - cd tb-sample-report-pipeline-plugin
   - mvn clean package && cd ..
