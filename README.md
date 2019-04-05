@@ -30,11 +30,11 @@ Once you've installed IRIDA as a dependency, you can proceed to building this pl
 git clone https://github.com/COMBAT-TB/irida-pipeline-plugins.git
 cd irida-pipeline-plugins
 # cd into pipeline of choice
-cd snippy-pipeline-plugin
+cd tb-sample-report-pipeline-plugin
 mvn clean package
 ```
 
-Once complete, you should end up with a file `target/snippy-pipeline-plugin-0.1.3-SNAPSHOT.jar` which can be installed as a plugin to IRIDA.
+Once complete, you should end up with a file `target/tb-sample-report-pipeline-plugin-0.1.3-SNAPSHOT.jar` which can be installed as a plugin to IRIDA.
 
 If you have previously [setup IRIDA][irida-setup] before you may copy this JAR file to `/etc/irida/plugins` and restart IRIDA. The plugin should now show up in the **Analyses > Pipelines** section of IRIDA.
 
