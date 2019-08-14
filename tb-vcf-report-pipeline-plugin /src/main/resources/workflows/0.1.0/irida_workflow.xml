@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<iridaWorkflow>
+  <id>18391fb9-337c-4b88-ab7c-5081b955a943</id>
+  <name>TB_VCF_Report</name>
+  <version>0.1.0</version>
+  <analysisType>VARIANT_CALLING</analysisType>
+  <inputs>
+    <sequenceReadsPaired>Input Collection</sequenceReadsPaired>
+    <reference>Reference File</reference>
+    <requiresSingleSample>true</requiresSingleSample>
+  </inputs>
+  <parameters>
+    <parameter name="trimmomatic-2-output_logs" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/pjbriggs/trimmomatic/trimmomatic/0.38.0" parameterName="output_logs" />
+    </parameter>
+    <parameter name="trimmomatic-2-output_err" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/pjbriggs/trimmomatic/trimmomatic/0.38.0" parameterName="output_err" />
+    </parameter>
+    <parameter name="trimmomatic-2-readtype.single_or_paired" defaultValue="collection">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/pjbriggs/trimmomatic/trimmomatic/0.38.0" parameterName="readtype.single_or_paired" />
+    </parameter>
+    <parameter name="trimmomatic-2-illuminaclip.do_illuminaclip" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/pjbriggs/trimmomatic/trimmomatic/0.38.0" parameterName="illuminaclip.do_illuminaclip" />
+    </parameter>
+    <parameter name="snippy-3-adv.bwaopt" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.3.6+galaxy2" parameterName="adv.bwaopt" />
+    </parameter>
+    <parameter name="snippy-3-adv.mapqual" defaultValue="60">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.3.6+galaxy2" parameterName="adv.mapqual" />
+    </parameter>
+    <parameter name="snippy-3-adv.mincov" defaultValue="10">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.3.6+galaxy2" parameterName="adv.mincov" />
+    </parameter>
+    <parameter name="snippy-3-adv.minfrac" defaultValue="0.9">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.3.6+galaxy2" parameterName="adv.minfrac" />
+    </parameter>
+    <parameter name="snippy-3-adv.minqual" defaultValue="100.0">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.3.6+galaxy2" parameterName="adv.minqual" />
+    </parameter>
+    <parameter name="snippy-3-adv.rename_cons" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.3.6+galaxy2" parameterName="adv.rename_cons" />
+    </parameter>
+    <parameter name="snippy-3-adv.rgid" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.3.6+galaxy2" parameterName="adv.rgid" />
+    </parameter>
+    <parameter name="snippy-3-fastq_input.fastq_input_selector" defaultValue="paired_collection">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.3.6+galaxy2" parameterName="fastq_input.fastq_input_selector" />
+    </parameter>
+    <parameter name="text_processing-4-adv_opts.adv_opts_selector" defaultValue="basic">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sed_tool/1.1.1" parameterName="adv_opts.adv_opts_selector" />
+    </parameter>
+    <parameter name="text_processing-4-code" defaultValue="/^[^#]/s/^[^\t]+\t/Chromosome\t/">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sed_tool/1.1.1" parameterName="code" />
+    </parameter>
+    <parameter name="snpeff-5-csvStats" defaultValue="true">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="csvStats" />
+    </parameter>
+    <parameter name="snpeff-5-chr" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="chr" />
+    </parameter>
+    <parameter name="snpeff-5-offset" defaultValue="default">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="offset" />
+    </parameter>
+    <parameter name="snpeff-5-spliceRegion.setSpliceRegions" defaultValue="no">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="spliceRegion.setSpliceRegions" />
+    </parameter>
+    <parameter name="snpeff-5-snpDb.genome_version" defaultValue="Mycobacterium_tuberculosis_h37rv">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="snpDb.genome_version" />
+    </parameter>
+    <parameter name="snpeff-5-filter.specificEffects" defaultValue="no">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="filter.specificEffects" />
+    </parameter>
+    <parameter name="snpeff-5-snpDb.genomeSrc" defaultValue="named">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="snpDb.genomeSrc" />
+    </parameter>
+    <parameter name="snpeff-5-inputFormat" defaultValue="vcf">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="inputFormat" />
+    </parameter>
+    <parameter name="snpeff-5-noLog" defaultValue="true">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="noLog" />
+    </parameter>
+    <parameter name="snpeff-5-udLength" defaultValue="5000">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="udLength" />
+    </parameter>
+    <parameter name="snpeff-5-outputConditional.outputFormat" defaultValue="vcf">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="outputConditional.outputFormat" />
+    </parameter>
+    <parameter name="snpeff-5-generate_stats" defaultValue="true">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="generate_stats" />
+    </parameter>
+    <parameter name="snpeff-5-spliceSiteSize" defaultValue="2">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="spliceSiteSize" />
+    </parameter>
+    <parameter name="tbvcfreport-6-database.use_neodb" defaultValue="yes">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/tbvcfreport/tbvcfreport/0.1.5+galaxy0" parameterName="database.use_neodb" />
+    </parameter>
+    <parameter name="tbvcfreport-6-tbprofiler.use_tbp" defaultValue="no">
+      <toolParameter toolId="testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/tbvcfreport/tbvcfreport/0.1.5+galaxy0" parameterName="tbprofiler.use_tbp" />
+    </parameter>
+  </parameters>
+  <outputs>
+    <output name="consensus_fasta" fileName="consensus_fasta" />
+    <output name="aligned_fasta" fileName="aligned_fasta" />
+    <output name="snps_gff_file" fileName="snps_gff_file" />
+    <output name="snps_summary" fileName="snps_summary" />
+    <output name="snps_vcf_file" fileName="snps_vcf_file" />
+    <output name="log_file" fileName="log_file" />
+    <output name="snps_table" fileName="snps_table" />
+    <output name="output_vcf" fileName="output_vcf" />
+    <output name="snpeff_csv_stats" fileName="snpeff_csv_stats" />
+    <output name="snpeff_html_stats" fileName="snpeff_html_stats" />
+    <output name="snpeff_output" fileName="snpeff_output" />
+    <output name="text_variant_report" fileName="text_variant_report" />
+    <output name="html_variant_report" fileName="html_variant_report" />
+  </outputs>
+  <toolRepositories>
+    <repository>
+      <name>tbvcfreport</name>
+      <owner>sanbi-uwc</owner>
+      <url>https://testtoolshed.g2.bx.psu.edu</url>
+      <revision>955c0dbbe938</revision>
+    </repository>
+    <repository>
+      <name>snpeff</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>8f92c2b26e6d</revision>
+    </repository>
+    <repository>
+      <name>snippy</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>9bccc8404a3c</revision>
+    </repository>
+    <repository>
+      <name>text_processing</name>
+      <owner>bgruening</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>0a8c6b61f0f4</revision>
+    </repository>
+    <repository>
+      <name>trimmomatic</name>
+      <owner>pjbriggs</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>898b67846b47</revision>
+    </repository>
+  </toolRepositories>
+</iridaWorkflow>
