@@ -10,7 +10,7 @@
 		<plugin.id>tb-vcf-report-pipeline-plugin</plugin.id>
 		<plugin.class>ca.corefacility.bioinformatics.irida.plugins.ReportPipelinePlugin</plugin.class>
 		<plugin.version>0.1.0</plugin.version>
-		<plugin.provider>SANBI-SA</plugin.provider>
+		<plugin.provider>COMBAT-TB</plugin.provider>
 		<plugin.dependencies></plugin.dependencies>
 		<plugin.requires.runtime>1.0.0</plugin.requires.runtime>
 		<!-- Version of the pf4j dependency -->
