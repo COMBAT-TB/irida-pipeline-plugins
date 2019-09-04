@@ -74,7 +74,7 @@ public class SnippyTbSampleIqtreePipelinePlugin extends Plugin {
 		 */
 		@Override
 		public UUID getDefaultWorkflowUUID() {
-			return UUID.fromString("e10adc3949ba59abbe56e057f20f883e");
+			return UUID.fromString("494b32fe-1938-4a9d-85a8-d9e292da5aa6");
 		}
 
 		/*******************************************************************************
