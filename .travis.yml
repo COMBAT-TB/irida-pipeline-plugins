@@ -13,9 +13,9 @@ before_script:
   - cd lib && ./install-libs.sh && cd ..
   - mvn clean install -DskipTests && cd ..
 script:
-  - cd sanbi-bvc-pipeline-plugin
-  - mvn clean package && cd ..
+  # - cd sanbi-bvc-pipeline-plugin
+  # - mvn clean package && cd ..
+  # - cd tb-sample-report-pipeline-plugin
+  # - mvn clean package && cd ..
   - cd tb-sample-report-pipeline-plugin
-  - mvn clean package && cd ..
-  - cd tb-vcf-report-pipeline-plugin
-  - mvn clean package && cd ..
+  - mvn clean package
