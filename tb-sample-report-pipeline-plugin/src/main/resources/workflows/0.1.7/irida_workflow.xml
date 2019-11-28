@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<iridaWorkflow>
+  <id>74c009f8-2541-4c90-b8aa-40d0ddf8680e</id>
+  <name>TBSampleReport</name>
+  <version>0.1.7</version>
+  <analysisType>VARIANT_CALLING</analysisType>
+  <inputs>
+    <sequenceReadsPaired>Input Collection</sequenceReadsPaired>
+    <reference>Reference File</reference>
+    <requiresSingleSample>true</requiresSingleSample>
+  </inputs>
+  <parameters>
+    <parameter name="snpeff-2-genome_version" defaultValue="Mycobacterium_tuberculosis_h37rv">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff_download/4.3+T.galaxy2" parameterName="genome_version" />
+    </parameter>
+    <parameter name="fastp-3-single_paired.adapter_trimming_options.adapter_sequence2" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="single_paired.adapter_trimming_options.adapter_sequence2" />
+    </parameter>
+    <parameter name="fastp-3-single_paired.global_trimming_options.trim_front1" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="single_paired.global_trimming_options.trim_front1" />
+    </parameter>
+    <parameter name="fastp-3-filter_options.quality_filtering_options.qualified_quality_phred" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="filter_options.quality_filtering_options.qualified_quality_phred" />
+    </parameter>
+    <parameter name="fastp-3-read_mod_options.umi_processing.umi" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="read_mod_options.umi_processing.umi" />
+    </parameter>
+    <parameter name="fastp-3-filter_options.low_complexity_filter.enable_low_complexity_filter" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="filter_options.low_complexity_filter.enable_low_complexity_filter" />
+    </parameter>
+    <parameter name="fastp-3-single_paired.adapter_trimming_options.adapter_sequence1" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="single_paired.adapter_trimming_options.adapter_sequence1" />
+    </parameter>
+    <parameter name="fastp-3-overrepresented_sequence_analysis.overrepresentation_analysis" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="overrepresented_sequence_analysis.overrepresentation_analysis" />
+    </parameter>
+    <parameter name="fastp-3-read_mod_options.cutting_by_quality_options.cut_by_quality3" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="read_mod_options.cutting_by_quality_options.cut_by_quality3" />
+    </parameter>
+    <parameter name="fastp-3-single_paired.global_trimming_options.trim_tail1" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="single_paired.global_trimming_options.trim_tail1" />
+    </parameter>
+    <parameter name="fastp-3-read_mod_options.polyg_tail_trimming.trimming_select" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="read_mod_options.polyg_tail_trimming.trimming_select" />
+    </parameter>
+    <parameter name="fastp-3-output_options.report_json" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="output_options.report_json" />
+    </parameter>
+    <parameter name="fastp-3-filter_options.quality_filtering_options.unqualified_percent_limit" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="filter_options.quality_filtering_options.unqualified_percent_limit" />
+    </parameter>
+    <parameter name="fastp-3-filter_options.quality_filtering_options.disable_quality_filtering" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="filter_options.quality_filtering_options.disable_quality_filtering" />
+    </parameter>
+    <parameter name="fastp-3-overrepresented_sequence_analysis.overrepresentation_sampling" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="overrepresented_sequence_analysis.overrepresentation_sampling" />
+    </parameter>
+    <parameter name="fastp-3-read_mod_options.umi_processing.umi_prefix" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="read_mod_options.umi_processing.umi_prefix" />
+    </parameter>
+    <parameter name="fastp-3-single_paired.single_paired_selector" defaultValue="paired_collection">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="single_paired.single_paired_selector" />
+    </parameter>
+    <parameter name="fastp-3-filter_options.length_filtering_options.disable_length_filtering" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="filter_options.length_filtering_options.disable_length_filtering" />
+    </parameter>
+    <parameter name="fastp-3-read_mod_options.cutting_by_quality_options.cut_mean_quality" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="read_mod_options.cutting_by_quality_options.cut_mean_quality" />
+    </parameter>
+    <parameter name="fastp-3-single_paired.global_trimming_options.trim_front2" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="single_paired.global_trimming_options.trim_front2" />
+    </parameter>
+    <parameter name="fastp-3-single_paired.global_trimming_options.trim_tail2" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="single_paired.global_trimming_options.trim_tail2" />
+    </parameter>
+    <parameter name="fastp-3-read_mod_options.umi_processing.umi_len" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="read_mod_options.umi_processing.umi_len" />
+    </parameter>
+    <parameter name="fastp-3-filter_options.quality_filtering_options.n_base_limit" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="filter_options.quality_filtering_options.n_base_limit" />
+    </parameter>
+    <parameter name="fastp-3-read_mod_options.polyx_tail_trimming.polyx_trimming_select" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="read_mod_options.polyx_tail_trimming.polyx_trimming_select" />
+    </parameter>
+    <parameter name="fastp-3-single_paired.adapter_trimming_options.disable_adapter_trimming" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="single_paired.adapter_trimming_options.disable_adapter_trimming" />
+    </parameter>
+    <parameter name="fastp-3-filter_options.low_complexity_filter.complexity_threshold" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="filter_options.low_complexity_filter.complexity_threshold" />
+    </parameter>
+    <parameter name="fastp-3-read_mod_options.umi_processing.umi_loc" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="read_mod_options.umi_processing.umi_loc" />
+    </parameter>
+    <parameter name="fastp-3-read_mod_options.cutting_by_quality_options.cut_window_size" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="read_mod_options.cutting_by_quality_options.cut_window_size" />
+    </parameter>
+    <parameter name="fastp-3-output_options.report_html" defaultValue="true">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="output_options.report_html" />
+    </parameter>
+    <parameter name="fastp-3-read_mod_options.cutting_by_quality_options.cut_by_quality5" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="read_mod_options.cutting_by_quality_options.cut_by_quality5" />
+    </parameter>
+    <parameter name="fastp-3-read_mod_options.polyg_tail_trimming.poly_g_min_len" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="read_mod_options.polyg_tail_trimming.poly_g_min_len" />
+    </parameter>
+    <parameter name="fastp-3-filter_options.length_filtering_options.length_required" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="filter_options.length_filtering_options.length_required" />
+    </parameter>
+    <parameter name="fastp-3-read_mod_options.base_correction_options.correction" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1" parameterName="read_mod_options.base_correction_options.correction" />
+    </parameter>
+    <parameter name="tbprofiler-4-output_format" defaultValue="txt">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/tbprofiler/tb_profiler_profile/2.6.1+galaxy0" parameterName="output_format" />
+    </parameter>
+    <parameter name="tbprofiler-4-fastq_or_bam.input_select" defaultValue="paired_collection_fastq">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/tbprofiler/tb_profiler_profile/2.6.1+galaxy0" parameterName="fastq_or_bam.input_select" />
+    </parameter>
+    <parameter name="tbprofiler-4-platform" defaultValue="Illumina">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/tbprofiler/tb_profiler_profile/2.6.1+galaxy0" parameterName="platform" />
+    </parameter>
+    <parameter name="tbprofiler-4-advanced.options" defaultValue="no">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/tbprofiler/tb_profiler_profile/2.6.1+galaxy0" parameterName="advanced.options" />
+    </parameter>
+    <parameter name="snippy-5-adv.minfrac" defaultValue="0.9">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.4.5+galaxy0" parameterName="adv.minfrac" />
+    </parameter>
+    <parameter name="snippy-5-adv.mincov" defaultValue="10">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.4.5+galaxy0" parameterName="adv.mincov" />
+    </parameter>
+    <parameter name="snippy-5-adv.rgid" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.4.5+galaxy0" parameterName="adv.rgid" />
+    </parameter>
+    <parameter name="snippy-5-adv.rename_cons" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.4.5+galaxy0" parameterName="adv.rename_cons" />
+    </parameter>
+    <parameter name="snippy-5-adv.mapqual" defaultValue="60">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.4.5+galaxy0" parameterName="adv.mapqual" />
+    </parameter>
+    <parameter name="snippy-5-adv.bwaopt" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.4.5+galaxy0" parameterName="adv.bwaopt" />
+    </parameter>
+    <parameter name="snippy-5-reference_source.reference_source_selector" defaultValue="history">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.4.5+galaxy0" parameterName="reference_source.reference_source_selector" />
+    </parameter>
+    <parameter name="snippy-5-fastq_input.fastq_input_selector" defaultValue="paired_collection">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.4.5+galaxy0" parameterName="fastq_input.fastq_input_selector" />
+    </parameter>
+    <parameter name="snippy-5-adv.minqual" defaultValue="100.0">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snippy/snippy/4.4.5+galaxy0" parameterName="adv.minqual" />
+    </parameter>
+    <parameter name="text_processing-6-adv_opts.adv_opts_selector" defaultValue="basic">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sed_tool/1.1.1" parameterName="adv_opts.adv_opts_selector" />
+    </parameter>
+    <parameter name="text_processing-6-code" defaultValue="/^[^#]/s/^[^\t]+\t/Chromosome\t/">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sed_tool/1.1.1" parameterName="code" />
+    </parameter>
+    <parameter name="snpeff-7-csvStats" defaultValue="true">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="csvStats" />
+    </parameter>
+    <parameter name="snpeff-7-chr" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="chr" />
+    </parameter>
+    <parameter name="snpeff-7-offset" defaultValue="default">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="offset" />
+    </parameter>
+    <parameter name="snpeff-7-spliceRegion.setSpliceRegions" defaultValue="no">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="spliceRegion.setSpliceRegions" />
+    </parameter>
+    <parameter name="snpeff-7-filter.specificEffects" defaultValue="no">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="filter.specificEffects" />
+    </parameter>
+    <parameter name="snpeff-7-snpDb.genomeSrc" defaultValue="custom">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="snpDb.genomeSrc" />
+    </parameter>
+    <parameter name="snpeff-7-inputFormat" defaultValue="vcf">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="inputFormat" />
+    </parameter>
+    <parameter name="snpeff-7-noLog" defaultValue="true">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="noLog" />
+    </parameter>
+    <parameter name="snpeff-7-udLength" defaultValue="5000">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="udLength" />
+    </parameter>
+    <parameter name="snpeff-7-outputConditional.outputFormat" defaultValue="vcf">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="outputConditional.outputFormat" />
+    </parameter>
+    <parameter name="snpeff-7-generate_stats" defaultValue="true">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="generate_stats" />
+    </parameter>
+    <parameter name="snpeff-7-spliceSiteSize" defaultValue="2">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="spliceSiteSize" />
+    </parameter>
+    <parameter name="snpeff-7-snpDb.codon_table" defaultValue="Standard">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/snpeff/snpEff/4.3+T.galaxy1" parameterName="snpDb.codon_table" />
+    </parameter>
+    <parameter name="tb_variant_filter-8-filter_options.show_filter_options" defaultValue="no">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/tb_variant_filter/tb_variant_filter/0.1.3+galaxy0" parameterName="filter_options.show_filter_options" />
+    </parameter>
+    <parameter name="tbvcfreport-9-adv.database_uri" defaultValue="neodb.sanbi.ac.za">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/tbvcfreport/tbvcfreport/0.1.7+galaxy0" parameterName="adv.database_uri" />
+    </parameter>
+    <parameter name="tbvcfreport-9-filter_udi" defaultValue="true">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/tbvcfreport/tbvcfreport/0.1.7+galaxy0" parameterName="filter_udi" />
+    </parameter>
+  </parameters>
+  <outputs>
+    <output name="snpeff_output" fileName="snpeff_output" />
+    <output name="tb_var_filter_output" fileName="tb_var_filter_output" />
+    <output name="txt_variant_report" fileName="txt_variant_report" />
+    <output name="html_dr_report" fileName="html_dr_report" />
+    <output name="html_variant_report" fileName="html_variant_report" />
+    <output name="txt_dr_report" fileName="txt_dr_report" />
+  </outputs>
+  <toolRepositories>
+    <repository>
+      <name>snpeff</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>268d162b9c49</revision>
+    </repository>
+    <repository>
+      <name>snippy</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>4df82423ba61</revision>
+    </repository>
+    <repository>
+      <name>tbvcfreport</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>02d81b994ef5</revision>
+    </repository>
+    <repository>
+      <name>fastp</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>1d8fe9bc4cb0</revision>
+    </repository>
+    <repository>
+      <name>tb_variant_filter</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>3b1e7c170b10</revision>
+    </repository>
+    <repository>
+      <name>text_processing</name>
+      <owner>bgruening</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>0a8c6b61f0f4</revision>
+    </repository>
+    <repository>
+      <name>tbprofiler</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>c2656b729ee9</revision>
+    </repository>
+  </toolRepositories>
+</iridaWorkflow>

@@ -9,7 +9,7 @@ cache:
     - $HOME/.m2
 before_script:
   - git clone https://github.com/phac-nml/irida.git
-  - cd irida
+  - cd irida && git fetch --all --tags && git checkout 19.09
   - cd lib && ./install-libs.sh && cd ..
   - mvn clean install -DskipTests && cd ..
 script:
