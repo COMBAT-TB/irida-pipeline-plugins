@@ -5,9 +5,9 @@
   <version>0.1.2</version>
   <analysisType>SNIPPY_PHYLOGENOMICS</analysisType>
   <inputs>
-    <sequenceReadsPaired/>
-    <reference>reference</reference>
-    <requiresSingleSample>true</requiresSingleSample>
+    <sequenceReadsPaired>Input Collection</sequenceReadsPaired>
+    <reference>Reference File</reference>
+    <requiresSingleSample>false</requiresSingleSample>
   </inputs>
   <parameters>
     <parameter name="snpeff-2-genome_version" defaultValue="Mycobacterium_tuberculosis_h37rv">
@@ -411,13 +411,9 @@
     </parameter>
   </parameters>
   <outputs>
-    <output name="snps_vcf_file" fileName="snps_vcf_file"/>
-    <output name="consensus_fasta.fasta" fileName="consensus_fasta.fasta"/>
     <output name="iqtree_frequencies_in_bootstrap_tree.nex" fileName="iqtree_frequencies_in_bootstrap_tree.nex"/>
     <output name="iqtree_report_final_tree.iqtree" fileName="iqtree_report_final_tree.iqtree"/>
-    <output name="iqtree_max_likeli_hood_tree.nhx" fileName="iqtree_max_likeli_hood_tree.nhx"/>
-    <output name="iqtree_consconsensus_tree.nhx" fileName="iqtree_consconsensus_tree.nhx"/>
-    <output name="iqtree_bionj_tree_file.nhx" fileName="iqtree_bionj_tree_file.nhx"/>
+    <output name="tree" fileName="iqtree_max_likeli_hood_tree.nhx"/>
     <output name="iqtree_max_likeli_hood_distance_matrix.midist" fileName="iqtree_max_likeli_hood_distance_matrix.midist"/>
   </outputs>
   <toolRepositories>
