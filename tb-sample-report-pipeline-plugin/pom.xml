@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ca.corefacility.bioinformatics.irida.plugins</groupId>
 	<artifactId>tb-sample-report-pipeline-plugin</artifactId>
-	<version>0.1.7-SNAPSHOT</version>
+	<version>0.1.8-SNAPSHOT</version>
 	<!-- Please fill out these properties with information about your particular plugin -->
 	<properties>
 		<!-- Information used to define properties about a plugin. Please see the PF4J docs for more details https://pf4j.org/doc/getting-started.html -->
 		<plugin.id>tb-sample-report-pipeline-plugin</plugin.id>
 		<plugin.class>ca.corefacility.bioinformatics.irida.plugins.SnippyPipelinePlugin</plugin.class>
-		<plugin.version>0.1.7</plugin.version>
+		<plugin.version>0.1.8</plugin.version>
 		<plugin.provider>COMBAT-TB</plugin.provider>
 		<plugin.dependencies></plugin.dependencies>
 		<plugin.requires.runtime>1.0.0</plugin.requires.runtime>
@@ -18,7 +19,7 @@
 		<!-- Version of Java to target for this plugin -->
 		<java.version>1.8</java.version>
 		<!-- The version of IRIDA your plugin must be compiled against. -->
-		<irida.version.compiletime>19.09-SNAPSHOT</irida.version.compiletime>
+		<irida.version.compiletime>20.05-SNAPSHOT</irida.version.compiletime>
 	</properties>
 	<!-- Dependencies used to build this plugin package -->
 	<dependencies>
