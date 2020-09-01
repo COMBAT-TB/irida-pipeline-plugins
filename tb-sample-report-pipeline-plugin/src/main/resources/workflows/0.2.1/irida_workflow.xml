@@ -5,7 +5,7 @@
   <version>0.2.1</version>
   <analysisType>VARIANT_CALLING</analysisType>
   <inputs>
-    <sequenceReadsPaired>Input Collection</sequenceReadsPaired>
+    <sequenceReadsPaired>sequence_input</sequenceReadsPaired>
     <reference>reference</reference>
     <requiresSingleSample>true</requiresSingleSample>
   </inputs>
