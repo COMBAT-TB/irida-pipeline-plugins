@@ -16,7 +16,7 @@
     <parameter name="text_processing-2-adv_opts.adv_opts_selector" defaultValue="basic">
       <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sed_tool/1.1.1" parameterName="adv_opts.adv_opts_selector"/>
     </parameter>
-    <parameter name="text_processing-2-code" defaultValue="s/^&gt;/&gt;Chromosome/">
+    <parameter name="text_processing-2-code" defaultValue="1s/^.*$/&gt;Chromosome/">
       <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_sed_tool/1.1.1" parameterName="code" label="AWK Program" type="text"/>
     </parameter>
     <parameter name="fastqc-3-chromInfo" defaultValue="/opt/galaxy/tool-data/shared/ucsc/chrom/?.len">
@@ -123,13 +123,11 @@
     </parameter>
   </parameters>
   <outputs>
-    <output name="sed_reference" fileName="sed_reference"/>
-    <output name="snpeff_output" fileName="snpeff_output" />
-    <output name="output1" fileName="output1" />
-    <output name="variants_report_html" fileName="variants_report_html" />
-    <output name="variants_report_txt" fileName="variants_report_txt" />
-    <output name="drug_resistance_report_html" fileName="drug_resistance_report_html" />
-    <output name="drug_resistance_report_txt" fileName="drug_resistance_report_txt" />
+    <output name="snpeff_vcf" fileName="snpeff_vcf" />
+    <output name="mtbva_tb_variant_report_html" fileName="mtbva_tb_variant_report_html" />
+    <output name="mtbva_tb_variant_report_txt" fileName="mtbva_tb_variant_report_txt" />
+    <output name="mtbva_tb_variant_dr_report_html" fileName="mtbva_tb_variant_dr_report_html" />
+    <output name="mtbva_tb_variant_dr_report_txt" fileName="mtbva_tb_variant_dr_report_txt" />
   </outputs>
   <toolRepositories>
     <repository>

@@ -101,7 +101,7 @@
                 "owner": "bgruening",
                 "tool_shed": "toolshed.g2.bx.psu.edu"
             },
-            "tool_state": "{\"optional\": false, \"name\": \"sed_reference\",\"adv_opts\": {\"adv_opts_selector\": \"basic\", \"__current_case__\": 0}, \"code\": \"1 s/^.$/>Chromosome/\", \"infile\": {\"__class__\": \"RuntimeValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_state": "{\"optional\": false, \"name\": \"sed_reference\",\"adv_opts\": {\"adv_opts_selector\": \"basic\", \"__current_case__\": 0}, \"code\": \"1s/^.*$/>Chromosome/\", \"infile\": {\"__class__\": \"RuntimeValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
             "tool_version": "1.1.1",
             "type": "tool",
             "uuid": "01a41f7a-d9d3-4444-82b8-ce59a2203a94",
@@ -313,6 +313,13 @@
                 "top": 200
             },
             "post_job_actions": {
+                "RenameDatasetActionsnpeff_output": {
+                     "action_arguments": {
+                         "newname": "snpeff_vcf"
+                     },
+                     "action_type": "RenameDatasetAction",
+                     "output_name": "snpeff_output"
+                 },                
                 "HideDatasetActionstatsFile": {
                     "action_arguments": {},
                     "action_type": "HideDatasetAction",
@@ -475,7 +482,36 @@
                 "left": 1630,
                 "top": 200
             },
-            "post_job_actions": {},
+			"post_job_actions": {
+                "RenameDatasetActiondrug_resistance_report_html": {
+                     "action_arguments": {
+                         "newname": "mtbva_tb_variant_dr_report_html"
+                     },
+                     "action_type": "RenameDatasetAction",
+                     "output_name": "drug_resistance_report_html"
+                 },
+                "RenameDatasetActiondrug_resistance_report_txt": {
+                    "action_arguments": {
+                        "newname": "mtbva_tb_variant_dr_report_txt"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "drug_resistance_report_txt"
+                },
+                "RenameDatasetActionvariants_report_html": {
+                    "action_arguments": {
+                        "newname": "mtbva_tb_variant_report_html"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "variants_report_html"
+                },
+                "RenameDatasetActionvariants_report_txt": {
+                    "action_arguments": {
+                        "newname": "mtbva_tb_variant_report_txt"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "variants_report_txt"
+                }
+            },
             "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/tbvcfreport/tbvcfreport/0.1.7+galaxy0",
             "tool_shed_repository": {
                 "changeset_revision": "02d81b994ef5",
