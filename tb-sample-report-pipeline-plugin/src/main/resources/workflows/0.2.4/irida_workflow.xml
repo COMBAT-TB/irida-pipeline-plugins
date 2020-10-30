@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iridaWorkflow>
+  <id>41d059e1-7a74-4fc8-ba34-bdfbaf1fa714</id>
+  <name>TBSampleReport</name>
+  <version>0.2.4</version>
+  <analysisType>VARIANT_CALLING</analysisType>
+  <inputs>
+    <sequenceReadsPaired>sequence_input</sequenceReadsPaired>
+    <reference>reference</reference>
+    <requiresSingleSample>true</requiresSingleSample>
+  </inputs>
+  <parameters>
+    <parameter name="text_processing-2-name" defaultValue="sed_reference">
+      <toolParameter toolId="01a41f7a-d9d3-4444-82b8-ce59a2203a94" parameterName="name"/>
+    </parameter>
+    <parameter name="text_processing-2-adv_opts.adv_opts_selector" defaultValue="basic">
+      <toolParameter toolId="01a41f7a-d9d3-4444-82b8-ce59a2203a94" parameterName="adv_opts.adv_opts_selector"/>
+    </parameter>
+    <parameter name="fastqc-3-chromInfo" defaultValue="/opt/galaxy/tool-data/shared/ucsc/chrom/?.len">
+      <toolParameter toolId="07ae8e23-e597-44ad-80ea-a2b6122cfa21" parameterName="chromInfo"/>
+    </parameter>
+    <parameter name="fastqc-3-min_length" defaultValue="">
+      <toolParameter toolId="07ae8e23-e597-44ad-80ea-a2b6122cfa21" parameterName="min_length"/>
+    </parameter>
+    <parameter name="trimmomatic-4-illuminaclip.do_illuminaclip" defaultValue="false">
+      <toolParameter toolId="19747e3a-a763-469a-a89e-7b704c27f594" parameterName="illuminaclip.do_illuminaclip"/>
+    </parameter>
+    <parameter name="trimmomatic-4-readtype.single_or_paired" defaultValue="collection">
+      <toolParameter toolId="19747e3a-a763-469a-a89e-7b704c27f594" parameterName="readtype.single_or_paired"/>
+    </parameter>
+    <parameter name="snippy-5-adv.minfrac" defaultValue="0.1">
+      <toolParameter toolId="05e69635-8ac8-47a8-a49d-ad1434138f38" parameterName="adv.minfrac"/>
+    </parameter>
+    <parameter name="snippy-5-adv.mincov" defaultValue="10">
+      <toolParameter toolId="05e69635-8ac8-47a8-a49d-ad1434138f38" parameterName="adv.mincov"/>
+    </parameter>
+    <parameter name="snippy-5-adv.rgid" defaultValue="">
+      <toolParameter toolId="05e69635-8ac8-47a8-a49d-ad1434138f38" parameterName="adv.rgid"/>
+    </parameter>
+    <parameter name="snippy-5-adv.rename_cons" defaultValue="false">
+      <toolParameter toolId="05e69635-8ac8-47a8-a49d-ad1434138f38" parameterName="adv.rename_cons"/>
+    </parameter>
+    <parameter name="snippy-5-adv.mapqual" defaultValue="60">
+      <toolParameter toolId="05e69635-8ac8-47a8-a49d-ad1434138f38" parameterName="adv.mapqual"/>
+    </parameter>
+    <parameter name="snippy-5-adv.bwaopt" defaultValue="">
+      <toolParameter toolId="05e69635-8ac8-47a8-a49d-ad1434138f38" parameterName="adv.bwaopt"/>
+    </parameter>
+    <parameter name="snippy-5-reference_source.reference_source_selector" defaultValue="history">
+      <toolParameter toolId="05e69635-8ac8-47a8-a49d-ad1434138f38" parameterName="reference_source.reference_source_selector"/>
+    </parameter>
+    <parameter name="snippy-5-fastq_input.fastq_input_selector" defaultValue="paired_collection">
+      <toolParameter toolId="05e69635-8ac8-47a8-a49d-ad1434138f38" parameterName="fastq_input.fastq_input_selector"/>
+    </parameter>
+    <parameter name="snippy-5-adv.minqual" defaultValue="100.0">
+      <toolParameter toolId="05e69635-8ac8-47a8-a49d-ad1434138f38" parameterName="adv.minqual"/>
+    </parameter>
+    <parameter name="snpeff-6-chr" defaultValue="">
+      <toolParameter toolId="9c56ecf8-925f-4f0d-9086-57a86843a4c7" parameterName="chr"/>
+    </parameter>
+    <parameter name="snpeff-6-offset" defaultValue="default">
+      <toolParameter toolId="9c56ecf8-925f-4f0d-9086-57a86843a4c7" parameterName="offset"/>
+    </parameter>
+    <parameter name="snpeff-6-spliceRegion.setSpliceRegions" defaultValue="no">
+      <toolParameter toolId="9c56ecf8-925f-4f0d-9086-57a86843a4c7" parameterName="spliceRegion.setSpliceRegions"/>
+    </parameter>
+    <parameter name="snpeff-6-snpDb.reg_section.regulation" defaultValue="">
+      <toolParameter toolId="9c56ecf8-925f-4f0d-9086-57a86843a4c7" parameterName="snpDb.reg_section.regulation"/>
+    </parameter>
+    <parameter name="snpeff-6-filter.specificEffects" defaultValue="no">
+      <toolParameter toolId="9c56ecf8-925f-4f0d-9086-57a86843a4c7" parameterName="filter.specificEffects"/>
+    </parameter>
+    <parameter name="snpeff-6-snpDb.genomeSrc" defaultValue="cached">
+      <toolParameter toolId="9c56ecf8-925f-4f0d-9086-57a86843a4c7" parameterName="snpDb.genomeSrc"/>
+    </parameter>
+    <parameter name="snpeff-6-inputFormat" defaultValue="vcf">
+      <toolParameter toolId="9c56ecf8-925f-4f0d-9086-57a86843a4c7" parameterName="inputFormat"/>
+    </parameter>
+    <parameter name="snpeff-6-snpDb.genomeVersion" defaultValue="Mycobacterium_tuberculosis_h37rv">
+      <toolParameter toolId="9c56ecf8-925f-4f0d-9086-57a86843a4c7" parameterName="snpDb.genomeVersion"/>
+    </parameter>
+    <parameter name="snpeff-6-outputConditional.outputFormat" defaultValue="vcf">
+      <toolParameter toolId="9c56ecf8-925f-4f0d-9086-57a86843a4c7" parameterName="outputConditional.outputFormat"/>
+    </parameter>
+    <parameter name="tbprofiler-7-advanced.options" defaultValue="yes">
+      <toolParameter toolId="d0835da0-0c2e-4de9-bb3d-8f854a0fc8ad" parameterName="advanced.options"/>
+    </parameter>
+    <parameter name="tbprofiler-7-advanced.mapper" defaultValue="bwa">
+      <toolParameter toolId="d0835da0-0c2e-4de9-bb3d-8f854a0fc8ad" parameterName="advanced.mapper"/>
+    </parameter>
+    <parameter name="tbprofiler-7-advanced.min_depth" defaultValue="10">
+      <toolParameter toolId="d0835da0-0c2e-4de9-bb3d-8f854a0fc8ad" parameterName="advanced.min_depth"/>
+    </parameter>
+    <parameter name="tbprofiler-7-advanced.min_allele_freq" defaultValue="0.1">
+      <toolParameter toolId="d0835da0-0c2e-4de9-bb3d-8f854a0fc8ad" parameterName="advanced.min_allele_freq"/>
+    </parameter>
+    <parameter name="tbprofiler-7-advanced.min_allele_freq_reporting" defaultValue="0.1">
+      <toolParameter toolId="d0835da0-0c2e-4de9-bb3d-8f854a0fc8ad" parameterName="advanced.min_allele_freq_reporting"/>
+    </parameter>
+    <parameter name="tbprofiler-7-fastq_or_bam.input_select" defaultValue="bam">
+      <toolParameter toolId="d0835da0-0c2e-4de9-bb3d-8f854a0fc8ad" parameterName="fastq_or_bam.input_select"/>
+    </parameter>
+    <parameter name="tbprofiler-7-output_format" defaultValue="txt">
+      <toolParameter toolId="d0835da0-0c2e-4de9-bb3d-8f854a0fc8ad" parameterName="output_format"/>
+    </parameter>
+    <parameter name="tbprofiler-7-platform" defaultValue="illumina">
+      <toolParameter toolId="d0835da0-0c2e-4de9-bb3d-8f854a0fc8ad" parameterName="platform"/>
+    </parameter>
+    <parameter name="tb_variant_filter-8-chromInfo" defaultValue="/opt/galaxy/tool-data/shared/ucsc/chrom/?.len">
+      <toolParameter toolId="946dc321-e7ce-487b-83a8-da01c8789917" parameterName="chromInfo"/>
+    </parameter>
+    <parameter name="tb_variant_filter-8-filter_options.show_filter_options" defaultValue="no">
+      <toolParameter toolId="946dc321-e7ce-487b-83a8-da01c8789917" parameterName="filter_options.show_filter_options"/>
+    </parameter>
+    <parameter name="tbvcfreport-9-adv.database_uri" defaultValue="neodb.sanbi.ac.za">
+      <toolParameter toolId="285af2a1-84f0-4273-9d8a-65218feed9f6" parameterName="adv.database_uri"/>
+    </parameter>
+  </parameters>
+  <outputs>
+    <output name="tb_profiler_txt" fileName="tb_profiler_txt"/>
+    <output name="tb_profiler_vcf" fileName="tb_profiler_vcf"/>
+    <output name="tb_profiler_json" fileName="tb_profiler_json"/>
+    <output name="mtbva_tb_variant_dr_report_html" fileName="mtbva_tb_variant_dr_report_html"/>
+    <output name="mtbva_tb_variant_dr_report_txt" fileName="mtbva_tb_variant_dr_report_txt"/>
+    <output name="mtbva_tb_variant_report_html" fileName="mtbva_tb_variant_report_html"/>
+    <output name="mtbva_tb_variant_report_txt" fileName="mtbva_tb_variant_report_txt"/>
+  </outputs>
+  <toolRepositories>
+    <repository>
+      <name>trimmomatic</name>
+      <owner>pjbriggs</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>d94aff5ee623</revision>
+    </repository>
+    <repository>
+      <name>tbprofiler</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>200c378d85f3</revision>
+    </repository>
+    <repository>
+      <name>snpeff</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>268d162b9c49</revision>
+    </repository>
+    <repository>
+      <name>fastqc</name>
+      <owner>devteam</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>e7b2202befea</revision>
+    </repository>
+    <repository>
+      <name>tbvcfreport</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>02d81b994ef5</revision>
+    </repository>
+    <repository>
+      <name>snippy</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>3fe8ef358d66</revision>
+    </repository>
+    <repository>
+      <name>tb_variant_filter</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>3b1e7c170b10</revision>
+    </repository>
+    <repository>
+      <name>text_processing</name>
+      <owner>bgruening</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>0a8c6b61f0f4</revision>
+    </repository>
+  </toolRepositories>
+</iridaWorkflow>

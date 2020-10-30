@@ -128,6 +128,7 @@
     <output name="mtbva_tb_variant_report_txt" fileName="mtbva_tb_variant_report_txt" />
     <output name="mtbva_tb_variant_dr_report_html" fileName="mtbva_tb_variant_dr_report_html" />
     <output name="mtbva_tb_variant_dr_report_txt" fileName="mtbva_tb_variant_dr_report_txt" />
+    <output name="mtbva_tb_variant_dr_report_txt" fileName="mtbva_tb_variant_dr_report_txt" />
   </outputs>
   <toolRepositories>
     <repository>

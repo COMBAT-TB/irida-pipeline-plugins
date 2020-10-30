@@ -8,6 +8,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.collect.ImmutableMap;
 
 import ca.corefacility.bioinformatics.irida.exceptions.IridaWorkflowNotFoundException;
@@ -33,6 +36,7 @@ import ca.corefacility.bioinformatics.irida.service.workflow.IridaWorkflowsServi
  * or the README.md file in this project for more details.
  */
 public class SnippyTbSampleIqtreePipelinePluginUpdater implements AnalysisSampleUpdater {
+	private static final Logger logger = LoggerFactory.getLogger(SnippyTbSampleIqtreePipelinePluginUpdater.class);
 
 	private final MetadataTemplateService metadataTemplateService;
 	private final SampleService sampleService;

@@ -5,10 +5,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 import ca.corefacility.bioinformatics.irida.exceptions.IridaWorkflowNotFoundException;
 import ca.corefacility.bioinformatics.irida.exceptions.PostProcessingException;
@@ -25,6 +36,9 @@ import ca.corefacility.bioinformatics.irida.service.sample.MetadataTemplateServi
 import ca.corefacility.bioinformatics.irida.service.sample.SampleService;
 import ca.corefacility.bioinformatics.irida.service.workflow.IridaWorkflowsService;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+
 /**
  * This implements a class used to perform post-processing on the analysis
  * pipeline results to extract information to write into the IRIDA metadata
@@ -33,10 +47,25 @@ import ca.corefacility.bioinformatics.irida.service.workflow.IridaWorkflowsServi
  * or the README.md file in this project for more details.
  */
 public class SnippyPluginUpdater implements AnalysisSampleUpdater {
+	private static final Logger logger = LoggerFactory.getLogger(SnippyPluginUpdater.class);
+
+	private static final String TBPROFILER_FILE = "tb_profiler_json"; 
 
 	private final MetadataTemplateService metadataTemplateService;
 	private final SampleService sampleService;
 	private final IridaWorkflowsService iridaWorkflowsService;
+
+	// @formatter:off
+	private Map<String, String> TBPROFILER_FIELDS = ImmutableMap.<String,String>builder()
+		.put("drtype", "Drug Resistance Type")
+		.put("main_lin","Main Lineage")
+		.put("sublin", "Sub Lineage")
+		.put("XDR", "Extensively drug-resistant TB")
+		.put("MDR", "Multidrug-resistant tuberculosis")
+		.put("tbprofiler_version", "SISTR Serogroup")
+		.build();
+			// @formatter:on
+
 
 	/**
 	 * Builds a new {@link SnippyPluginUpdater} with the given services.
@@ -71,7 +100,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			// In this particular pipeline, only one sample should be run at a time so I
 			// verify that the collection of samples I get has only 1 sample
 			throw new IllegalArgumentException(
-					"samples size=" + samples.size() + " is not 1 for analysisSubmission=" + analysis.getId());
+				"Expected one sample; got '" + "samples size=" + samples.size() + " is not 1 for analysisSubmission=" + analysis.getId());
 		}
 
 		// extract the 1 and only sample (if more than 1, would have thrown an exception
@@ -79,11 +108,8 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 		final Sample sample = samples.iterator().next();
 
 		// extracts paths to the analysis result files
-		AnalysisOutputFile hashAnalysisFile = analysis.getAnalysis().getAnalysisOutputFile("hash.txt");
-		Path hashFile = hashAnalysisFile.getFile();
-
-		AnalysisOutputFile readCountAnalysisFile = analysis.getAnalysis().getAnalysisOutputFile("read-count.txt");
-		Path readCountFile = readCountAnalysisFile.getFile();
+		AnalysisOutputFile tbprofilerFile = analysis.getAnalysis().getAnalysisOutputFile(TBPROFILER_FILE);
+		Path filePath = tbprofilerFile.getFile();
 
 		try {
 			Map<String, MetadataEntry> metadataEntries = new HashMap<>();
@@ -93,127 +119,48 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			String workflowVersion = iridaWorkflow.getWorkflowDescription().getVersion();
 			String workflowName = iridaWorkflow.getWorkflowDescription().getName();
 
-			// gets information from the "hash.txt" output file and constructs metadata
-			// objects
-			Map<String, String> hashValues = parseHashFile(hashFile);
-			for (String hashType : hashValues.keySet()) {
-				final String hashValue = hashValues.get(hashType);
+			//Read the JSON file from TbProfile output
+			@SuppressWarnings("resource")
+			String jsonFile = new Scanner(new BufferedReader(new FileReader(filePath.toFile()))).useDelimiter("\\Z").next();
 
-				PipelineProvidedMetadataEntry hashEntry = new PipelineProvidedMetadataEntry(hashValue, "text",
-						analysis);
+			// map the results into a Map
+			ObjectMapper mapper = new ObjectMapper();
+			Map<String, Object> tbprofilerResults = mapper.readValue(jsonFile, new TypeReference<Map<String, Object>>() {});
 
-				// key will be string like 'ReadInfo/md5 (v0.1.0)'
-				String key = workflowName + "/" + hashType + " (v" + workflowVersion + ")";
-				metadataEntries.put(key, hashEntry);
+			if (tbprofilerResults.size() > 0) {
+				//Map<String, Object> result = tbprofilerResults.get(0);
+
+				//loop through each of the requested fields and append workflow version and save the entries
+				TBPROFILER_FIELDS.entrySet().forEach(e -> {
+					if (tbprofilerResults.containsKey(e.getKey())) {
+						Object valueObject = tbprofilerResults.get(e.getKey());
+						String value = (valueObject != null ? valueObject.toString() : "");
+						PipelineProvidedMetadataEntry metadataEntry =
+								new PipelineProvidedMetadataEntry(value, "text", analysis);
+						metadataEntries.put(e.getValue() + " (v"+workflowVersion+")", metadataEntry);
+					}
+				});
+
+				// convert string map into metadata fields
+				Map<MetadataTemplateField, MetadataEntry> metadataMap = metadataTemplateService.getMetadataMap(metadataEntries);
+
+				//save metadata back to sample
+				samples.forEach(s -> {
+					s.mergeMetadata(metadataMap);
+					sampleService.updateFields(s.getId(), ImmutableMap.of("metadata", s.getMetadata()));
+				});
+
+			} else {
+				throw new PostProcessingException("TbProfiler results for file are not correctly formatted");
 			}
-
-			// gets read count information from "read-count.txt" file and builds metadata
-			// objects
-			Long readCount = parseReadCount(readCountFile);
-			PipelineProvidedMetadataEntry readCountEntry = new PipelineProvidedMetadataEntry(readCount.toString(),
-					"text", analysis);
-
-			// key will be string like 'ReadInfo/readCount (v0.1.0)'
-			String key = workflowName + "/readCount (v" + workflowVersion + ")";
-			metadataEntries.put(key, readCountEntry);
-
-			Map<MetadataTemplateField, MetadataEntry> metadataMap = metadataTemplateService
-					.getMetadataMap(metadataEntries);
-
-			// merges with existing sample metadata
-			sample.mergeMetadata(metadataMap);
-
-			// does an update of the sample metadata
-			sampleService.updateFields(sample.getId(), ImmutableMap.of("metadata", sample.getMetadata()));
+			
 		} catch (IOException e) {
-			throw new PostProcessingException("Error parsing hash file", e);
+			throw new PostProcessingException("Error parsing JSON from TbProfiler (Snippy-Tb-Sample-Report) results", e);
 		} catch (IridaWorkflowNotFoundException e) {
 			throw new PostProcessingException("Could not find workflow for id=" + analysis.getWorkflowId(), e);
 		}
 	}
-
-	/**
-	 * Parses out the read count from the passed file.
-	 * 
-	 * @param readCountFile The file containing the read count. The file contents
-	 *                      should look like (representing 10 reads):
-	 * 
-	 *                      <pre>
-	 *                      10
-	 *                      </pre>
-	 * 
-	 * @return A {@link Long} containing the read count.
-	 * @throws IOException If there was an error reading the file.
-	 */
-	private Long parseReadCount(Path readCountFile) throws IOException {
-		BufferedReader readCountReader = new BufferedReader(new FileReader(readCountFile.toFile()));
-		Long readCount = null;
-
-		try {
-			String line = readCountReader.readLine();
-			readCount = Long.parseLong(line);
-		} finally {
-			readCountReader.close();
-		}
-
-		return readCount;
-	}
-
-	/**
-	 * Parses out values from the hash file into a {@link Map} linking 'hashType' to
-	 * 'hashValue'.
-	 * 
-	 * @param hashFile The {@link Path} to the file containing the hash values from
-	 *                 the pipeline. This file should contain contents like:
-	 * 
-	 *                 <pre>
-	 * #md5                                sha1
-	 * d54d78010cf8eeaa76c46646846be4f2    5908a485e47f870d3f9d72ff1e55796512047f00
-	 *                 </pre>
-	 * 
-	 * @return A {@link Map} linking 'hashType' to 'hashValue'.
-	 * @throws IOException             If there was an error reading the file.
-	 * @throws PostProcessingException If there was an error parsing the file.
-	 */
-	private Map<String, String> parseHashFile(Path hashFile) throws IOException, PostProcessingException {
-		Map<String, String> hashTypeValues = new HashMap<>();
-
-		BufferedReader hashReader = new BufferedReader(new FileReader(hashFile.toFile()));
-
-		try {
-			String headerLine = hashReader.readLine();
-
-			if (!headerLine.startsWith("#")) {
-				throw new PostProcessingException("Missing '#' in header of file " + hashFile);
-			} else {
-				// strip off '#' prefix
-				headerLine = headerLine.substring(1);
-			}
-
-			String[] hashTypes = headerLine.split("\t");
-
-			String hashValuesLine = hashReader.readLine();
-			String[] hashValues = hashValuesLine.split("\t");
-
-			if (hashTypes.length != hashValues.length) {
-				throw new PostProcessingException("Unmatched fields in header and values from file " + hashFile);
-			}
-
-			for (int i = 0; i < hashTypes.length; i++) {
-				hashTypeValues.put(hashTypes[i], hashValues[i]);
-			}
-
-			if (hashReader.readLine() != null) {
-				throw new PostProcessingException("Too many lines in file " + hashFile);
-			}
-		} finally {
-			// make sure to close, even in cases where an exception is thrown
-			hashReader.close();
-		}
-
-		return hashTypeValues;
-	}
-
+	
 	/**
 	 * The {@link AnalysisType} this {@link AnalysisSampleUpdater} corresponds to.
 	 * 

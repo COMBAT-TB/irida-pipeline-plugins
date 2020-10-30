@@ -9,7 +9,7 @@
 		<!-- Information used to define properties about a plugin. Please see the PF4J docs for more details https://pf4j.org/doc/getting-started.html -->
 		<plugin.id>snippy-tb-sample-iqtree-pipeline-plugin</plugin.id>
 		<plugin.class>ca.corefacility.bioinformatics.irida.plugins.SnippyTbSampleIqtreePipelinePlugin</plugin.class>
-		<plugin.version>0.1.2</plugin.version>
+		<plugin.version>0.1.3</plugin.version>
 		<plugin.provider>SANBI-SA</plugin.provider>
 		<plugin.dependencies></plugin.dependencies>
 		<plugin.requires.runtime>1.0.0</plugin.requires.runtime>
