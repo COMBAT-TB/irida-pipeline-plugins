@@ -62,7 +62,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 		.put("sublin", "Sub Lineage")
 		.put("XDR", "Extensively drug-resistant TB")
 		.put("MDR", "Multidrug-resistant tuberculosis")
-		.put("tbprofiler_version", "SISTR Serogroup")
+		.put("tbprofiler_version", "TbProfiler Version")
 		.build();
 			// @formatter:on
 
