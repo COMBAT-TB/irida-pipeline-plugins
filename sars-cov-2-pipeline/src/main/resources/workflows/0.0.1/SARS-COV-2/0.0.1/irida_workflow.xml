@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iridaWorkflow>
+  <id>3a398729-d7d2-4f88-ac8f-ed1a5ac86db8</id>
+  <name>SARS-COV-2</name>
+  <version>0.0.1</version>
+  <analysisType>VARIANT_CALLING</analysisType>
+  <inputs>
+    <sequenceReadsPaired>Input Collection</sequenceReadsPaired>
+    <reference>reference</reference>
+    <requiresSingleSample>true</requiresSingleSample>
+  </inputs>
+  <parameters>
+    <parameter name="minimap2-3-io_options.Q" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="io_options.Q"/>
+    </parameter>
+    <parameter name="minimap2-3-mapping_options.r" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="mapping_options.r"/>
+    </parameter>
+    <parameter name="minimap2-3-mapping_options.n" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="mapping_options.n"/>
+    </parameter>
+    <parameter name="minimap2-3-mapping_options.f" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="mapping_options.f"/>
+    </parameter>
+    <parameter name="minimap2-3-mapping_options.N" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="mapping_options.N"/>
+    </parameter>
+    <parameter name="minimap2-3-alignment_options.B" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="alignment_options.B"/>
+    </parameter>
+    <parameter name="minimap2-3-io_options.output_format" defaultValue="BAM">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="io_options.output_format"/>
+    </parameter>
+    <parameter name="minimap2-3-mapping_options.F" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="mapping_options.F"/>
+    </parameter>
+    <parameter name="minimap2-3-alignment_options.E2" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="alignment_options.E2"/>
+    </parameter>
+    <parameter name="minimap2-3-analysis_type_selector" defaultValue="sr">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="analysis_type_selector"/>
+    </parameter>
+    <parameter name="minimap2-3-io_options.L" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="io_options.L"/>
+    </parameter>
+    <parameter name="minimap2-3-mapping_options.p" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="mapping_options.p"/>
+    </parameter>
+    <parameter name="minimap2-3-alignment_options.O" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="alignment_options.O"/>
+    </parameter>
+    <parameter name="minimap2-3-mapping_options.G" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="mapping_options.G"/>
+    </parameter>
+    <parameter name="minimap2-3-indexing_options.w" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="indexing_options.w"/>
+    </parameter>
+    <parameter name="minimap2-3-alignment_options.E" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="alignment_options.E"/>
+    </parameter>
+    <parameter name="minimap2-3-alignment_options.s" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="alignment_options.s"/>
+    </parameter>
+    <parameter name="minimap2-3-reference_source.reference_source_selector" defaultValue="history">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="reference_source.reference_source_selector"/>
+    </parameter>
+    <parameter name="minimap2-3-indexing_options.k" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="indexing_options.k"/>
+    </parameter>
+    <parameter name="minimap2-3-mapping_options.m" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="mapping_options.m"/>
+    </parameter>
+    <parameter name="minimap2-3-io_options.Y" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="io_options.Y"/>
+    </parameter>
+    <parameter name="minimap2-3-fastq_input.fastq_input_selector" defaultValue="paired_collection">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="fastq_input.fastq_input_selector"/>
+    </parameter>
+    <parameter name="minimap2-3-alignment_options.z" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="alignment_options.z"/>
+    </parameter>
+    <parameter name="minimap2-3-io_options.K" defaultValue="20">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="io_options.K"/>
+    </parameter>
+    <parameter name="minimap2-3-indexing_options.I" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="indexing_options.I"/>
+    </parameter>
+    <parameter name="minimap2-3-io_options.eqx" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="io_options.eqx"/>
+    </parameter>
+    <parameter name="minimap2-3-mapping_options.g" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="mapping_options.g"/>
+    </parameter>
+    <parameter name="minimap2-3-alignment_options.-O2" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="alignment_options.-O2"/>
+    </parameter>
+    <parameter name="minimap2-3-indexing_options.H" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="indexing_options.H"/>
+    </parameter>
+    <parameter name="minimap2-3-mapping_options.X" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="mapping_options.X"/>
+    </parameter>
+    <parameter name="minimap2-3-mapping_options.min_occ_floor" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="mapping_options.min_occ_floor"/>
+    </parameter>
+    <parameter name="minimap2-3-alignment_options.A" defaultValue="">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/minimap2/minimap2/2.17" parameterName="alignment_options.A"/>
+    </parameter>
+    <parameter name="ivar_trim-4-min_len" defaultValue="30">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/ivar_trim/ivar_trim/1.2+galaxy0" parameterName="min_len"/>
+    </parameter>
+    <parameter name="ivar_trim-4-inc_primers" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/ivar_trim/ivar_trim/1.2+galaxy0" parameterName="inc_primers"/>
+    </parameter>
+    <parameter name="ivar_trim-4-window_width" defaultValue="4">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/ivar_trim/ivar_trim/1.2+galaxy0" parameterName="window_width"/>
+    </parameter>
+    <parameter name="ivar_trim-4-min_qual" defaultValue="20">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/ivar_trim/ivar_trim/1.2+galaxy0" parameterName="min_qual"/>
+    </parameter>
+    <parameter name="qualimap_bamqc-5-plot_specific.homopolymer_size" defaultValue="3">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/qualimap_bamqc/qualimap_bamqc/2.2.2d+galaxy1" parameterName="plot_specific.homopolymer_size"/>
+    </parameter>
+    <parameter name="qualimap_bamqc-5-plot_specific.n_bins" defaultValue="400">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/qualimap_bamqc/qualimap_bamqc/2.2.2d+galaxy1" parameterName="plot_specific.n_bins"/>
+    </parameter>
+    <parameter name="qualimap_bamqc-5-plot_specific.paint_chromosome_limits" defaultValue="true">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/qualimap_bamqc/qualimap_bamqc/2.2.2d+galaxy1" parameterName="plot_specific.paint_chromosome_limits"/>
+    </parameter>
+    <parameter name="qualimap_bamqc-5-stats_regions.region_select" defaultValue="all">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/qualimap_bamqc/qualimap_bamqc/2.2.2d+galaxy1" parameterName="stats_regions.region_select"/>
+    </parameter>
+    <parameter name="qualimap_bamqc-5-per_base_coverage" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/qualimap_bamqc/qualimap_bamqc/2.2.2d+galaxy1" parameterName="per_base_coverage"/>
+    </parameter>
+    <parameter name="ivar_variants-6-min_freq" defaultValue="0.03">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/ivar_variants/ivar_variants/1.2+galaxy0" parameterName="min_freq"/>
+    </parameter>
+    <parameter name="ivar_variants-6-min_qual" defaultValue="20">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/ivar_variants/ivar_variants/1.2+galaxy0" parameterName="min_qual"/>
+    </parameter>
+    <parameter name="ivar_consensus-7-min_freq" defaultValue="0.6">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/ivar_consensus/ivar_consensus/1.2+galaxy0" parameterName="min_freq"/>
+    </parameter>
+    <parameter name="ivar_consensus-7-filter_depth" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/ivar_consensus/ivar_consensus/1.2+galaxy0" parameterName="filter_depth"/>
+    </parameter>
+    <parameter name="ivar_consensus-7-gap" defaultValue="true">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/ivar_consensus/ivar_consensus/1.2+galaxy0" parameterName="gap"/>
+    </parameter>
+    <parameter name="ivar_consensus-7-min_depth" defaultValue="1">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/ivar_consensus/ivar_consensus/1.2+galaxy0" parameterName="min_depth"/>
+    </parameter>
+    <parameter name="ivar_consensus-7-min_qual" defaultValue="20">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/ivar_consensus/ivar_consensus/1.2+galaxy0" parameterName="min_qual"/>
+    </parameter>
+    <parameter name="seqtk-8-n" defaultValue="0">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="n"/>
+    </parameter>
+    <parameter name="seqtk-8-s" defaultValue="11">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="s"/>
+    </parameter>
+    <parameter name="seqtk-8-f" defaultValue="1.0">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="f"/>
+    </parameter>
+    <parameter name="seqtk-8-Q" defaultValue="33">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="Q"/>
+    </parameter>
+    <parameter name="seqtk-8-x1" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="x1"/>
+    </parameter>
+    <parameter name="seqtk-8-q" defaultValue="0">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="q"/>
+    </parameter>
+    <parameter name="seqtk-8-L" defaultValue="0">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="L"/>
+    </parameter>
+    <parameter name="seqtk-8-C" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="C"/>
+    </parameter>
+    <parameter name="seqtk-8-r" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="r"/>
+    </parameter>
+    <parameter name="seqtk-8-x2" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="x2"/>
+    </parameter>
+    <parameter name="seqtk-8-X" defaultValue="255">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="X"/>
+    </parameter>
+    <parameter name="seqtk-8-l" defaultValue="50">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="l"/>
+    </parameter>
+    <parameter name="seqtk-8-N" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="N"/>
+    </parameter>
+    <parameter name="seqtk-8-A" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="A"/>
+    </parameter>
+    <parameter name="seqtk-8-c" defaultValue="false">
+      <toolParameter toolId="toolshed.g2.bx.psu.edu/repos/iuc/seqtk/seqtk_seq/1.3.3" parameterName="c"/>
+    </parameter>
+  </parameters>
+  <outputs>
+    <output name="minimap2_output" fileName="minimap2_output"/>
+    <output name="bamqc_output" fileName="bamqc_output"/>
+    <output name="ivar_output" fileName="ivar_output"/>
+    <output name="seqtk_output" fileName="seqtk_output"/>
+  </outputs>
+  <toolRepositories>
+    <repository>
+      <name>minimap2</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>3f4d6399997b</revision>
+    </repository>
+    <repository>
+      <name>ivar_consensus</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>a38934e303b9</revision>
+    </repository>
+    <repository>
+      <name>seqtk</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>58c8ece95b53</revision>
+    </repository>
+    <repository>
+      <name>ivar_trim</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>d37ede8589b2</revision>
+    </repository>
+    <repository>
+      <name>qualimap_bamqc</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>e7fd6754d093</revision>
+    </repository>
+    <repository>
+      <name>ivar_variants</name>
+      <owner>iuc</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>c5c9f02b6167</revision>
+    </repository>
+  </toolRepositories>
+</iridaWorkflow>

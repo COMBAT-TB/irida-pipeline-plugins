@@ -74,7 +74,7 @@ public class SnippyTbSampleIqtreePipelinePlugin extends Plugin {
 		 */
 		@Override
 		public UUID getDefaultWorkflowUUID() {
-			return UUID.fromString("494b32fe-1938-4a9d-85a8-d9e292da5aa6");
+			return UUID.fromString("7b71b3c0-474a-4517-adcc-a43ee8dcd52b");
 		}
 
 		/*******************************************************************************
@@ -124,5 +124,11 @@ public class SnippyTbSampleIqtreePipelinePlugin extends Plugin {
 			return Optional.of(new SnippyTbSampleIqtreePipelinePluginUpdater(metadataTemplateService, sampleService,
 					iridaWorkflowsService));
 		}
+
+		@Override
+		public Optional<String> getAnalysisViewer() {
+			return Optional.of("tree");
+		}
+
 	}
 }
