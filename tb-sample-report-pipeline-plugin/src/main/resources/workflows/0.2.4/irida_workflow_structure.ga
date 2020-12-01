@@ -98,53 +98,6 @@
       "content_id" : "toolshed.g2.bx.psu.edu/repos/iuc/tbvcfreport/tbvcfreport/0.1.7+galaxy0",
       "tool_id" : "toolshed.g2.bx.psu.edu/repos/iuc/tbvcfreport/tbvcfreport/0.1.7+galaxy0"
     },
-    "3" : {
-      "workflow_outputs" : [ {
-        "label" : "fastqc_2_raw",
-        "output_name" : "text_file",
-        "uuid" : "ae8aef07-9b7a-43a5-a788-cf26f79a9a25"
-      }, {
-        "label" : "fastqc_2_web",
-        "output_name" : "html_file",
-        "uuid" : "a694f3ca-3bbd-4380-8111-0b6433779968"
-      } ],
-      "input_connections" : {
-        "input_file" : {
-          "id" : 1,
-          "output_name" : "output"
-        }
-      },
-      "label" : null,
-      "id" : 3,
-      "tool_state" : "{\"adapters\": null, \"chromInfo\": \"/opt/galaxy/tool-data/shared/ucsc/chrom/?.len\", \"contaminants\": null, \"input_file\": {\"__class__\": \"ConnectedValue\"}, \"kmers\": \"7\", \"limits\": null, \"min_length\": \"\", \"nogroup\": \"false\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
-      "errors" : null,
-      "position" : {
-        "left" : 486,
-        "top" : 321
-      },
-      "name" : "FastQC",
-      "uuid" : "07ae8e23-e597-44ad-80ea-a2b6122cfa21",
-      "outputs" : [ {
-        "name" : "html_file",
-        "type" : "html"
-      }, {
-        "name" : "text_file",
-        "type" : "txt"
-      } ],
-      "tool_shed_repository" : {
-        "changeset_revision" : "e7b2202befea",
-        "name" : "fastqc",
-        "owner" : "devteam",
-        "tool_shed" : "toolshed.g2.bx.psu.edu"
-      },
-      "type" : "tool",
-      "tool_version" : "0.72+galaxy1",
-      "annotation" : "",
-      "inputs" : [ ],
-      "post_job_actions" : { },
-      "content_id" : "toolshed.g2.bx.psu.edu/repos/devteam/fastqc/fastqc/0.72+galaxy1",
-      "tool_id" : "toolshed.g2.bx.psu.edu/repos/devteam/fastqc/fastqc/0.72+galaxy1"
-    },
     "4" : {
       "workflow_outputs" : [ {
         "label" : null,
