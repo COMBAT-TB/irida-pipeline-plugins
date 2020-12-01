@@ -117,13 +117,9 @@
     </parameter>
   </parameters>
   <outputs>
-    <output name="tb_profiler_txt" fileName="tb_profiler_txt"/>
-    <output name="tb_profiler_vcf" fileName="tb_profiler_vcf"/>
-    <output name="tb_profiler_json" fileName="tb_profiler_json"/>
-    <output name="mtbva_tb_variant_dr_report_html" fileName="mtbva_tb_variant_dr_report_html"/>
-    <output name="mtbva_tb_variant_dr_report_txt" fileName="mtbva_tb_variant_dr_report_txt"/>
-    <output name="mtbva_tb_variant_report_html" fileName="mtbva_tb_variant_report_html"/>
-    <output name="mtbva_tb_variant_report_txt" fileName="mtbva_tb_variant_report_txt"/>
+    <output name="tb_profiler_txt.txt" fileName="tb_profiler_txt.txt"/>
+    <output name="tb_profiler_vcf.vcf" fileName="tb_profiler_vcf.vcf"/>
+    <output name="tb_profiler_json.json" fileName="tb_profiler_json.json"/>
   </outputs>
   <toolRepositories>
     <repository>

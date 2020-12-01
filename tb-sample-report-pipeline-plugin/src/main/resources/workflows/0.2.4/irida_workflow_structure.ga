@@ -288,21 +288,21 @@
       "post_job_actions" : {
         "RenameDatasetActionoutput_txt" : {
           "action_arguments" : {
-            "newname" : "tb_profiler_txt"
+            "newname" : "tb_profiler_txt.txt"
           },
           "action_type" : "RenameDatasetAction",
           "output_name" : "output_txt"
         },
         "RenameDatasetActionoutput_vcf" : {
           "action_arguments" : {
-            "newname" : "tb_profiler_vcf"
+            "newname" : "tb_profiler_vcf.vcf"
           },
           "action_type" : "RenameDatasetAction",
           "output_name" : "output_vcf"
         },
         "RenameDatasetActionresults_json" : {
           "action_arguments" : {
-            "newname" : "tb_profiler_json"
+            "newname" : "tb_profiler_json.json"
           },
           "action_type" : "RenameDatasetAction",
           "output_name" : "results_json"
