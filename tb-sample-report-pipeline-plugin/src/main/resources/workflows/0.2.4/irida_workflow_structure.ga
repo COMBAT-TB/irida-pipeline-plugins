@@ -68,28 +68,28 @@
       "post_job_actions" : {
         "RenameDatasetActiondrug_resistance_report_html" : {
           "action_arguments" : {
-            "newname" : "mtbva_tb_variant_dr_report_html"
+            "newname" : "mtbva_tb_variant_dr_report_html.zip"
           },
           "action_type" : "RenameDatasetAction",
           "output_name" : "drug_resistance_report_html"
         },
         "RenameDatasetActiondrug_resistance_report_txt" : {
           "action_arguments" : {
-            "newname" : "mtbva_tb_variant_dr_report_txt"
+            "newname" : "mtbva_tb_variant_dr_report_txt.txt"
           },
           "action_type" : "RenameDatasetAction",
           "output_name" : "drug_resistance_report_txt"
         },
         "RenameDatasetActionvariants_report_html" : {
           "action_arguments" : {
-            "newname" : "mtbva_tb_variant_report_html"
+            "newname" : "mtbva_tb_variant_report_html.zip"
           },
           "action_type" : "RenameDatasetAction",
           "output_name" : "variants_report_html"
         },
         "RenameDatasetActionvariants_report_txt" : {
           "action_arguments" : {
-            "newname" : "mtbva_tb_variant_report_txt"
+            "newname" : "mtbva_tb_variant_report_txt.txt"
           },
           "action_type" : "RenameDatasetAction",
           "output_name" : "variants_report_txt"
@@ -375,7 +375,7 @@
         },
         "RenameDatasetActionsnpeff_output" : {
           "action_arguments" : {
-            "newname" : "snpeff_vcf"
+            "newname" : "snpeff_vcf.vcf"
           },
           "action_type" : "RenameDatasetAction",
           "output_name" : "snpeff_output"
