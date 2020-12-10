@@ -1,4 +1,5 @@
-#!/bin/bash -x
+#!/bin/bash
+set -e
 
 if [ $# != 2 ] ; then
     echo "Usage: build_workflow.sh <workflow directory> <destination directory>" >&2
@@ -18,6 +19,6 @@ if [ ! -d $DESTINATION ] ; then
     exit 1
 fi
 
-docker run -i -t --workdir /pipelines/$WORKFLOW_NAME --rm -v $(pwd):/pipelines quay.io/combattb/irida-builder:20.09.3 mvn clean install
+docker run --workdir /pipelines/$WORKFLOW_NAME --rm -v $(pwd):/pipelines quay.io/combattb/irida-builder:20.09.3 mvn clean install
 cp $WORKFLOW_NAME/target/*.jar $DESTINATION
-docker run -i -t --workdir /pipelines/$WORKFLOW_NAME --rm -v $(pwd):/pipelines quay.io/combattb/irida-builder:20.09.3 mvn clean
+docker run --workdir /pipelines/$WORKFLOW_NAME --rm -v $(pwd):/pipelines quay.io/combattb/irida-builder:20.09.3 mvn clean
