@@ -1,0 +1,26 @@
+name: tb-sample-report
+
+on: [push]
+  # - push:
+  #     paths: 
+  #       - tb-sample-report-pipeline-plugin/**
+  #       - .github/workflows/tb-sample-report.yml
+  # - pull-request:
+  #     paths: 
+  #       - tb-sample-report-pipeline-plugin/**
+  #       - .github/workflows/tb-sample-report.yml
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - run: mkdir output
+      - run: build/build_workflow.sh tb-sample-report-pipeline-plugin output
+      - name: upload plugin
+        uses: actions/upload-artifact@v1
+        with:
+          name: tb-sample-report
+          path: output/*.jar
