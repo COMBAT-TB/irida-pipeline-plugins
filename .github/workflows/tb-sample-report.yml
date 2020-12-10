@@ -26,4 +26,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: tb-sample-report
-          path: ${{ github.workspace }}/output/*.jar
+          path: ${{ github.workspace }}/output/tb-sample-report-pipeline-plugin-0.2.4.jar
