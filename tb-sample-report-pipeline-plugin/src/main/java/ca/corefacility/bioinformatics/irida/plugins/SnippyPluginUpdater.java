@@ -49,7 +49,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 	private static final Logger logger = LoggerFactory.getLogger(SnippyPluginUpdater.class);
 
-	private static final String TBPROFILER_FILE = "tb_profiler_json"; 
+	private static final String TBPROFILER_FILE = "tb_profiler_json.json"; 
 
 	private final MetadataTemplateService metadataTemplateService;
 	private final SampleService sampleService;
