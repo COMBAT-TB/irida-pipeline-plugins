@@ -19,9 +19,8 @@ jobs:
       - uses: actions/checkout@v1
       - run: mkdir output
       - run: build/build_workflow.sh tb-sample-report-pipeline-plugin output
-      - run: ls
-      - run: ls output/
-      - run: pwd
+      - name: list releases
+        run: hub release
       - name: upload plugin
         uses: actions/upload-artifact@v1
         with:
