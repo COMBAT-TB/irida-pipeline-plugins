@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 if [ $# != 2 ] ; then
     echo "Usage: build_workflow.sh <workflow directory> <destination directory>" >&2
