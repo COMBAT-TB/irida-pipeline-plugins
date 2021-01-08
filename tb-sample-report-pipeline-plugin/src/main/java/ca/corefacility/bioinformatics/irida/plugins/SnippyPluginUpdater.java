@@ -150,26 +150,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 	private final SampleService sampleService;
 	private final IridaWorkflowsService iridaWorkflowsService;
 
-	// @formatter:off
-	private Map<String, String> TBPROFILER_FIELDS = ImmutableMap.<String,MetadataValue>builder()
-		.put("drtype", new MetadataValue("Drug Resistance Type", ""))
-		.put("lineage", new MetadataValue("Lineage", ""))
-		.put("family", new MetadataValue("Family", ""))
-		.put("spoligotype", new MetadataValue("Spoligotype", ""))
-		.put("lineage_agreement", new MetadataValue("% Lineage Agreement", ""))
-		.put("isoniazid", new MetadataValue("Isoniazid", ""))
-		.put("rifampicin", new MetadataValue("Rifampicin", ""))
-		.put("ethambutol", new MetadataValue("Ethambutol", ""))
-		.put("streptomycin", new MetadataValue("Streptomycin", ""))
-		.put("other_resistance", new MetadataValue("Other resistance", ""))
-		.put("isoniazid_variants", new MetadataValue("Isoniazid Res Variants", ""))
-		.put("rifampicin_variants", new MetadataValue("Rifampicin Res Variants", ""))
-		.put("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", ""))
-		.put("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", ""))
-		.put("other_resistance_variants", new MetadataValue("Other resistance Res Variants", ""))
-		.put("tbprofiler_version", new MetadataValue("TbProfiler Version", ""))
-		.build();
-			// @formatter:on
+
 
 
 	/**
@@ -232,44 +213,66 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			ObjectMapper mapper = new ObjectMapper();
 			TBProfilerReport tbprofilerResults = mapper.readValue(jsonFile, new TypeReference<Map<String, Object>>() {});
 
-			TBPROFILER_FIELDS.entrySet()
-			if (tbprofilerResults.size() > 0) {
-				//Map<String, Object> result = tbprofilerResults.get(0);
-				tbprofilerResults.dr_variants.forEach(variant -> {
-					if (TBPROFILER_FIELDS.containsKey(variant.drug)) {
-						String drug_resistant_variants = ()
-					}
-				});
-				
+			// @formatter:off
+			Map<String, String> tbProfilerFields = Map.<String,MetadataValue>builder()
+				.put("drtype", new MetadataValue("Drug Resistance Type", tbprofilerResults.drtype))
+				.put("lineage", new MetadataValue("Lineage", tbprofilerResults.sublin))
+				.put("tbprofiler_version", new MetadataValue("TbProfiler Version", tbprofilerResults.tbprofiler_version))
+				.put("isoniazid", new MetadataValue("Isoniazid", "S"))
+				.put("rifampicin", new MetadataValue("Rifampicin", "S"))
+				.put("ethambutol", new MetadataValue("Ethambutol", "S"))
+				.put("streptomycin", new MetadataValue("Streptomycin", "S"))
+				.put("other_resistance", new MetadataValue("Other resistance", "S"))
+				.put("isoniazid_variants", new MetadataValue("Isoniazid Res Variants", ""))
+				.put("rifampicin_variants", new MetadataValue("Rifampicin Res Variants", ""))
+				.put("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", ""))
+				.put("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", ""))
+				.put("other_resistance_variants", new MetadataValue("Other resistance Res Variants", ""))
+				.build();
+			// @formatter:on				
 
-				//loop through each of the requested fields and append workflow version and save the entries
-				TBPROFILER_FIELDS.entrySet().forEach(e -> {
-					if (tbprofilerResults.containsKey(e.getKey())) {
-						Object valueObject = tbprofilerResults.get(e.getKey());
-						String value = (valueObject != null ? valueObject.toString() : "");
-						PipelineProvidedMetadataEntry metadataEntry =
-								new PipelineProvidedMetadataEntry(value, "text", analysis);
-						metadataEntries.put(e.getValue() + " (v"+workflowVersion+")", metadataEntry);
-					}
-				});
+			// get the last (i.e. most specific) lineage entry
+			Lineage lineage = tbprofilerResults.lineage.get(tbprofilerResults.lineage.size() - 1);
+			tbProfilerFields.put("family", new MetadataValue("Family", lineage.family));
+			tbProfilerFields.put("spoligotype", new MetadataValue("Spoligotype", lineage.spoligotype));
+			tbProfilerFields.put("lineage_agreement", new MetadataValue("% Lineage Agreement", String.valueOf(lineage.frac)));
 
-				// convert string map into metadata fields
-				Map<MetadataTemplateField, MetadataEntry> metadataMap = metadataTemplateService.getMetadataMap(metadataEntries);
+			tbprofilerResults.dr_variants.forEach(variant -> {
+				String drugKey = tbProfilerFields.containsKey(variant.drug) ? variant.drug : "other_resistance";
+				MetadataValue drAnnotation = tbProfilerFields.get(drugKey);
+				drAnnotation.value = "R";
+				tbProfilerFields.put(drugKey, drAnnotation);
+				drugKey += "_variants";
+				MetadataValue drVariantsAnnotation = tbProfilerFields.get(drugKey);
+				if (drVariantsAnnotation.value.length() > 0) {
+					drVariantsAnnotation.value += ",";
+				}
+				drVariantsAnnotation.value += variant.gene_name + " (" + variant.change + ")";
+				tbProfilerFields.put(drugKey, drVariantsAnnotation);
+			});
+			
 
-				//save metadata back to sample
-				samples.forEach(s -> {
-					s.mergeMetadata(metadataMap);
-					sampleService.updateFields(s.getId(), ImmutableMap.of("metadata", s.getMetadata()));
-				});
+			tbProfilerFields.entrySet().forEach(entry -> {
+				PipelineProvidedMetadataEntry metadataEntry =
+					new PipelineProvidedMetadataEntry(entry.getValue().value, "text", analysis);
+				metadataEntries.put(entry.getValue().header + " (v" + workflowVersion + ")", metadataEntry);
+			});
 
-			} else {
-				throw new PostProcessingException("TbProfiler results for file are not correctly formatted");
-			}
+			// convert string map into metadata fields
+			Map<MetadataTemplateField, MetadataEntry> metadataMap = metadataTemplateService.getMetadataMap(metadataEntries);
+
+			//save metadata back to sample
+			samples.forEach(s -> {
+				s.mergeMetadata(metadataMap);
+				sampleService.updateFields(s.getId(), ImmutableMap.of("metadata", s.getMetadata()));
+			});
 			
 		} catch (IOException e) {
-			throw new PostProcessingException("Error parsing JSON from TbProfiler (Snippy-Tb-Sample-Report) results", e);
+			throw new PostProcessingException("Error reading JSON from TbProfiler (Snippy-Tb-Sample-Report) results", e);
 		} catch (IridaWorkflowNotFoundException e) {
 			throw new PostProcessingException("Could not find workflow for id=" + analysis.getWorkflowId(), e);
+		} catch (JsonProcessingException e) {
+			throw new PostProcessingException("Error parsing JSON from TbProfiler (Snippy-Tb-Sample-Report) results", e);
 		}
 	}
 	
