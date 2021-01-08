@@ -220,24 +220,24 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			Map<String, MetadataValue> tbProfilerFields = new HashMap<>(Map.ofEntries(
 				entry("drtype", new MetadataValue("a. Drug Resistance Type", tbprofilerResults.drtype)),
 				entry("lineage", new MetadataValue("b. Lineage", tbprofilerResults.sublin)),
-				entry("isoniazid", new MetadataValue("c. Isoniazid", "S")),
-				entry("rifampicin", new MetadataValue("d. Rifampicin", "S")),
-				entry("ethambutol", new MetadataValue("e. Ethambutol", "S")),
-				entry("streptomycin", new MetadataValue("f. Streptomycin", "S")),
-				entry("other_resistance", new MetadataValue("g. Other resistance", "S")),
-				entry("isoniazid_variants", new MetadataValue("h. Isoniazid Res Variants", "")),
-				entry("rifampicin_variants", new MetadataValue("i. Rifampicin Res Variants", "")),
-				entry("ethambutol_variants", new MetadataValue("j. Ethambutol Res Variants", "")),
-				entry("streptomycin_variants", new MetadataValue("k. Streptomycin Res Variants", "")),
-				entry("other_resistance_variants", new MetadataValue("l. Other resistance Res Variants", "")),
-				entry("tbprofiler_version", new MetadataValue("m. TbProfiler Version", tbprofilerResults.tbprofiler_version))));
+				entry("isoniazid", new MetadataValue("f. Isoniazid", "S")),
+				entry("rifampicin", new MetadataValue("g. Rifampicin", "S")),
+				entry("ethambutol", new MetadataValue("h. Ethambutol", "S")),
+				entry("streptomycin", new MetadataValue("i. Streptomycin", "S")),
+				entry("other_resistance", new MetadataValue("j. Other resistance", "S")),
+				entry("isoniazid_variants", new MetadataValue("k. Isoniazid Res Variants", "")),
+				entry("rifampicin_variants", new MetadataValue("l. Rifampicin Res Variants", "")),
+				entry("ethambutol_variants", new MetadataValue("m. Ethambutol Res Variants", "")),
+				entry("streptomycin_variants", new MetadataValue("n. Streptomycin Res Variants", "")),
+				entry("other_resistance_variants", new MetadataValue("o. Other resistance Res Variants", "")),
+				entry("tbprofiler_version", new MetadataValue("p. TbProfiler Version", tbprofilerResults.tbprofiler_version))));
 			// @formatter:on				
 
 			// get the last (i.e. most specific) lineage entry
 			Lineage lineage = tbprofilerResults.lineage.get(tbprofilerResults.lineage.size() - 1);
-			tbProfilerFields.put("family", new MetadataValue("Family", lineage.family));
-			tbProfilerFields.put("spoligotype", new MetadataValue("Spoligotype", lineage.spoligotype));
-			tbProfilerFields.put("lineage_agreement", new MetadataValue("% Lineage Agreement", String.valueOf(lineage.frac)));
+			tbProfilerFields.put("family", new MetadataValue("c. Family", lineage.family));
+			tbProfilerFields.put("spoligotype", new MetadataValue("d. Spoligotype", lineage.spoligotype));
+			tbProfilerFields.put("lineage_agreement", new MetadataValue("e. % Lineage Agreement", String.valueOf(lineage.frac)));
 
 			tbprofilerResults.dr_variants.forEach(variant -> {
 				String drugKey = tbProfilerFields.containsKey(variant.drug) ? variant.drug : "other_resistance";
