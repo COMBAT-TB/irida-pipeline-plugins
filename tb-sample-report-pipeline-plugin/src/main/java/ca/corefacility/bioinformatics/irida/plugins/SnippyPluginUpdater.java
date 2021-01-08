@@ -229,7 +229,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 				Map.Entry("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", "")),
 				Map.Entry("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", "")),
 				Map.Entry("other_resistance_variants", new MetadataValue("Other resistance Res Variants", ""));
-=			// @formatter:on				
+			// @formatter:on				
 
 			// get the last (i.e. most specific) lineage entry
 			Lineage lineage = tbprofilerResults.lineage.get(tbprofilerResults.lineage.size() - 1);
