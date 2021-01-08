@@ -218,19 +218,19 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 
 			// @formatter:off
 			Map<String, MetadataValue> tbProfilerFields = new HashMap<>(Map.ofEntries(
-				entry("drtype", new MetadataValue("Drug Resistance Type", tbprofilerResults.drtype)),
-				entry("lineage", new MetadataValue("Lineage", tbprofilerResults.sublin)),
-				entry("tbprofiler_version", new MetadataValue("TbProfiler Version", tbprofilerResults.tbprofiler_version)),
-				entry("isoniazid", new MetadataValue("Isoniazid", "S")),
-				entry("rifampicin", new MetadataValue("Rifampicin", "S")),
-				entry("ethambutol", new MetadataValue("Ethambutol", "S")),
-				entry("streptomycin", new MetadataValue("Streptomycin", "S")),
-				entry("other_resistance", new MetadataValue("Other resistance", "S")),
-				entry("isoniazid_variants", new MetadataValue("Isoniazid Res Variants", "")),
-				entry("rifampicin_variants", new MetadataValue("Rifampicin Res Variants", "")),
-				entry("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", "")),
-				entry("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", "")),
-				entry("other_resistance_variants", new MetadataValue("Other resistance Res Variants", ""))));
+				entry("drtype", new MetadataValue("a. Drug Resistance Type", tbprofilerResults.drtype)),
+				entry("lineage", new MetadataValue("b. Lineage", tbprofilerResults.sublin)),
+				entry("isoniazid", new MetadataValue("c. Isoniazid", "S")),
+				entry("rifampicin", new MetadataValue("d. Rifampicin", "S")),
+				entry("ethambutol", new MetadataValue("e. Ethambutol", "S")),
+				entry("streptomycin", new MetadataValue("f. Streptomycin", "S")),
+				entry("other_resistance", new MetadataValue("g. Other resistance", "S")),
+				entry("isoniazid_variants", new MetadataValue("h. Isoniazid Res Variants", "")),
+				entry("rifampicin_variants", new MetadataValue("i. Rifampicin Res Variants", "")),
+				entry("ethambutol_variants", new MetadataValue("j. Ethambutol Res Variants", "")),
+				entry("streptomycin_variants", new MetadataValue("k. Streptomycin Res Variants", "")),
+				entry("other_resistance_variants", new MetadataValue("l. Other resistance Res Variants", ""))));
+				entry("tbprofiler_version", new MetadataValue("m. TbProfiler Version", tbprofilerResults.tbprofiler_version)),
 			// @formatter:on				
 
 			// get the last (i.e. most specific) lineage entry
@@ -257,7 +257,8 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			tbProfilerFields.entrySet().forEach(entry -> {
 				PipelineProvidedMetadataEntry metadataEntry =
 					new PipelineProvidedMetadataEntry(entry.getValue().value, "text", analysis);
-				metadataEntries.put(entry.getValue().header + " (v" + workflowVersion + ")", metadataEntry);
+				// metadataEntries.put(entry.getValue().header + " (v" + workflowVersion + ")", metadataEntry);
+				metadataEntries.put(entry.getValue().header, metadataEntry);
 			});
 
 			// convert string map into metadata fields
