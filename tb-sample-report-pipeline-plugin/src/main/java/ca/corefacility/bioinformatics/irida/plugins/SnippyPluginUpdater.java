@@ -214,7 +214,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 
 			// map the results into a Map
 			ObjectMapper mapper = new ObjectMapper();
-			TBProfilerReport tbprofilerResults = mapper.readValue(jsonFile, new TypeReference<Map<String, Object>>() {});
+			TBProfilerReport tbprofilerResults = mapper.readValue(jsonFile, TBProfilerReport.class);
 
 			// @formatter:off
 			Map<String, MetadataValue> tbProfilerFields = Map.ofEntries(
