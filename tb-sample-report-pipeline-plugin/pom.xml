@@ -10,7 +10,7 @@
 		<!-- Information used to define properties about a plugin. Please see the PF4J docs for more details https://pf4j.org/doc/getting-started.html -->
 		<plugin.id>tb-sample-report-pipeline-plugin</plugin.id>
 		<plugin.class>ca.corefacility.bioinformatics.irida.plugins.SnippyPipelinePlugin</plugin.class>
-		<plugin.version>0.2.4</plugin.version>
+		<plugin.version>0.3.0</plugin.version>
 		<plugin.provider>COMBAT-TB</plugin.provider>
 		<plugin.dependencies></plugin.dependencies>
 		<plugin.requires.runtime>1.0.0</plugin.requires.runtime>

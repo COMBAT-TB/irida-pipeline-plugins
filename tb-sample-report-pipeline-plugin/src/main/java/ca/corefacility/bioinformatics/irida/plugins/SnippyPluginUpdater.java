@@ -39,6 +39,101 @@ import ca.corefacility.bioinformatics.irida.service.workflow.IridaWorkflowsServi
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+class QC {
+    public float pct_reads_mapped;
+    public float num_reads_mapped;
+
+}
+
+class Lineage {
+    public String lin;
+    public String family;
+    public String spoligotype;
+    public String rd;
+    public float frac;
+}
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+class Variant {
+    public String sample;
+    public String gene_name;
+    public String chr;
+    public int genome_pos;
+    public String type;
+    public String change;
+    public float freq;
+    public String nucleotide_change;
+    public String locus_tag;
+    public String gene;
+    public String drug;
+    public String confidence;
+}
+
+class DBVersion {
+    public String name;
+    public String commit;
+    public String author;
+    public String date;
+
+    @JsonProperty("Author")
+    public String getAuthor() {
+        return author;
+    }
+
+    @JsonProperty("Author")
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    @JsonProperty("Date")
+    public String getDate() {
+        return date;
+    }
+
+    @JsonProperty("Date")
+    public void setDate(String date) {
+        this.date = date;
+    }
+}
+
+class Pipeline {
+    public String mapper;
+    public String variant_caller;
+}
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class TBProfilerReport {
+    public QC qc;
+    // region_coverage key not processed
+    public List<Lineage> lineage;
+    public String main_lin;
+    public String sublin;
+    public List<Variant> dr_variants;
+    public List<Variant> other_variants;
+    public String XDR;
+    public String MDR;
+    public String drtype;
+    public DBVersion db_version;
+    public String id;
+    public String tbprofiler_version;
+    public Pipeline pipeline;
+}
+
+class MetadataValue {
+	public String header;
+	public String value;
+
+	MetadataValue(String header, String value) {
+		this.header = header;
+		this.value = value;
+	}
+}
+
 /**
  * This implements a class used to perform post-processing on the analysis
  * pipeline results to extract information to write into the IRIDA metadata
@@ -56,13 +151,23 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 	private final IridaWorkflowsService iridaWorkflowsService;
 
 	// @formatter:off
-	private Map<String, String> TBPROFILER_FIELDS = ImmutableMap.<String,String>builder()
-		.put("drtype", "Drug Resistance Type")
-		.put("main_lin","Main Lineage")
-		.put("sublin", "Sub Lineage")
-		.put("XDR", "Extensively drug-resistant TB")
-		.put("MDR", "Multidrug-resistant tuberculosis")
-		.put("tbprofiler_version", "TbProfiler Version")
+	private Map<String, String> TBPROFILER_FIELDS = ImmutableMap.<String,MetadataValue>builder()
+		.put("drtype", new MetadataValue("Drug Resistance Type", ""))
+		.put("lineage", new MetadataValue("Lineage", ""))
+		.put("family", new MetadataValue("Family", ""))
+		.put("spoligotype", new MetadataValue("Spoligotype", ""))
+		.put("lineage_agreement", new MetadataValue("% Lineage Agreement", ""))
+		.put("isoniazid", new MetadataValue("Isoniazid", ""))
+		.put("rifampicin", new MetadataValue("Rifampicin", ""))
+		.put("ethambutol", new MetadataValue("Ethambutol", ""))
+		.put("streptomycin", new MetadataValue("Streptomycin", ""))
+		.put("other_resistance", new MetadataValue("Other resistance", ""))
+		.put("isoniazid_variants", new MetadataValue("Isoniazid Res Variants", ""))
+		.put("rifampicin_variants", new MetadataValue("Rifampicin Res Variants", ""))
+		.put("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", ""))
+		.put("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", ""))
+		.put("other_resistance_variants", new MetadataValue("Other resistance Res Variants", ""))
+		.put("tbprofiler_version", new MetadataValue("TbProfiler Version", ""))
 		.build();
 			// @formatter:on
 
@@ -125,10 +230,17 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 
 			// map the results into a Map
 			ObjectMapper mapper = new ObjectMapper();
-			Map<String, Object> tbprofilerResults = mapper.readValue(jsonFile, new TypeReference<Map<String, Object>>() {});
+			TBProfilerReport tbprofilerResults = mapper.readValue(jsonFile, new TypeReference<Map<String, Object>>() {});
 
+			TBPROFILER_FIELDS.entrySet()
 			if (tbprofilerResults.size() > 0) {
 				//Map<String, Object> result = tbprofilerResults.get(0);
+				tbprofilerResults.dr_variants.forEach(variant -> {
+					if (TBPROFILER_FIELDS.containsKey(variant.drug)) {
+						String drug_resistant_variants = ()
+					}
+				});
+				
 
 				//loop through each of the requested fields and append workflow version and save the entries
 				TBPROFILER_FIELDS.entrySet().forEach(e -> {
