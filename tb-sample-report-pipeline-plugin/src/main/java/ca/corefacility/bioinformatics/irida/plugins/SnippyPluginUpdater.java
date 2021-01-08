@@ -35,6 +35,7 @@ import ca.corefacility.bioinformatics.irida.pipeline.results.updater.AnalysisSam
 import ca.corefacility.bioinformatics.irida.service.sample.MetadataTemplateService;
 import ca.corefacility.bioinformatics.irida.service.sample.SampleService;
 import ca.corefacility.bioinformatics.irida.service.workflow.IridaWorkflowsService;
+import jdk.nashorn.internal.ir.annotations.Immutable;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -214,7 +215,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			TBProfilerReport tbprofilerResults = mapper.readValue(jsonFile, new TypeReference<Map<String, Object>>() {});
 
 			// @formatter:off
-			Map<String, MetadataValue> tbProfilerFields = Map.<String,MetadataValue>builder()
+			Map<String, MetadataValue> tbProfilerFields = Maps.newHashMap(ImmutableMap.<String,MetadataValue>builder()
 				.put("drtype", new MetadataValue("Drug Resistance Type", tbprofilerResults.drtype))
 				.put("lineage", new MetadataValue("Lineage", tbprofilerResults.sublin))
 				.put("tbprofiler_version", new MetadataValue("TbProfiler Version", tbprofilerResults.tbprofiler_version))
@@ -228,7 +229,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 				.put("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", ""))
 				.put("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", ""))
 				.put("other_resistance_variants", new MetadataValue("Other resistance Res Variants", ""))
-				.build();
+				.build());
 			// @formatter:on				
 
 			// get the last (i.e. most specific) lineage entry
