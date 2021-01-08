@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import static java.util.Map.entry;
 import java.util.Map;
 import java.util.Set;
 import java.util.Scanner;
@@ -44,6 +45,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 class QC {
     public float pct_reads_mapped;
@@ -216,19 +218,19 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 
 			// @formatter:off
 			Map<String, MetadataValue> tbProfilerFields = Map.ofEntries(
-				Map.Entry<String, MetadataValue>("drtype", new MetadataValue("Drug Resistance Type", tbprofilerResults.drtype)),
-				Map.Entry<String, MetadataValue>("lineage", new MetadataValue("Lineage", tbprofilerResults.sublin)),
-				Map.Entry<String,MetadataValue>("tbprofiler_version", new MetadataValue("TbProfiler Version", tbprofilerResults.tbprofiler_version)),
-				Map.Entry<String,MetadataValue>("isoniazid", new MetadataValue("Isoniazid", "S")),
-				Map.Entry<String,MetadataValue>("rifampicin", new MetadataValue("Rifampicin", "S")),
-				Map.Entry<String,MetadataValue>("ethambutol", new MetadataValue("Ethambutol", "S")),
-				Map.Entry<String,MetadataValue>("streptomycin", new MetadataValue("Streptomycin", "S")),
-				Map.Entry<String,MetadataValue>("other_resistance", new MetadataValue("Other resistance", "S")),
-				Map.Entry<String,MetadataValue>("isoniazid_variants", new MetadataValue("Isoniazid Res Variants", "")),
-				Map.Entry<String,MetadataValue>("rifampicin_variants", new MetadataValue("Rifampicin Res Variants", "")),
-				Map.Entry<String,MetadataValue>("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", "")),
-				Map.Entry<String,MetadataValue>("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", "")),
-				Map.Entry<String,MetadataValue>("other_resistance_variants", new MetadataValue("Other resistance Res Variants", "")));
+				entry("drtype", new MetadataValue("Drug Resistance Type", tbprofilerResults.drtype)),
+				entry("lineage", new MetadataValue("Lineage", tbprofilerResults.sublin)),
+				entry("tbprofiler_version", new MetadataValue("TbProfiler Version", tbprofilerResults.tbprofiler_version)),
+				entry("isoniazid", new MetadataValue("Isoniazid", "S")),
+				entry("rifampicin", new MetadataValue("Rifampicin", "S")),
+				entry("ethambutol", new MetadataValue("Ethambutol", "S")),
+				entry("streptomycin", new MetadataValue("Streptomycin", "S")),
+				entry("other_resistance", new MetadataValue("Other resistance", "S")),
+				entry("isoniazid_variants", new MetadataValue("Isoniazid Res Variants", "")),
+				entry("rifampicin_variants", new MetadataValue("Rifampicin Res Variants", "")),
+				entry("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", "")),
+				entry("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", "")),
+				entry("other_resistance_variants", new MetadataValue("Other resistance Res Variants", "")));
 			// @formatter:on				
 
 			// get the last (i.e. most specific) lineage entry
