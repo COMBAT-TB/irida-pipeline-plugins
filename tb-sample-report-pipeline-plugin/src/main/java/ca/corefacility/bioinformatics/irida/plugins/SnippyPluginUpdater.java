@@ -269,12 +269,13 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 				sampleService.updateFields(s.getId(), ImmutableMap.of("metadata", s.getMetadata()));
 			});
 			
+
+		} catch (JsonProcessingException e) {
+			throw new PostProcessingException("Error parsing JSON from TbProfiler (Snippy-Tb-Sample-Report) results", e);
 		} catch (IOException e) {
 			throw new PostProcessingException("Error reading JSON from TbProfiler (Snippy-Tb-Sample-Report) results", e);
 		} catch (IridaWorkflowNotFoundException e) {
 			throw new PostProcessingException("Could not find workflow for id=" + analysis.getWorkflowId(), e);
-		} catch (JsonProcessingException e) {
-			throw new PostProcessingException("Error parsing JSON from TbProfiler (Snippy-Tb-Sample-Report) results", e);
 		}
 	}
 	
