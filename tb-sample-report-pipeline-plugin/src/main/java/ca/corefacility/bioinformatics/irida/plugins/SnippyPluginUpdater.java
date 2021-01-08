@@ -107,7 +107,7 @@ class Pipeline {
 }
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TBProfilerReport {
+class TBProfilerReport {
     public QC qc;
     // region_coverage key not processed
     public List<Lineage> lineage;
@@ -214,7 +214,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			TBProfilerReport tbprofilerResults = mapper.readValue(jsonFile, new TypeReference<Map<String, Object>>() {});
 
 			// @formatter:off
-			Map<String, String> tbProfilerFields = Map.<String,MetadataValue>builder()
+			Map<String, MetadataValue> tbProfilerFields = Map.<String,MetadataValue>builder()
 				.put("drtype", new MetadataValue("Drug Resistance Type", tbprofilerResults.drtype))
 				.put("lineage", new MetadataValue("Lineage", tbprofilerResults.sublin))
 				.put("tbprofiler_version", new MetadataValue("TbProfiler Version", tbprofilerResults.tbprofiler_version))
