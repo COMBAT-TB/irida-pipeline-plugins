@@ -217,7 +217,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			TBProfilerReport tbprofilerResults = mapper.readValue(jsonFile, TBProfilerReport.class);
 
 			// @formatter:off
-			Map<String, MetadataValue> tbProfilerFields = Map.ofEntries(
+			Map<String, MetadataValue> tbProfilerFields = new HashMap<>(Map.ofEntries(
 				entry("drtype", new MetadataValue("Drug Resistance Type", tbprofilerResults.drtype)),
 				entry("lineage", new MetadataValue("Lineage", tbprofilerResults.sublin)),
 				entry("tbprofiler_version", new MetadataValue("TbProfiler Version", tbprofilerResults.tbprofiler_version)),
@@ -230,7 +230,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 				entry("rifampicin_variants", new MetadataValue("Rifampicin Res Variants", "")),
 				entry("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", "")),
 				entry("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", "")),
-				entry("other_resistance_variants", new MetadataValue("Other resistance Res Variants", "")));
+				entry("other_resistance_variants", new MetadataValue("Other resistance Res Variants", ""))));
 			// @formatter:on				
 
 			// get the last (i.e. most specific) lineage entry
