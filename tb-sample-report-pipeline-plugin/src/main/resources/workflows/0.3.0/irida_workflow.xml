@@ -2,7 +2,7 @@
 <iridaWorkflow>
   <id>41d059e1-7a74-4fc8-ba34-bdfbaf1fa714</id>
   <name>TBSampleReport</name>
-  <version>0.2.4</version>
+  <version>0.3.0</version>
   <analysisType>VARIANT_CALLING</analysisType>
   <inputs>
     <sequenceReadsPaired>sequence_input</sequenceReadsPaired>
