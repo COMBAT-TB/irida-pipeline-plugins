@@ -215,22 +215,21 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			TBProfilerReport tbprofilerResults = mapper.readValue(jsonFile, new TypeReference<Map<String, Object>>() {});
 
 			// @formatter:off
-			Map<String, MetadataValue> tbProfilerFields = Maps.newHashMap(ImmutableMap.<String,MetadataValue>builder()
-				.put("drtype", new MetadataValue("Drug Resistance Type", tbprofilerResults.drtype))
-				.put("lineage", new MetadataValue("Lineage", tbprofilerResults.sublin))
-				.put("tbprofiler_version", new MetadataValue("TbProfiler Version", tbprofilerResults.tbprofiler_version))
-				.put("isoniazid", new MetadataValue("Isoniazid", "S"))
-				.put("rifampicin", new MetadataValue("Rifampicin", "S"))
-				.put("ethambutol", new MetadataValue("Ethambutol", "S"))
-				.put("streptomycin", new MetadataValue("Streptomycin", "S"))
-				.put("other_resistance", new MetadataValue("Other resistance", "S"))
-				.put("isoniazid_variants", new MetadataValue("Isoniazid Res Variants", ""))
-				.put("rifampicin_variants", new MetadataValue("Rifampicin Res Variants", ""))
-				.put("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", ""))
-				.put("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", ""))
-				.put("other_resistance_variants", new MetadataValue("Other resistance Res Variants", ""))
-				.build());
-			// @formatter:on				
+			Map<String, MetadataValue> tbProfilerFields = Map.ofEntries(
+				Map.Entry("drtype", new MetadataValue("Drug Resistance Type", tbprofilerResults.drtype)),
+				Map.Entry("lineage", new MetadataValue("Lineage", tbprofilerResults.sublin)),
+				Map.Entry("tbprofiler_version", new MetadataValue("TbProfiler Version", tbprofilerResults.tbprofiler_version)),
+				Map.Entry("isoniazid", new MetadataValue("Isoniazid", "S")),
+				Map.Entry("rifampicin", new MetadataValue("Rifampicin", "S")),
+				Map.Entry("ethambutol", new MetadataValue("Ethambutol", "S")),
+				Map.Entry("streptomycin", new MetadataValue("Streptomycin", "S")),
+				Map.Entry("other_resistance", new MetadataValue("Other resistance", "S")),
+				Map.Entry("isoniazid_variants", new MetadataValue("Isoniazid Res Variants", "")),
+				Map.Entry("rifampicin_variants", new MetadataValue("Rifampicin Res Variants", "")),
+				Map.Entry("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", "")),
+				Map.Entry("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", "")),
+				Map.Entry("other_resistance_variants", new MetadataValue("Other resistance Res Variants", ""));
+=			// @formatter:on				
 
 			// get the last (i.e. most specific) lineage entry
 			Lineage lineage = tbprofilerResults.lineage.get(tbprofilerResults.lineage.size() - 1);
