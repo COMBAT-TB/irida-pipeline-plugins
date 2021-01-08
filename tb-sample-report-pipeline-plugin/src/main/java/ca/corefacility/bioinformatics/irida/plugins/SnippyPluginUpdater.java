@@ -216,19 +216,19 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 
 			// @formatter:off
 			Map<String, MetadataValue> tbProfilerFields = Map.ofEntries(
-				Map.Entry("drtype", new MetadataValue("Drug Resistance Type", tbprofilerResults.drtype)),
-				Map.Entry("lineage", new MetadataValue("Lineage", tbprofilerResults.sublin)),
-				Map.Entry("tbprofiler_version", new MetadataValue("TbProfiler Version", tbprofilerResults.tbprofiler_version)),
-				Map.Entry("isoniazid", new MetadataValue("Isoniazid", "S")),
-				Map.Entry("rifampicin", new MetadataValue("Rifampicin", "S")),
-				Map.Entry("ethambutol", new MetadataValue("Ethambutol", "S")),
-				Map.Entry("streptomycin", new MetadataValue("Streptomycin", "S")),
-				Map.Entry("other_resistance", new MetadataValue("Other resistance", "S")),
-				Map.Entry("isoniazid_variants", new MetadataValue("Isoniazid Res Variants", "")),
-				Map.Entry("rifampicin_variants", new MetadataValue("Rifampicin Res Variants", "")),
-				Map.Entry("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", "")),
-				Map.Entry("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", "")),
-				Map.Entry("other_resistance_variants", new MetadataValue("Other resistance Res Variants", "")));
+				Map.Entry<String, MetadataValue>("drtype", new MetadataValue("Drug Resistance Type", tbprofilerResults.drtype)),
+				Map.Entry<String, MetadataValue>("lineage", new MetadataValue("Lineage", tbprofilerResults.sublin)),
+				Map.Entry<String,MetadataValue>("tbprofiler_version", new MetadataValue("TbProfiler Version", tbprofilerResults.tbprofiler_version)),
+				Map.Entry<String,MetadataValue>("isoniazid", new MetadataValue("Isoniazid", "S")),
+				Map.Entry<String,MetadataValue>("rifampicin", new MetadataValue("Rifampicin", "S")),
+				Map.Entry<String,MetadataValue>("ethambutol", new MetadataValue("Ethambutol", "S")),
+				Map.Entry<String,MetadataValue>("streptomycin", new MetadataValue("Streptomycin", "S")),
+				Map.Entry<String,MetadataValue>("other_resistance", new MetadataValue("Other resistance", "S")),
+				Map.Entry<String,MetadataValue>("isoniazid_variants", new MetadataValue("Isoniazid Res Variants", "")),
+				Map.Entry<String,MetadataValue>("rifampicin_variants", new MetadataValue("Rifampicin Res Variants", "")),
+				Map.Entry<String,MetadataValue>("ethambutol_variants", new MetadataValue("Ethambutol Res Variants", "")),
+				Map.Entry<String,MetadataValue>("streptomycin_variants", new MetadataValue("Streptomycin Res Variants", "")),
+				Map.Entry<String,MetadataValue>("other_resistance_variants", new MetadataValue("Other resistance Res Variants", "")));
 			// @formatter:on				
 
 			// get the last (i.e. most specific) lineage entry
