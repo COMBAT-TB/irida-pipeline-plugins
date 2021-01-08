@@ -229,8 +229,8 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 				entry("rifampicin_variants", new MetadataValue("i. Rifampicin Res Variants", "")),
 				entry("ethambutol_variants", new MetadataValue("j. Ethambutol Res Variants", "")),
 				entry("streptomycin_variants", new MetadataValue("k. Streptomycin Res Variants", "")),
-				entry("other_resistance_variants", new MetadataValue("l. Other resistance Res Variants", ""))),
-				entry("tbprofiler_version", new MetadataValue("m. TbProfiler Version", tbprofilerResults.tbprofiler_version)));
+				entry("other_resistance_variants", new MetadataValue("l. Other resistance Res Variants", "")),
+				entry("tbprofiler_version", new MetadataValue("m. TbProfiler Version", tbprofilerResults.tbprofiler_version))));
 			// @formatter:on				
 
 			// get the last (i.e. most specific) lineage entry
