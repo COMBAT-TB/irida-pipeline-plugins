@@ -369,6 +369,7 @@
     <output name="iqtree_report_final_tree.iqtree" fileName="iqtree_report_final_tree.iqtree"/>
     <output name="iqtree_frequencies_in_bootstrap_tree.nex" fileName="iqtree_frequencies_in_bootstrap_tree.nex"/>
     <output name="tree" fileName="iqtree_max_likeli_hood_tree.newick"/>
+    <output name="snp_dists.tsv" fileName="snp_dists.tsv"/>
   </outputs>
   <toolRepositories>
     <repository>
