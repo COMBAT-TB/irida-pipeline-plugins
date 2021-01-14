@@ -19,7 +19,7 @@
 		<!-- Version of Java to target for this plugin -->
 		<java.version>1.8</java.version>
 		<!-- The version of IRIDA your plugin must be compiled against. -->
-		<irida.version.compiletime>20.09.2</irida.version.compiletime>
+		<irida.version.compiletime>20.09.3</irida.version.compiletime>
 	</properties>
 	<!-- Dependencies used to build this plugin package -->
 	<dependencies>
