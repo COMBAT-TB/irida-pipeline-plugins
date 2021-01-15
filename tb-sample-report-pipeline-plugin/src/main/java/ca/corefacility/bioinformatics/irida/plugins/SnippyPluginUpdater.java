@@ -292,10 +292,10 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 
 				if (line.contains("in total")) {
 					String[] lineParts = line.split(" ");
-					totalGoodSequences = Integer.parseFloat(lineParts[0]);
+					totalGoodSequences = Float.parseFloat(lineParts[0]);
 				} else if (line.contains("mapped")) {
 					String[] lineParts = line.split(" ");
-					mappedSequences = Integer.parseFloat(lineParts[0]);
+					mappedSequences = Float.parseFloat(lineParts[0]);
 				}
 			}
 			
