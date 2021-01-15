@@ -301,7 +301,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			}
 			
 			Map<String, MetadataEntry> metadataEntries = new HashMap<>();
-			String mappingPercentage = String.format(".2%f %% %f %f", mappedSequences / totalGoodSequences, mappedSequences, totalGoodSequences);
+			String mappingPercentage = String.format("%.2f %% %f %f", mappedSequences / totalGoodSequences, mappedSequences, totalGoodSequences);
 			PipelineProvidedMetadataEntry metadataEntry = new PipelineProvidedMetadataEntry(mappingPercentage, "text", analysis);
 			metadataEntries.put("a. % Reads Mapped", metadataEntry);
 
