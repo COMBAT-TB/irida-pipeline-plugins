@@ -148,7 +148,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 	private static final Logger logger = LoggerFactory.getLogger(SnippyPluginUpdater.class);
 
 	private static final String TBPROFILER_FILE = "tb_profiler_json.json"; 
-
+	private static final String SAMTOOLS_FLAGSSTATS_FILE = "mapping_stats.txt";
 	private final MetadataTemplateService metadataTemplateService;
 	private final SampleService sampleService;
 	private final IridaWorkflowsService iridaWorkflowsService;
@@ -218,26 +218,26 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 
 			// @formatter:off
 			Map<String, MetadataValue> tbProfilerFields = new HashMap<>(Map.ofEntries(
-				entry("drtype", new MetadataValue("a. Drug Resistance Type", tbprofilerResults.drtype)),
-				entry("lineage", new MetadataValue("b. Lineage", tbprofilerResults.sublin)),
-				entry("isoniazid", new MetadataValue("f. Isoniazid", "S")),
-				entry("rifampicin", new MetadataValue("g. Rifampicin", "S")),
-				entry("ethambutol", new MetadataValue("h. Ethambutol", "S")),
-				entry("streptomycin", new MetadataValue("i. Streptomycin", "S")),
-				entry("other_resistance", new MetadataValue("j. Other resistance", "S")),
-				entry("isoniazid_variants", new MetadataValue("k. Isoniazid Res Variants", "")),
-				entry("rifampicin_variants", new MetadataValue("l. Rifampicin Res Variants", "")),
-				entry("ethambutol_variants", new MetadataValue("m. Ethambutol Res Variants", "")),
-				entry("streptomycin_variants", new MetadataValue("n. Streptomycin Res Variants", "")),
-				entry("other_resistance_variants", new MetadataValue("o. Other resistance Res Variants", "")),
-				entry("tbprofiler_version", new MetadataValue("p. TbProfiler Version", tbprofilerResults.tbprofiler_version))));
+				entry("drtype", new MetadataValue("b. Drug Resistance Type", tbprofilerResults.drtype)),
+				entry("lineage", new MetadataValue("g. Lineage", tbprofilerResults.sublin)),
+				entry("isoniazid", new MetadataValue("h. Isoniazid", "S")),
+				entry("rifampicin", new MetadataValue("i. Rifampicin", "S")),
+				entry("ethambutol", new MetadataValue("j. Ethambutol", "S")),
+				entry("streptomycin", new MetadataValue("k. Streptomycin", "S")),
+				entry("other_resistance", new MetadataValue("l. Other resistance", "S")),
+				entry("isoniazid_variants", new MetadataValue("m. Isoniazid Res Variants", "")),
+				entry("rifampicin_variants", new MetadataValue("n. Rifampicin Res Variants", "")),
+				entry("ethambutol_variants", new MetadataValue("o. Ethambutol Res Variants", "")),
+				entry("streptomycin_variants", new MetadataValue("p. Streptomycin Res Variants", "")),
+				entry("other_resistance_variants", new MetadataValue("q. Other resistance Res Variants", "")),
+				entry("tbprofiler_version", new MetadataValue("r. TbProfiler Version", tbprofilerResults.tbprofiler_version))));
 			// @formatter:on				
 
 			// get the last (i.e. most specific) lineage entry
 			Lineage lineage = tbprofilerResults.lineage.get(tbprofilerResults.lineage.size() - 1);
-			tbProfilerFields.put("family", new MetadataValue("c. Family", lineage.family));
-			tbProfilerFields.put("spoligotype", new MetadataValue("d. Spoligotype", lineage.spoligotype));
-			tbProfilerFields.put("lineage_agreement", new MetadataValue("e. % Lineage Agreement", String.valueOf(lineage.frac)));
+			tbProfilerFields.put("family", new MetadataValue("d. Family", lineage.family));
+			tbProfilerFields.put("spoligotype", new MetadataValue("e. Spoligotype", lineage.spoligotype));
+			tbProfilerFields.put("lineage_agreement", new MetadataValue("f. % Lineage Agreement", String.valueOf(lineage.frac)));
 
 			tbprofilerResults.dr_variants.forEach(variant -> {
 				String drugKey = tbProfilerFields.containsKey(variant.drug) ? variant.drug : "other_resistance";
@@ -277,6 +277,43 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			throw new PostProcessingException("Error reading JSON from TbProfiler (Snippy-Tb-Sample-Report) results", e);
 		} catch (IridaWorkflowNotFoundException e) {
 			throw new PostProcessingException("Could not find workflow for id=" + analysis.getWorkflowId(), e);
+		}
+
+		AnalysisOutputFile flagstatsFileName = analysis.getAnalysis().getAnalysisOutputFile(SAMTOOLS_FLAGSSTATS_FILE);
+		filePath = flagstatsFileName.getFile();
+
+		try {
+			@SuppressWarnings("resource")
+			String flagsstatsFile = new Scanner(flagstatsFileName);
+			int totalGoodSequences = 1;
+			int mappedSequences = 0;
+			while (flagsstatsFile.hasNextLine()) {
+				String line = flagsstatsFile.nextLine();
+
+				if (line.contains("in total")) {
+					String[] lineParts = line.split(" ");
+					totalGoodSequences = Integer.parseInt(lineParts[0]);
+				} else if (line.contains("mapped")) {
+					String[] lineParts = line.split(" ");
+					mappedSequences = Integer.parseInt(lineParts[0]);
+				}
+			}
+			
+			Map<String, MetadataEntry> metadataEntries = new HashMap<>();
+			String mappingPercentage = String.format(".2%f%%", mappedSequences / totalGoodSequences);
+			PipelineProvidedMetadataEntry metadataEntry = new PipelineProvidedMetadataEntry(mappingPercentage, "text", analysis);
+			metadataEntries.put("a. % Reads Mapped", metadataEntry);
+
+			// convert string map into metadata fields
+			Map<MetadataTemplateField, MetadataEntry> metadataMap = metadataTemplateService.getMetadataMap(metadataEntries);
+
+			//save metadata back to sample
+			samples.forEach(s -> {
+				s.mergeMetadata(metadataMap);
+				sampleService.updateFields(s.getId(), ImmutableMap.of("metadata", s.getMetadata()));
+			});						
+		} catch (IOException e) {
+			throw new PostProcessingException("Error reading TXT from samtools flagstats (Snippy-Tb-Sample-Report)", e);
 		}
 	}
 	
