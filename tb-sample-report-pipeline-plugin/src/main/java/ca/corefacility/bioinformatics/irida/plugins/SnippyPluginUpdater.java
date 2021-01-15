@@ -293,14 +293,15 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 				if (line.contains("in total")) {
 					String[] lineParts = line.split(" ");
 					totalGoodSequences = Float.parseFloat(lineParts[0]);
-				} else if (line.contains("mapped")) {
+				} else if (line.contains("mapped (")) {
 					String[] lineParts = line.split(" ");
 					mappedSequences = Float.parseFloat(lineParts[0]);
+					break;
 				}
 			}
 			
 			Map<String, MetadataEntry> metadataEntries = new HashMap<>();
-			String mappingPercentage = String.format(".2%f%%", mappedSequences / totalGoodSequences);
+			String mappingPercentage = String.format(".2%f %% %f %f", mappedSequences / totalGoodSequences, mappedSequences, totalGoodSequences);
 			PipelineProvidedMetadataEntry metadataEntry = new PipelineProvidedMetadataEntry(mappingPercentage, "text", analysis);
 			metadataEntries.put("a. % Reads Mapped", metadataEntry);
 
