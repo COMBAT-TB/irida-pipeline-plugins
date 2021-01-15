@@ -285,17 +285,17 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 		try {
 			@SuppressWarnings("resource")
 			Scanner flagsstatsFile = new Scanner(filePath.toFile());
-			int totalGoodSequences = 1;
-			int mappedSequences = 0;
+			float totalGoodSequences = 1;
+			float mappedSequences = 0;
 			while (flagsstatsFile.hasNextLine()) {
 				String line = flagsstatsFile.nextLine();
 
 				if (line.contains("in total")) {
 					String[] lineParts = line.split(" ");
-					totalGoodSequences = Integer.parseInt(lineParts[0]);
+					totalGoodSequences = Integer.parseFloat(lineParts[0]);
 				} else if (line.contains("mapped")) {
 					String[] lineParts = line.split(" ");
-					mappedSequences = Integer.parseInt(lineParts[0]);
+					mappedSequences = Integer.parseFloat(lineParts[0]);
 				}
 			}
 			
