@@ -284,7 +284,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 
 		try {
 			@SuppressWarnings("resource")
-			String flagsstatsFile = new Scanner(flagstatsFileName);
+			String flagsstatsFile = new Scanner(filePath.toFile());
 			int totalGoodSequences = 1;
 			int mappedSequences = 0;
 			while (flagsstatsFile.hasNextLine()) {
