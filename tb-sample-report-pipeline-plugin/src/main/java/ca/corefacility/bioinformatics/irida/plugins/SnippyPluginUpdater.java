@@ -249,7 +249,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 				if (drVariantsAnnotation.value.length() > 0) {
 					drVariantsAnnotation.value += ",";
 				}
-				drVariantsAnnotation.value += (drugKey == "other_resistance" ? variant.drug + ": " : "") + variant.gene + " (" + variant.change + ")";
+				drVariantsAnnotation.value += (drugKey == "other_resistance_variants" ? variant.drug + ": " : "") + variant.gene + " (" + variant.change + ")";
 				tbProfilerFields.put(drugKey, drVariantsAnnotation);
 			});
 			
