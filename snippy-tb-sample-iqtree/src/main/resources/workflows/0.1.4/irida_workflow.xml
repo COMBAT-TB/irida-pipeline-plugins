@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <iridaWorkflow>
-  <id>35cda50d-d12b-4a26-94d4-84b089c081b6</id>
-  <name>M. tuberculosis Phylogeny</name>
+  <id>21e37691-cf1f-46ec-b07e-44ce44051957</id>
+  <name>MTuberculosisPhylogeny</name>
   <version>0.1.4</version>
   <analysisType>SNIPPY_PHYLOGENOMICS</analysisType>
   <inputs>
