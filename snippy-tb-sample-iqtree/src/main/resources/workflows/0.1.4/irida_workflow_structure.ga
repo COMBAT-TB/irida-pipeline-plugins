@@ -4,129 +4,47 @@
   "format-version" : "0.1",
   "name" : "M. tuberculosis IQ-TREE Phylogeny Snippy Analysis workflow - 0.1.4",
   "steps" : {
-    "0" : {
-      "workflow_outputs" : [ {
-        "label" : null,
-        "output_name" : "output",
-        "uuid" : "3a3224c6-4ee2-415d-b0f1-2189d2532902"
-      } ],
-      "input_connections" : { },
-      "label" : "reference",
-      "id" : 0,
-      "tool_state" : "{\"optional\": false}",
-      "errors" : null,
-      "position" : {
-        "bottom" : 266.1499938964844,
-        "height" : 61.79998779296875,
-        "left" : -1079.0166015625,
-        "right" : -879.0166015625,
-        "top" : 204.35000610351562,
-        "width" : 200,
-        "x" : -1079.0166015625,
-        "y" : 204.35000610351562
-      },
-      "name" : "Input dataset",
-      "uuid" : "81c193a5-ab7e-4eee-9c4d-3334d65ebf56",
-      "outputs" : [ ],
-      "type" : "data_input",
-      "tool_version" : null,
-      "annotation" : "Reference genome FASTA",
-      "inputs" : [ {
-        "description" : "Reference genome FASTA",
-        "name" : "reference"
-      } ],
-      "content_id" : null,
-      "tool_id" : null
-    },
-    "1" : {
-      "workflow_outputs" : [ {
-        "label" : null,
-        "output_name" : "output",
-        "uuid" : "b31af74d-f587-4d1c-b697-864217d929c4"
-      } ],
-      "input_connections" : { },
-      "label" : "sequence_reads_list_paired",
-      "id" : 1,
-      "tool_state" : "{\"optional\": false, \"collection_type\": \"list:paired\"}",
-      "errors" : null,
-      "position" : {
-        "bottom" : 375.5500030517578,
-        "height" : 82.19999694824219,
-        "left" : -1079.0166015625,
-        "right" : -879.0166015625,
-        "top" : 293.3500061035156,
-        "width" : 200,
-        "x" : -1079.0166015625,
-        "y" : 293.3500061035156
-      },
-      "name" : "Input dataset collection",
-      "uuid" : "916574e6-7d04-48de-8edd-e90c5b95fc97",
-      "outputs" : [ ],
-      "type" : "data_collection_input",
-      "tool_version" : null,
-      "annotation" : "List of Paired-end Sequence Reads",
-      "inputs" : [ {
-        "description" : "List of Paired-end Sequence Reads",
-        "name" : "sequence_reads_list_paired"
-      } ],
-      "content_id" : null,
-      "tool_id" : null
-    },
-    "2" : {
+    "9" : {
       "workflow_outputs" : [ ],
       "input_connections" : {
-        "single_paired|paired_input" : {
-          "id" : 1,
-          "output_name" : "output"
+        "input1" : {
+          "id" : 7,
+          "output_name" : "output_counts"
         }
       },
       "label" : null,
-      "id" : 2,
-      "tool_state" : "{\"filter_options\": {\"quality_filtering_options\": {\"disable_quality_filtering\": \"false\", \"qualified_quality_phred\": \"\", \"unqualified_percent_limit\": \"\", \"n_base_limit\": \"\"}, \"length_filtering_options\": {\"disable_length_filtering\": \"false\", \"length_required\": \"\"}, \"low_complexity_filter\": {\"enable_low_complexity_filter\": \"false\", \"complexity_threshold\": \"\"}}, \"output_options\": {\"report_html\": \"true\", \"report_json\": \"false\"}, \"overrepresented_sequence_analysis\": {\"overrepresentation_analysis\": \"false\", \"overrepresentation_sampling\": \"\"}, \"read_mod_options\": {\"polyg_tail_trimming\": {\"trimming_select\": \"\", \"__current_case__\": 1, \"poly_g_min_len\": \"\"}, \"polyx_tail_trimming\": {\"polyx_trimming_select\": \"\", \"__current_case__\": 1}, \"umi_processing\": {\"umi\": \"false\", \"umi_loc\": \"\", \"umi_len\": \"\", \"umi_prefix\": \"\"}, \"cutting_by_quality_options\": {\"cut_by_quality5\": \"false\", \"cut_by_quality3\": \"false\", \"cut_window_size\": \"\", \"cut_mean_quality\": \"\"}, \"base_correction_options\": {\"correction\": \"false\"}}, \"single_paired\": {\"single_paired_selector\": \"paired_collection\", \"__current_case__\": 2, \"paired_input\": {\"__class__\": \"ConnectedValue\"}, \"adapter_trimming_options\": {\"disable_adapter_trimming\": \"false\", \"adapter_sequence1\": \"\", \"adapter_sequence2\": \"\"}, \"global_trimming_options\": {\"trim_front1\": \"\", \"trim_tail1\": \"\", \"trim_front2\": \"\", \"trim_tail2\": \"\"}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+      "id" : 9,
+      "tool_state" : "{\"input1\": {\"__class__\": \"ConnectedValue\"}, \"param_type\": \"text\", \"remove_newlines\": \"true\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
       "errors" : null,
       "position" : {
-        "bottom" : 368.75,
-        "height" : 164.39999389648438,
-        "left" : -793.0166625976562,
-        "right" : -593.0166625976562,
-        "top" : 204.35000610351562,
+        "bottom" : 517.5833435058594,
+        "height" : 154.39999389648438,
+        "left" : 654.7000122070312,
+        "right" : 854.7000122070312,
+        "top" : 363.183349609375,
         "width" : 200,
-        "x" : -793.0166625976562,
-        "y" : 204.35000610351562
+        "x" : 654.7000122070312,
+        "y" : 363.183349609375
       },
-      "name" : "fastp",
-      "uuid" : "f32bd84f-2f40-4e16-ae62-e64f5c1c5471",
+      "name" : "Parse parameter value",
+      "uuid" : "2060efed-6085-45bc-81a8-2afef5a1b85e",
       "outputs" : [ {
-        "name" : "output_paired_coll",
-        "type" : "input"
-      }, {
-        "name" : "report_html",
-        "type" : "html"
+        "name" : "text_param",
+        "type" : "expression.json"
       } ],
-      "tool_shed_repository" : {
-        "changeset_revision" : "1d8fe9bc4cb0",
-        "name" : "fastp",
-        "owner" : "iuc",
-        "tool_shed" : "toolshed.g2.bx.psu.edu"
-      },
       "type" : "tool",
-      "tool_version" : "0.19.5+galaxy1",
+      "tool_version" : null,
       "annotation" : "",
       "inputs" : [ ],
       "post_job_actions" : {
-        "HideDatasetActionoutput_paired_coll" : {
+        "HideDatasetActiontext_param" : {
           "action_arguments" : { },
           "action_type" : "HideDatasetAction",
-          "output_name" : "output_paired_coll"
-        },
-        "HideDatasetActionreport_html" : {
-          "action_arguments" : { },
-          "action_type" : "HideDatasetAction",
-          "output_name" : "report_html"
+          "output_name" : "text_param"
         }
       },
-      "content_id" : "toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1",
-      "tool_id" : "toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1"
+      "content_id" : "param_value_from_file",
+      "tool_id" : "param_value_from_file"
     },
     "3" : {
       "workflow_outputs" : [ ],
@@ -145,14 +63,14 @@
       "tool_state" : "{\"adv\": {\"mapqual\": \"60\", \"mincov\": \"10\", \"minfrac\": \"0.9\", \"minqual\": \"100.0\", \"rgid\": \"\", \"bwaopt\": \"\", \"rename_cons\": \"false\"}, \"fastq_input\": {\"fastq_input_selector\": \"paired_collection\", \"__current_case__\": 2, \"fastq_input\": {\"__class__\": \"ConnectedValue\"}}, \"outputs\": [\"outvcf\", \"outgff\", \"outtab\", \"outsum\", \"outlog\", \"outaln\", \"outcon\"], \"reference_source\": {\"reference_source_selector\": \"history\", \"__current_case__\": 1, \"ref_file\": {\"__class__\": \"ConnectedValue\"}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
       "errors" : null,
       "position" : {
-        "bottom" : 775.5500183105469,
+        "bottom" : 754.3833465576172,
         "height" : 571.2000122070312,
-        "left" : -507.01666259765625,
-        "right" : -307.01666259765625,
-        "top" : 204.35000610351562,
+        "left" : -489.29998779296875,
+        "right" : -289.29998779296875,
+        "top" : 183.18333435058594,
         "width" : 200,
-        "x" : -507.01666259765625,
-        "y" : 204.35000610351562
+        "x" : -489.29998779296875,
+        "y" : 183.18333435058594
       },
       "name" : "snippy",
       "uuid" : "87ee2c14-42ed-4ed9-8f7c-c67a62ef6b23",
@@ -185,7 +103,7 @@
         "tool_shed" : "toolshed.g2.bx.psu.edu"
       },
       "type" : "tool",
-      "tool_version" : "4.4.5+galaxy2",
+      "tool_version" : null,
       "annotation" : "",
       "inputs" : [ ],
       "post_job_actions" : {
@@ -239,7 +157,7 @@
       "workflow_outputs" : [ {
         "label" : null,
         "output_name" : "output1",
-        "uuid" : "eb2f0a4c-53f5-43c7-a895-b868c946e5c3"
+        "uuid" : "902ec7dd-1165-4fcf-a7a9-5506c92bee09"
       } ],
       "input_connections" : {
         "input1" : {
@@ -252,14 +170,14 @@
       "tool_state" : "{\"filter_options\": {\"show_filter_options\": \"no\", \"__current_case__\": 1}, \"filters\": \"region_filter\", \"input1\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
       "errors" : null,
       "position" : {
-        "bottom" : 297.5500030517578,
+        "bottom" : 276.3833312988281,
         "height" : 93.19999694824219,
-        "left" : -221.01666259765625,
-        "right" : -21.01666259765625,
-        "top" : 204.35000610351562,
+        "left" : -203.3000030517578,
+        "right" : -3.3000030517578125,
+        "top" : 183.18333435058594,
         "width" : 200,
-        "x" : -221.01666259765625,
-        "y" : 204.35000610351562
+        "x" : -203.3000030517578,
+        "y" : 183.18333435058594
       },
       "name" : "TB Variant Filter",
       "uuid" : "9f1b2966-647a-448f-ba0e-f09ed94f482e",
@@ -274,12 +192,117 @@
         "tool_shed" : "toolshed.g2.bx.psu.edu"
       },
       "type" : "tool",
-      "tool_version" : "0.1.3+galaxy0",
+      "tool_version" : null,
       "annotation" : "",
       "inputs" : [ ],
       "post_job_actions" : { },
       "content_id" : "toolshed.g2.bx.psu.edu/repos/iuc/tb_variant_filter/tb_variant_filter/0.1.3+galaxy0",
       "tool_id" : "toolshed.g2.bx.psu.edu/repos/iuc/tb_variant_filter/tb_variant_filter/0.1.3+galaxy0"
+    },
+    "8" : {
+      "workflow_outputs" : [ {
+        "label" : null,
+        "output_name" : "output",
+        "uuid" : "46793541-be34-4d7d-b071-2d28a0a2a9e0"
+      } ],
+      "input_connections" : {
+        "input" : {
+          "id" : 6,
+          "output_name" : "output_fasta"
+        }
+      },
+      "label" : null,
+      "id" : 8,
+      "tool_state" : "{\"a\": \"false\", \"b\": \"false\", \"input\": {\"__class__\": \"RuntimeValue\"}, \"k\": \"false\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+      "errors" : null,
+      "position" : {
+        "bottom" : 337.5833282470703,
+        "height" : 154.39999389648438,
+        "left" : 654.7000122070312,
+        "right" : 854.7000122070312,
+        "top" : 183.18333435058594,
+        "width" : 200,
+        "x" : 654.7000122070312,
+        "y" : 183.18333435058594
+      },
+      "name" : "SNP distance matrix",
+      "uuid" : "af68af12-9cfa-4acc-9277-0b900a0c8b12",
+      "outputs" : [ {
+        "name" : "output",
+        "type" : "tabular"
+      } ],
+      "tool_shed_repository" : {
+        "changeset_revision" : "1959cc43b414",
+        "name" : "snp_dists",
+        "owner" : "iuc",
+        "tool_shed" : "toolshed.g2.bx.psu.edu"
+      },
+      "type" : "tool",
+      "tool_version" : null,
+      "annotation" : "",
+      "inputs" : [ {
+        "description" : "runtime parameter for tool SNP distance matrix",
+        "name" : "input"
+      } ],
+      "post_job_actions" : {
+        "RenameDatasetActionoutput" : {
+          "action_arguments" : {
+            "newname" : "snp_dists.tsv"
+          },
+          "action_type" : "RenameDatasetAction",
+          "output_name" : "output"
+        }
+      },
+      "content_id" : "toolshed.g2.bx.psu.edu/repos/iuc/snp_dists/snp_dists/0.6.3+galaxy0",
+      "tool_id" : "toolshed.g2.bx.psu.edu/repos/iuc/snp_dists/snp_dists/0.6.3+galaxy0"
+    },
+    "7" : {
+      "workflow_outputs" : [ ],
+      "input_connections" : {
+        "input_fasta" : {
+          "id" : 5,
+          "output_name" : "output_alignment"
+        }
+      },
+      "label" : null,
+      "id" : 7,
+      "tool_state" : "{\"input_fasta\": {\"__class__\": \"ConnectedValue\"}, \"out_type\": {\"ot_select\": \"counts\", \"__current_case__\": 1}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+      "errors" : null,
+      "position" : {
+        "bottom" : 457.183349609375,
+        "height" : 134,
+        "left" : 368.70001220703125,
+        "right" : 568.7000122070312,
+        "top" : 323.183349609375,
+        "width" : 200,
+        "x" : 368.70001220703125,
+        "y" : 323.183349609375
+      },
+      "name" : "Finds SNP sites",
+      "uuid" : "93af6c30-8d93-4dc7-ad84-507fc5858bb6",
+      "outputs" : [ {
+        "name" : "output_counts",
+        "type" : "tabular"
+      } ],
+      "tool_shed_repository" : {
+        "changeset_revision" : "5804f786060d",
+        "name" : "snp_sites",
+        "owner" : "iuc",
+        "tool_shed" : "toolshed.g2.bx.psu.edu"
+      },
+      "type" : "tool",
+      "tool_version" : null,
+      "annotation" : "",
+      "inputs" : [ ],
+      "post_job_actions" : {
+        "HideDatasetActionoutput_counts" : {
+          "action_arguments" : { },
+          "action_type" : "HideDatasetAction",
+          "output_name" : "output_counts"
+        }
+      },
+      "content_id" : "toolshed.g2.bx.psu.edu/repos/iuc/snp_sites/snp_sites/2.5.1+galaxy0",
+      "tool_id" : "toolshed.g2.bx.psu.edu/repos/iuc/snp_sites/snp_sites/2.5.1+galaxy0"
     },
     "5" : {
       "workflow_outputs" : [ ],
@@ -298,14 +321,14 @@
       "tool_state" : "{\"exclude_list\": {\"do_exclude\": \"no\", \"__current_case__\": 1}, \"reference\": {\"source\": \"history\", \"__current_case__\": 0, \"history\": {\"__class__\": \"ConnectedValue\"}}, \"remove_invariant_sites\": \"false\", \"vcf_inputs\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
       "errors" : null,
       "position" : {
-        "bottom" : 389.1499938964844,
-        "height" : 184.79998779296875,
-        "left" : 64.98333740234375,
-        "right" : 264.98333740234375,
-        "top" : 204.35000610351562,
+        "bottom" : 367.98333740234375,
+        "height" : 184.8000030517578,
+        "left" : 82.69999694824219,
+        "right" : 282.6999969482422,
+        "top" : 183.18333435058594,
         "width" : 200,
-        "x" : 64.98333740234375,
-        "y" : 204.35000610351562
+        "x" : 82.69999694824219,
+        "y" : 183.18333435058594
       },
       "name" : "Generate FASTA alignment from VCF collection",
       "uuid" : "42a1005f-4597-4dbe-b3a7-2b4f50d6eb59",
@@ -320,7 +343,7 @@
         "tool_shed" : "testtoolshed.g2.bx.psu.edu"
       },
       "type" : "tool",
-      "tool_version" : "0.5",
+      "tool_version" : null,
       "annotation" : "",
       "inputs" : [ ],
       "post_job_actions" : {
@@ -341,99 +364,221 @@
       "tool_id" : "testtoolshed.g2.bx.psu.edu/repos/sanbi-uwc/vcf_to_alignment/vcf_to_alignment/0.5"
     },
     "6" : {
-      "workflow_outputs" : [ {
-        "label" : null,
-        "output_name" : "output",
-        "uuid" : "e860f025-a048-4d07-9138-b0f5bddef826"
-      } ],
+      "workflow_outputs" : [ ],
       "input_connections" : {
-        "input" : {
+        "input_fasta" : {
           "id" : 5,
           "output_name" : "output_alignment"
         }
       },
       "label" : null,
       "id" : 6,
-      "tool_state" : "{\"a\": \"false\", \"b\": \"false\", \"input\": {\"__class__\": \"ConnectedValue\"}, \"k\": \"false\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+      "tool_state" : "{\"input_fasta\": {\"__class__\": \"ConnectedValue\"}, \"out_type\": {\"ot_select\": \"alignment\", \"__current_case__\": 0, \"formats\": \"-m\", \"b\": \"false\", \"c\": \"false\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
       "errors" : null,
       "position" : {
-        "bottom" : 258.75,
-        "height" : 154.39999389648438,
-        "left" : 651.9833374023438,
-        "right" : 851.9833374023438,
-        "top" : 104.35000610351562,
+        "bottom" : 296.78334045410156,
+        "height" : 113.60000610351562,
+        "left" : 368.70001220703125,
+        "right" : 568.7000122070312,
+        "top" : 183.18333435058594,
         "width" : 200,
-        "x" : 651.9833374023438,
-        "y" : 104.35000610351562
+        "x" : 368.70001220703125,
+        "y" : 183.18333435058594
       },
-      "name" : "SNP distance matrix",
-      "uuid" : "af68af12-9cfa-4acc-9277-0b900a0c8b12",
+      "name" : "Finds SNP sites",
+      "uuid" : "a15a9b41-d9a2-46b2-afdf-2b03eddc71d0",
       "outputs" : [ {
-        "name" : "output",
-        "type" : "tabular"
+        "name" : "output_fasta",
+        "type" : "fasta"
       } ],
       "tool_shed_repository" : {
-        "changeset_revision" : "1959cc43b414",
-        "name" : "snp_dists",
+        "changeset_revision" : "5804f786060d",
+        "name" : "snp_sites",
         "owner" : "iuc",
         "tool_shed" : "toolshed.g2.bx.psu.edu"
       },
       "type" : "tool",
-      "tool_version" : "0.6.3+galaxy0",
+      "tool_version" : null,
       "annotation" : "",
       "inputs" : [ ],
       "post_job_actions" : {
-        "RenameDatasetActionoutput" : {
-          "action_arguments" : {
-            "newname" : "snp_dists.tsv"
-          },
-          "action_type" : "RenameDatasetAction",
+        "HideDatasetActionoutput_fasta" : {
+          "action_arguments" : { },
+          "action_type" : "HideDatasetAction",
+          "output_name" : "output_fasta"
+        }
+      },
+      "content_id" : "toolshed.g2.bx.psu.edu/repos/iuc/snp_sites/snp_sites/2.5.1+galaxy0",
+      "tool_id" : "toolshed.g2.bx.psu.edu/repos/iuc/snp_sites/snp_sites/2.5.1+galaxy0"
+    },
+    "1" : {
+      "workflow_outputs" : [ {
+        "label" : null,
+        "output_name" : "output",
+        "uuid" : "6fca4a77-9bb5-4616-95ea-c56dcebb693a"
+      } ],
+      "input_connections" : { },
+      "label" : "sequence_reads_list_paired",
+      "id" : 1,
+      "tool_state" : "{\"optional\": false, \"collection_type\": \"list:paired\"}",
+      "errors" : null,
+      "position" : {
+        "bottom" : 354.3833465576172,
+        "height" : 82.19999694824219,
+        "left" : -1061.300048828125,
+        "right" : -861.300048828125,
+        "top" : 272.183349609375,
+        "width" : 200,
+        "x" : -1061.300048828125,
+        "y" : 272.183349609375
+      },
+      "name" : "Input dataset collection",
+      "uuid" : "916574e6-7d04-48de-8edd-e90c5b95fc97",
+      "outputs" : [ ],
+      "type" : "data_collection_input",
+      "tool_version" : null,
+      "annotation" : "List of Paired-end Sequence Reads",
+      "inputs" : [ {
+        "description" : "List of Paired-end Sequence Reads",
+        "name" : "sequence_reads_list_paired"
+      } ],
+      "content_id" : null,
+      "tool_id" : null
+    },
+    "0" : {
+      "workflow_outputs" : [ {
+        "label" : null,
+        "output_name" : "output",
+        "uuid" : "3bdc98ff-b44a-4b15-93c8-13b50eacbbbf"
+      } ],
+      "input_connections" : { },
+      "label" : "reference",
+      "id" : 0,
+      "tool_state" : "{\"optional\": false}",
+      "errors" : null,
+      "position" : {
+        "bottom" : 244.98333740234375,
+        "height" : 61.80000305175781,
+        "left" : -1061.300048828125,
+        "right" : -861.300048828125,
+        "top" : 183.18333435058594,
+        "width" : 200,
+        "x" : -1061.300048828125,
+        "y" : 183.18333435058594
+      },
+      "name" : "Input dataset",
+      "uuid" : "81c193a5-ab7e-4eee-9c4d-3334d65ebf56",
+      "outputs" : [ ],
+      "type" : "data_input",
+      "tool_version" : null,
+      "annotation" : "Reference genome FASTA",
+      "inputs" : [ {
+        "description" : "Reference genome FASTA",
+        "name" : "reference"
+      } ],
+      "content_id" : null,
+      "tool_id" : null
+    },
+    "2" : {
+      "workflow_outputs" : [ ],
+      "input_connections" : {
+        "single_paired|paired_input" : {
+          "id" : 1,
           "output_name" : "output"
         }
       },
-      "content_id" : "toolshed.g2.bx.psu.edu/repos/iuc/snp_dists/snp_dists/0.6.3+galaxy0",
-      "tool_id" : "toolshed.g2.bx.psu.edu/repos/iuc/snp_dists/snp_dists/0.6.3+galaxy0"
+      "label" : null,
+      "id" : 2,
+      "tool_state" : "{\"filter_options\": {\"quality_filtering_options\": {\"disable_quality_filtering\": \"false\", \"qualified_quality_phred\": \"\", \"unqualified_percent_limit\": \"\", \"n_base_limit\": \"\"}, \"length_filtering_options\": {\"disable_length_filtering\": \"false\", \"length_required\": \"\"}, \"low_complexity_filter\": {\"enable_low_complexity_filter\": \"false\", \"complexity_threshold\": \"\"}}, \"output_options\": {\"report_html\": \"true\", \"report_json\": \"false\"}, \"overrepresented_sequence_analysis\": {\"overrepresentation_analysis\": \"false\", \"overrepresentation_sampling\": \"\"}, \"read_mod_options\": {\"polyg_tail_trimming\": {\"trimming_select\": \"\", \"__current_case__\": 1, \"poly_g_min_len\": \"\"}, \"polyx_tail_trimming\": {\"polyx_trimming_select\": \"\", \"__current_case__\": 1}, \"umi_processing\": {\"umi\": \"false\", \"umi_loc\": \"\", \"umi_len\": \"\", \"umi_prefix\": \"\"}, \"cutting_by_quality_options\": {\"cut_by_quality5\": \"false\", \"cut_by_quality3\": \"false\", \"cut_window_size\": \"\", \"cut_mean_quality\": \"\"}, \"base_correction_options\": {\"correction\": \"false\"}}, \"single_paired\": {\"single_paired_selector\": \"paired_collection\", \"__current_case__\": 2, \"paired_input\": {\"__class__\": \"ConnectedValue\"}, \"adapter_trimming_options\": {\"disable_adapter_trimming\": \"false\", \"adapter_sequence1\": \"\", \"adapter_sequence2\": \"\"}, \"global_trimming_options\": {\"trim_front1\": \"\", \"trim_tail1\": \"\", \"trim_front2\": \"\", \"trim_tail2\": \"\"}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+      "errors" : null,
+      "position" : {
+        "bottom" : 347.5833282470703,
+        "height" : 164.39999389648438,
+        "left" : -775.2999877929688,
+        "right" : -575.2999877929688,
+        "top" : 183.18333435058594,
+        "width" : 200,
+        "x" : -775.2999877929688,
+        "y" : 183.18333435058594
+      },
+      "name" : "fastp",
+      "uuid" : "f32bd84f-2f40-4e16-ae62-e64f5c1c5471",
+      "outputs" : [ {
+        "name" : "output_paired_coll",
+        "type" : "input"
+      }, {
+        "name" : "report_html",
+        "type" : "html"
+      } ],
+      "tool_shed_repository" : {
+        "changeset_revision" : "1d8fe9bc4cb0",
+        "name" : "fastp",
+        "owner" : "iuc",
+        "tool_shed" : "toolshed.g2.bx.psu.edu"
+      },
+      "type" : "tool",
+      "tool_version" : null,
+      "annotation" : "",
+      "inputs" : [ ],
+      "post_job_actions" : {
+        "HideDatasetActionoutput_paired_coll" : {
+          "action_arguments" : { },
+          "action_type" : "HideDatasetAction",
+          "output_name" : "output_paired_coll"
+        },
+        "HideDatasetActionreport_html" : {
+          "action_arguments" : { },
+          "action_type" : "HideDatasetAction",
+          "output_name" : "report_html"
+        }
+      },
+      "content_id" : "toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1",
+      "tool_id" : "toolshed.g2.bx.psu.edu/repos/iuc/fastp/fastp/0.19.5+galaxy1"
     },
-    "7" : {
+    "10" : {
       "workflow_outputs" : [ {
         "label" : null,
-        "output_name" : "mldist",
-        "uuid" : "bbf43bbd-7e2d-4518-9426-5c3fc885aba6"
+        "output_name" : "iqtree",
+        "uuid" : "71a14131-a4b2-46c2-9ae4-46897f85ddd7"
       }, {
         "label" : null,
-        "output_name" : "iqtree",
-        "uuid" : "1873cf7e-ec08-467b-b069-a4e1c3d11b51"
+        "output_name" : "mldist",
+        "uuid" : "db4d99dd-3916-425c-859f-86643d80cc32"
       }, {
         "label" : null,
         "output_name" : "treefile",
-        "uuid" : "5f0fca80-bffb-4280-92d1-b5158ee4b41f"
+        "uuid" : "fc2e9337-428d-4b91-9cfa-434226a6dd1c"
       }, {
         "label" : null,
         "output_name" : "splits.nex",
-        "uuid" : "37d56d48-70e2-46df-8ca7-06b3628fcc27"
+        "uuid" : "9e0edf05-6834-4309-b5bb-5f876364ef75"
       } ],
       "input_connections" : {
         "general_options|s" : {
-          "id" : 5,
-          "output_name" : "output_alignment"
+          "id" : 6,
+          "output_name" : "output_fasta"
+        },
+        "miscellaneous_options|fconst" : {
+          "id" : 9,
+          "output_name" : "text_param"
         }
       },
       "label" : null,
-      "id" : 7,
-      "tool_state" : "{\"bootstrap_parameters\": {\"ultrafast_bootstrap\": {\"bb\": \"\", \"wbt\": \"false\", \"wbtl\": \"false\", \"nm\": \"1000\", \"bcor\": \"0.99\", \"nstep\": \"100\", \"beps\": \"0.5\", \"bspec\": \"\", \"bnni\": \"false\"}, \"nonparametric_bootstrap\": {\"b\": \"\", \"bc\": \"false\", \"bo\": \"false\"}}, \"general_options\": {\"s\": {\"__class__\": \"RuntimeValue\"}, \"st\": \"DNA\", \"t\": {\"__class__\": \"RuntimeValue\"}, \"te\": {\"__class__\": \"RuntimeValue\"}, \"seed\": \"\", \"keep_ident\": \"false\", \"safe\": \"false\"}, \"likelihood_mapping\": {\"lmap\": \"\", \"lmclust\": {\"__class__\": \"RuntimeValue\"}, \"wql\": \"false\"}, \"miscellaneous_options\": {\"fconst\": \"\"}, \"modelling_parameters\": {\"automatic_model\": {\"cond_model\": {\"opt_custommodel\": \"false\", \"__current_case__\": 1, \"m\": \"\"}, \"rcluster\": \"\", \"mset\": \"\", \"msub\": \"nuclear\", \"mfreq\": \"\", \"mrate\": \"\", \"cmin\": \"2\", \"cmax\": \"10\", \"merit\": \"AIC\", \"mtree\": \"false\", \"madd\": \"\", \"mdef\": {\"__class__\": \"RuntimeValue\"}}, \"specifying_substitution\": {\"mwopt\": \"false\"}, \"rate_heterogeneity\": {\"a\": \"\", \"gmedian\": \"false\", \"i\": \"\", \"opt_gamma_inv\": \"false\", \"wsr\": \"false\"}, \"partition_model\": {\"q\": {\"__class__\": \"RuntimeValue\"}, \"spp\": \"false\", \"sp\": {\"__class__\": \"RuntimeValue\"}}, \"site_specific_frequency\": {\"ft\": {\"__class__\": \"RuntimeValue\"}, \"fs\": \"\", \"fmax\": \"false\"}}, \"tree_parameters\": {\"tree_search\": {\"n\": \"\", \"ninit\": \"100\", \"ntop\": \"20\", \"nbest\": \"5\", \"nstop\": \"100\", \"sprrad\": \"6\", \"pers\": \"0.5\", \"allnni\": \"false\", \"djc\": \"false\", \"g\": {\"__class__\": \"RuntimeValue\"}}, \"single_branch\": {\"alrt\": \"\", \"abayes\": \"false\", \"lbp\": \"\"}, \"tree_topology\": {\"z\": {\"__class__\": \"RuntimeValue\"}, \"zb\": \"\", \"zw\": \"false\", \"au\": \"false\"}, \"constructing_consensus\": {\"con\": \"false\", \"net\": \"false\", \"minsup\": \"0.0\", \"bi\": \"\", \"sup\": {\"__class__\": \"RuntimeValue\"}, \"suptag\": \"\"}, \"computing_robinson_foulds\": {\"rf\": {\"__class__\": \"RuntimeValue\"}, \"rf_all\": \"false\", \"rf_adj\": \"false\"}, \"generating_random\": {\"r\": \"\", \"ru\": \"false\", \"rcat\": \"false\", \"rbal\": \"false\", \"rcsg\": \"false\", \"rlen\": \"\"}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+      "id" : 10,
+      "tool_state" : "{\"bootstrap_parameters\": {\"ultrafast_bootstrap\": {\"bb\": \"1000\", \"wbt\": \"false\", \"wbtl\": \"false\", \"nm\": \"1000\", \"bcor\": \"0.99\", \"nstep\": \"100\", \"beps\": \"0.5\", \"bspec\": \"\", \"bnni\": \"false\"}, \"nonparametric_bootstrap\": {\"b\": \"\", \"bc\": \"false\", \"bo\": \"false\"}}, \"general_options\": {\"s\": {\"__class__\": \"ConnectedValue\"}, \"st\": \"DNA\", \"t\": {\"__class__\": \"RuntimeValue\"}, \"te\": {\"__class__\": \"RuntimeValue\"}, \"seed\": \"\", \"keep_ident\": \"false\", \"safe\": \"false\"}, \"likelihood_mapping\": {\"lmap\": \"\", \"lmclust\": {\"__class__\": \"RuntimeValue\"}, \"wql\": \"false\"}, \"miscellaneous_options\": {\"fconst\": {\"__class__\": \"ConnectedValue\"}}, \"modelling_parameters\": {\"automatic_model\": {\"cond_model\": {\"opt_custommodel\": \"false\", \"__current_case__\": 1, \"m\": \"\"}, \"rcluster\": \"\", \"mset\": \"\", \"msub\": \"nuclear\", \"mfreq\": \"\", \"mrate\": \"\", \"cmin\": \"2\", \"cmax\": \"10\", \"merit\": \"AIC\", \"mtree\": \"false\", \"madd\": \"\", \"mdef\": {\"__class__\": \"RuntimeValue\"}}, \"specifying_substitution\": {\"mwopt\": \"false\"}, \"rate_heterogeneity\": {\"a\": \"\", \"gmedian\": \"false\", \"i\": \"\", \"opt_gamma_inv\": \"false\", \"wsr\": \"false\"}, \"partition_model\": {\"q\": {\"__class__\": \"RuntimeValue\"}, \"spp\": \"false\", \"sp\": {\"__class__\": \"RuntimeValue\"}}, \"site_specific_frequency\": {\"ft\": {\"__class__\": \"RuntimeValue\"}, \"fs\": \"\", \"fmax\": \"false\"}}, \"tree_parameters\": {\"tree_search\": {\"n\": \"\", \"ninit\": \"100\", \"ntop\": \"20\", \"nbest\": \"5\", \"nstop\": \"100\", \"sprrad\": \"6\", \"pers\": \"0.5\", \"allnni\": \"false\", \"djc\": \"false\", \"g\": {\"__class__\": \"RuntimeValue\"}}, \"single_branch\": {\"alrt\": \"\", \"abayes\": \"false\", \"lbp\": \"\"}, \"tree_topology\": {\"z\": {\"__class__\": \"RuntimeValue\"}, \"zb\": \"\", \"zw\": \"false\", \"au\": \"false\"}, \"constructing_consensus\": {\"con\": \"false\", \"net\": \"false\", \"minsup\": \"0.0\", \"bi\": \"\", \"sup\": {\"__class__\": \"RuntimeValue\"}, \"suptag\": \"\"}, \"computing_robinson_foulds\": {\"rf\": {\"__class__\": \"RuntimeValue\"}, \"rf_all\": \"false\", \"rf_adj\": \"false\"}, \"generating_random\": {\"r\": \"\", \"ru\": \"false\", \"rcat\": \"false\", \"rbal\": \"false\", \"rcsg\": \"false\", \"rlen\": \"\"}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
       "errors" : null,
       "position" : {
-        "bottom" : 1355.1500549316406,
-        "height" : 1150.800048828125,
-        "left" : 922.9833374023438,
-        "right" : 1122.9833374023438,
-        "top" : 204.35000610351562,
+        "bottom" : 1384.7833099365234,
+        "height" : 1201.5999755859375,
+        "left" : 940.7000122070312,
+        "right" : 1140.7000122070312,
+        "top" : 183.18333435058594,
         "width" : 200,
-        "x" : 922.9833374023438,
-        "y" : 204.35000610351562
+        "x" : 940.7000122070312,
+        "y" : 183.18333435058594
       },
       "name" : "IQ-TREE",
-      "uuid" : "2ac4bb55-b583-4135-9aa7-0c9cd11e19c4",
+      "uuid" : "8cba5e38-55b7-46cf-917f-be63d8dd45b5",
       "outputs" : [ {
         "name" : "bionj",
         "type" : "nhx"
@@ -460,12 +605,9 @@
         "tool_shed" : "toolshed.g2.bx.psu.edu"
       },
       "type" : "tool",
-      "tool_version" : "1.5.5.1",
+      "tool_version" : null,
       "annotation" : "",
       "inputs" : [ {
-        "description" : "runtime parameter for tool IQ-TREE",
-        "name" : "general_options"
-      }, {
         "description" : "runtime parameter for tool IQ-TREE",
         "name" : "general_options"
       }, {
@@ -534,6 +676,6 @@
     }
   },
   "tags" : [ ],
-  "uuid" : "ed74b4ec-dca8-404f-ab29-84049f90ef11",
-  "version" : 2
+  "uuid" : "9513aab8-467d-41d0-8fc2-a31954df0af6",
+  "version" : 3
 }
