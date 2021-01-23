@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <iridaWorkflow>
-  <id>ac1c3285-14bd-43e6-a599-afe8800b86e5</id>
+  <id>73e6639c-2d98-42f2-abc6-6291614622c2</id>
   <name>MTuberculosisPhylogeny</name>
   <version>0.1.4</version>
   <analysisType>SNIPPY_PHYLOGENOMICS</analysisType>
   <inputs>
-    <sequenceReadsPaired/>
+    <sequenceReadsPaired>sequence_reads_list_paired</sequenceReadsPaired>
     <reference>reference</reference>
     <requiresSingleSample>true</requiresSingleSample>
   </inputs>
