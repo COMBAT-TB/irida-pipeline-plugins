@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <iridaWorkflow>
-  <id>73e6639c-2d98-42f2-abc6-6291614622c2</id>
+  <id>035cc7cc-c86e-4895-b0b3-507839278895</id>
   <name>MTuberculosisPhylogeny</name>
   <version>0.1.4</version>
   <analysisType>SNIPPY_PHYLOGENOMICS</analysisType>
   <inputs>
     <sequenceReadsPaired>sequence_reads_list_paired</sequenceReadsPaired>
     <reference>reference</reference>
-    <requiresSingleSample>true</requiresSingleSample>
+    <requiresSingleSample>false</requiresSingleSample>
   </inputs>
   <parameters>
     <parameter name="fastp-2-single_paired.adapter_trimming_options.adapter_sequence2" defaultValue="">
