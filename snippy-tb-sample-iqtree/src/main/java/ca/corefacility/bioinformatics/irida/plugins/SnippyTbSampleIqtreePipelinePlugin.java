@@ -118,12 +118,12 @@ public class SnippyTbSampleIqtreePipelinePlugin extends Plugin {
 		 * @return An {@link Optional} {@link AnalysisSampleUpdater} used to update
 		 *         metadata from the pipeline results.
 		 */
-		@Override
-		public Optional<AnalysisSampleUpdater> getUpdater(MetadataTemplateService metadataTemplateService,
-				SampleService sampleService, IridaWorkflowsService iridaWorkflowsService) throws IridaPluginException {
-			return Optional.of(new SnippyTbSampleIqtreePipelinePluginUpdater(metadataTemplateService, sampleService,
-					iridaWorkflowsService));
-		}
+		// @Override
+		// public Optional<AnalysisSampleUpdater> getUpdater(MetadataTemplateService metadataTemplateService,
+		// 		SampleService sampleService, IridaWorkflowsService iridaWorkflowsService) throws IridaPluginException {
+		// 	return Optional.of(new SnippyTbSampleIqtreePipelinePluginUpdater(metadataTemplateService, sampleService,
+		// 			iridaWorkflowsService));
+		// }
 
 		@Override
 		public Optional<String> getAnalysisViewer() {
