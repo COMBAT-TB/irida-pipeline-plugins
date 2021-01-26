@@ -261,16 +261,19 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 				metadataEntries.put(entry.getValue().header, metadataEntry);
 			});
 
-			// convert string map into metadata fields
-			Map<MetadataTemplateField, MetadataEntry> metadataMap = metadataTemplateService.getMetadataMap(metadataEntries);
+			// // convert string map into metadata fields
+			// Map<MetadataTemplateField, MetadataEntry> metadataMap = metadataTemplateService.getMetadataMap(metadataEntries);
 
-			//save metadata back to sample
-			samples.forEach(s -> {
-				s.mergeMetadata(metadataMap);
-				sampleService.updateFields(s.getId(), ImmutableMap.of("metadata", s.getMetadata()));
-			});
+			// //save metadata back to sample
+			// samples.forEach(s -> {
+			// 	s.mergeMetadata(metadataMap);
+			// 	sampleService.updateFields(s.getId(), ImmutableMap.of("metadata", s.getMetadata()));
+			// });
 			
-
+			Set<MetadataEntry> metadataSet = metadataTemplateService.convertMetadataStringsToSet(metadataEntries);
+			samples.forEach(s -> {
+				sampleService.mergeSampleMetadata(s, metadataSet);
+			}
 		} catch (JsonProcessingException e) {
 			throw new PostProcessingException("Error parsing JSON from TbProfiler (Snippy-Tb-Sample-Report) results", e);
 		} catch (IOException e) {
