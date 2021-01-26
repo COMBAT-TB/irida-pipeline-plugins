@@ -273,7 +273,7 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			Set<MetadataEntry> metadataSet = metadataTemplateService.convertMetadataStringsToSet(metadataEntries);
 			samples.forEach(s -> {
 				sampleService.mergeSampleMetadata(s, metadataSet);
-			}
+			});
 		} catch (JsonProcessingException e) {
 			throw new PostProcessingException("Error parsing JSON from TbProfiler (Snippy-Tb-Sample-Report) results", e);
 		} catch (IOException e) {
