@@ -307,14 +307,18 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 			PipelineProvidedMetadataEntry metadataEntry = new PipelineProvidedMetadataEntry(mappingPercentage, "text", analysis);
 			metadataEntries.put("a. % Reads Mapped", metadataEntry);
 
-			// convert string map into metadata fields
-			Map<MetadataTemplateField, MetadataEntry> metadataMap = metadataTemplateService.getMetadataMap(metadataEntries);
+			// // convert string map into metadata fields
+			// Map<MetadataTemplateField, MetadataEntry> metadataMap = metadataTemplateService.getMetadataMap(metadataEntries);
 
-			//save metadata back to sample
+			// //save metadata back to sample
+			// samples.forEach(s -> {
+			// 	s.mergeMetadata(metadataMap);
+			// 	sampleService.updateFields(s.getId(), ImmutableMap.of("metadata", s.getMetadata()));
+			// });						
+			Set<MetadataEntry> metadataSet = metadataTemplateService.convertMetadataStringsToSet(metadataEntries);
 			samples.forEach(s -> {
-				s.mergeMetadata(metadataMap);
-				sampleService.updateFields(s.getId(), ImmutableMap.of("metadata", s.getMetadata()));
-			});						
+				sampleService.mergeSampleMetadata(s,metadataSet);
+			});
 		} catch (IOException e) {
 			throw new PostProcessingException("Error reading TXT from samtools flagstats (Snippy-Tb-Sample-Report)", e);
 		}
