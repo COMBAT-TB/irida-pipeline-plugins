@@ -36,7 +36,6 @@ import ca.corefacility.bioinformatics.irida.pipeline.results.updater.AnalysisSam
 import ca.corefacility.bioinformatics.irida.service.sample.MetadataTemplateService;
 import ca.corefacility.bioinformatics.irida.service.sample.SampleService;
 import ca.corefacility.bioinformatics.irida.service.workflow.IridaWorkflowsService;
-import jdk.nashorn.internal.ir.annotations.Immutable;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
