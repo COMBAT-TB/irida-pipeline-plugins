@@ -366,7 +366,6 @@
     </parameter>
   </parameters>
   <outputs>
-    <output name="snps_vcf_file" fileName="snps_vcf_file"/>
     <output name="consensus_fasta.fasta" fileName="consensus_fasta.fasta"/>
     <output name="snp_dists.tsv" fileName="snp_dists.tsv"/>
     <output name="iqtree_bionj_tree_file.newick" fileName="iqtree_bionj_tree_file.newick"/>
