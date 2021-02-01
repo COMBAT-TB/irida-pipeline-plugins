@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <iridaWorkflow>
-  <id>41d059e1-7a74-4fc8-ba34-bdfbaf1fa714</id>
+  <id>41d059e1-7a74-4fc8-ba34-bdfbaf1fa716</id>
   <name>TBSampleReport</name>
-  <version>0.2.4</version>
+  <version>0.3.1</version>
   <analysisType>VARIANT_CALLING</analysisType>
   <inputs>
     <sequenceReadsPaired>sequence_input</sequenceReadsPaired>
@@ -125,6 +125,7 @@
     <output name="tb_profiler_txt.txt" fileName="tb_profiler_txt.txt"/>
     <output name="tb_profiler_vcf.vcf" fileName="tb_profiler_vcf.vcf"/>
     <output name="tb_profiler_json.json" fileName="tb_profiler_json.json"/>
+    <output name="mapping_stats.txt" fileName="mapping_stats.txt"/>
   </outputs>
   <toolRepositories>
     <repository>
@@ -174,6 +175,12 @@
       <owner>bgruening</owner>
       <url>https://toolshed.g2.bx.psu.edu</url>
       <revision>0a8c6b61f0f4</revision>
+    </repository>
+    <repository>
+      <name>samtools_flagstat</name>
+      <owner>devteam</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>22970df7a40e</revision>
     </repository>
   </toolRepositories>
 </iridaWorkflow>

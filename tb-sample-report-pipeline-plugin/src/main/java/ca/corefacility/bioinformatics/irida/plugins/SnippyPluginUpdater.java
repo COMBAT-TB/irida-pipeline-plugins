@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import static java.util.Map.entry;
 import java.util.Map;
 import java.util.Set;
 import java.util.Scanner;
@@ -39,6 +40,102 @@ import ca.corefacility.bioinformatics.irida.service.workflow.IridaWorkflowsServi
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+class QC {
+    public float pct_reads_mapped;
+    public float num_reads_mapped;
+
+}
+
+class Lineage {
+    public String lin;
+    public String family;
+    public String spoligotype;
+    public String rd;
+    public float frac;
+}
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+class Variant {
+    public String sample;
+    public String gene_name;
+    public String chr;
+    public int genome_pos;
+    public String type;
+    public String change;
+    public float freq;
+    public String nucleotide_change;
+    public String locus_tag;
+    public String gene;
+    public String drug;
+    public String confidence;
+}
+
+class DBVersion {
+    public String name;
+    public String commit;
+    public String author;
+    public String date;
+
+    @JsonProperty("Author")
+    public String getAuthor() {
+        return author;
+    }
+
+    @JsonProperty("Author")
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    @JsonProperty("Date")
+    public String getDate() {
+        return date;
+    }
+
+    @JsonProperty("Date")
+    public void setDate(String date) {
+        this.date = date;
+    }
+}
+
+class Pipeline {
+    public String mapper;
+    public String variant_caller;
+}
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+class TBProfilerReport {
+    public QC qc;
+    // region_coverage key not processed
+    public List<Lineage> lineage;
+    public String main_lin;
+    public String sublin;
+    public List<Variant> dr_variants;
+    public List<Variant> other_variants;
+    public String XDR;
+    public String MDR;
+    public String drtype;
+    public DBVersion db_version;
+    public String id;
+    public String tbprofiler_version;
+    public Pipeline pipeline;
+}
+
+class MetadataValue {
+	public String header;
+	public String value;
+
+	MetadataValue(String header, String value) {
+		this.header = header;
+		this.value = value;
+	}
+}
+
 /**
  * This implements a class used to perform post-processing on the analysis
  * pipeline results to extract information to write into the IRIDA metadata
@@ -50,21 +147,12 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 	private static final Logger logger = LoggerFactory.getLogger(SnippyPluginUpdater.class);
 
 	private static final String TBPROFILER_FILE = "tb_profiler_json.json"; 
-
+	private static final String SAMTOOLS_FLAGSSTATS_FILE = "mapping_stats.txt";
 	private final MetadataTemplateService metadataTemplateService;
 	private final SampleService sampleService;
 	private final IridaWorkflowsService iridaWorkflowsService;
 
-	// @formatter:off
-	private Map<String, String> TBPROFILER_FIELDS = ImmutableMap.<String,String>builder()
-		.put("drtype", "Drug Resistance Type")
-		.put("main_lin","Main Lineage")
-		.put("sublin", "Sub Lineage")
-		.put("XDR", "Extensively drug-resistant TB")
-		.put("MDR", "Multidrug-resistant tuberculosis")
-		.put("tbprofiler_version", "TbProfiler Version")
-		.build();
-			// @formatter:on
+
 
 
 	/**
@@ -125,39 +213,114 @@ public class SnippyPluginUpdater implements AnalysisSampleUpdater {
 
 			// map the results into a Map
 			ObjectMapper mapper = new ObjectMapper();
-			Map<String, Object> tbprofilerResults = mapper.readValue(jsonFile, new TypeReference<Map<String, Object>>() {});
+			TBProfilerReport tbprofilerResults = mapper.readValue(jsonFile, TBProfilerReport.class);
 
-			if (tbprofilerResults.size() > 0) {
-				//Map<String, Object> result = tbprofilerResults.get(0);
+			// @formatter:off
+			Map<String, MetadataValue> tbProfilerFields = new HashMap<>(Map.ofEntries(
+				entry("drtype", new MetadataValue("b. Drug Resistance Type", tbprofilerResults.drtype)),
+				entry("lineage", new MetadataValue("g. Lineage", tbprofilerResults.sublin)),
+				entry("isoniazid", new MetadataValue("h. Isoniazid", "S")),
+				entry("rifampicin", new MetadataValue("i. Rifampicin", "S")),
+				entry("ethambutol", new MetadataValue("j. Ethambutol", "S")),
+				entry("streptomycin", new MetadataValue("k. Streptomycin", "S")),
+				entry("other_resistance", new MetadataValue("l. Other resistance", "S")),
+				entry("isoniazid_variants", new MetadataValue("m. Isoniazid Res Variants", "")),
+				entry("rifampicin_variants", new MetadataValue("n. Rifampicin Res Variants", "")),
+				entry("ethambutol_variants", new MetadataValue("o. Ethambutol Res Variants", "")),
+				entry("streptomycin_variants", new MetadataValue("p. Streptomycin Res Variants", "")),
+				entry("other_resistance_variants", new MetadataValue("q. Other resistance Res Variants", "")),
+				entry("tbprofiler_version", new MetadataValue("r. TbProfiler Version", tbprofilerResults.tbprofiler_version))));
+			// @formatter:on				
 
-				//loop through each of the requested fields and append workflow version and save the entries
-				TBPROFILER_FIELDS.entrySet().forEach(e -> {
-					if (tbprofilerResults.containsKey(e.getKey())) {
-						Object valueObject = tbprofilerResults.get(e.getKey());
-						String value = (valueObject != null ? valueObject.toString() : "");
-						PipelineProvidedMetadataEntry metadataEntry =
-								new PipelineProvidedMetadataEntry(value, "text", analysis);
-						metadataEntries.put(e.getValue() + " (v"+workflowVersion+")", metadataEntry);
-					}
-				});
+			// get the last (i.e. most specific) lineage entry
+			Lineage lineage = tbprofilerResults.lineage.get(tbprofilerResults.lineage.size() - 1);
+			tbProfilerFields.put("family", new MetadataValue("d. Family", lineage.family));
+			tbProfilerFields.put("spoligotype", new MetadataValue("e. Spoligotype", lineage.spoligotype));
+			tbProfilerFields.put("lineage_agreement", new MetadataValue("f. % Lineage Agreement", String.valueOf(lineage.frac)));
 
-				// convert string map into metadata fields
-				Map<MetadataTemplateField, MetadataEntry> metadataMap = metadataTemplateService.getMetadataMap(metadataEntries);
-
-				//save metadata back to sample
-				samples.forEach(s -> {
-					s.mergeMetadata(metadataMap);
-					sampleService.updateFields(s.getId(), ImmutableMap.of("metadata", s.getMetadata()));
-				});
-
-			} else {
-				throw new PostProcessingException("TbProfiler results for file are not correctly formatted");
-			}
+			tbprofilerResults.dr_variants.forEach(variant -> {
+				String drugKey = tbProfilerFields.containsKey(variant.drug) ? variant.drug : "other_resistance";
+				MetadataValue drAnnotation = tbProfilerFields.get(drugKey);
+				drAnnotation.value = "R";
+				tbProfilerFields.put(drugKey, drAnnotation);
+				drugKey += "_variants";
+				MetadataValue drVariantsAnnotation = tbProfilerFields.get(drugKey);
+				if (drVariantsAnnotation.value.length() > 0) {
+					drVariantsAnnotation.value += ",";
+				}
+				drVariantsAnnotation.value += (drugKey == "other_resistance_variants" ? variant.drug + ": " : "") + variant.gene + " (" + variant.change + ")";
+				tbProfilerFields.put(drugKey, drVariantsAnnotation);
+			});
 			
-		} catch (IOException e) {
+
+			tbProfilerFields.entrySet().forEach(entry -> {
+				PipelineProvidedMetadataEntry metadataEntry =
+					new PipelineProvidedMetadataEntry(entry.getValue().value, "text", analysis);
+				// metadataEntries.put(entry.getValue().header + " (v" + workflowVersion + ")", metadataEntry);
+				metadataEntries.put(entry.getValue().header, metadataEntry);
+			});
+
+			// // convert string map into metadata fields
+			// Map<MetadataTemplateField, MetadataEntry> metadataMap = metadataTemplateService.getMetadataMap(metadataEntries);
+
+			// //save metadata back to sample
+			// samples.forEach(s -> {
+			// 	s.mergeMetadata(metadataMap);
+			// 	sampleService.updateFields(s.getId(), ImmutableMap.of("metadata", s.getMetadata()));
+			// });
+			
+			Set<MetadataEntry> metadataSet = metadataTemplateService.convertMetadataStringsToSet(metadataEntries);
+			samples.forEach(s -> {
+				sampleService.mergeSampleMetadata(s, metadataSet);
+			});
+		} catch (JsonProcessingException e) {
 			throw new PostProcessingException("Error parsing JSON from TbProfiler (Snippy-Tb-Sample-Report) results", e);
+		} catch (IOException e) {
+			throw new PostProcessingException("Error reading JSON from TbProfiler (Snippy-Tb-Sample-Report) results", e);
 		} catch (IridaWorkflowNotFoundException e) {
 			throw new PostProcessingException("Could not find workflow for id=" + analysis.getWorkflowId(), e);
+		}
+
+		AnalysisOutputFile flagstatsFileName = analysis.getAnalysis().getAnalysisOutputFile(SAMTOOLS_FLAGSSTATS_FILE);
+		filePath = flagstatsFileName.getFile();
+
+		try {
+			@SuppressWarnings("resource")
+			Scanner flagsstatsFile = new Scanner(filePath.toFile());
+			float totalGoodSequences = 1;
+			float mappedSequences = 0;
+			while (flagsstatsFile.hasNextLine()) {
+				String line = flagsstatsFile.nextLine();
+
+				if (line.contains("in total")) {
+					String[] lineParts = line.split(" ");
+					totalGoodSequences = Float.parseFloat(lineParts[0]);
+				} else if (line.contains("mapped (")) {
+					String[] lineParts = line.split(" ");
+					mappedSequences = Float.parseFloat(lineParts[0]);
+					break;
+				}
+			}
+			
+			Map<String, MetadataEntry> metadataEntries = new HashMap<>();
+			String mappingPercentage = String.format("%.2f%%", mappedSequences / totalGoodSequences * 100);
+			PipelineProvidedMetadataEntry metadataEntry = new PipelineProvidedMetadataEntry(mappingPercentage, "text", analysis);
+			metadataEntries.put("a. % Reads Mapped", metadataEntry);
+
+			// // convert string map into metadata fields
+			// Map<MetadataTemplateField, MetadataEntry> metadataMap = metadataTemplateService.getMetadataMap(metadataEntries);
+
+			// //save metadata back to sample
+			// samples.forEach(s -> {
+			// 	s.mergeMetadata(metadataMap);
+			// 	sampleService.updateFields(s.getId(), ImmutableMap.of("metadata", s.getMetadata()));
+			// });						
+			Set<MetadataEntry> metadataSet = metadataTemplateService.convertMetadataStringsToSet(metadataEntries);
+			samples.forEach(s -> {
+				sampleService.mergeSampleMetadata(s,metadataSet);
+			});
+		} catch (IOException e) {
+			throw new PostProcessingException("Error reading TXT from samtools flagstats (Snippy-Tb-Sample-Report)", e);
 		}
 	}
 	
