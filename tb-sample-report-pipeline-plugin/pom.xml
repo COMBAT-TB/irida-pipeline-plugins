@@ -20,7 +20,7 @@
 		<java.version>11</java.version>
 		<maven.compiler.release>11</maven.compiler.release>		
 		<!-- The version of IRIDA your plugin must be compiled against. -->
-		<irida.version.compiletime>21.01-SNAPSHOT</irida.version.compiletime>
+		<irida.version.compiletime>21.01</irida.version.compiletime>
 	</properties>
 	<!-- Dependencies used to build this plugin package -->
 	<dependencies>
