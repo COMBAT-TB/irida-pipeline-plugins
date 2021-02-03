@@ -19,6 +19,6 @@ if [ ! -d $DESTINATION ] ; then
     exit 1
 fi
 
-docker run --workdir /pipelines/$WORKFLOW_NAME --rm -v $(pwd):/pipelines quay.io/combattb/irida-builder:20.09.3 mvn clean install
+docker run --workdir /pipelines/$WORKFLOW_NAME --rm -v $(pwd):/pipelines quay.io/combattb/irida-builder:21.01 mvn clean install
 cp $WORKFLOW_NAME/target/*.jar $DESTINATION
-docker run --workdir /pipelines/$WORKFLOW_NAME --rm -v $(pwd):/pipelines quay.io/combattb/irida-builder:20.09.3 mvn clean
+docker run --workdir /pipelines/$WORKFLOW_NAME --rm -v $(pwd):/pipelines quay.io/combattb/irida-builder:21.01 mvn clean
